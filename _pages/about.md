@@ -1,11 +1,13 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "Profile"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
+
+I am a PhD student in the [Department of Chemistry and Biochemistry](https://sc.edu/study/colleges_schools/chemistry_and_biochemistry/) at the University of South Carolina. My research expertise includes nano-scaled material characterization, surface engineering, and quantitative data analysis, with strong focus on atomically precise semiconducting nanocrystals. Specialized in probing nanocrystal surface thermodynamics through ligand exchange, calorimetry, spectroscopy, and STEM imaging. Proven ability to build, develop, and apply advanced MATLAB-based data analysis tools, and to troubleshoot analytical instrumentation to improve reproducibility and throughput. Collaborative experience across nanomaterials systems relevant to semiconductor technologies, including perovskites and metal oxides. Brings a strong record of peer-reviewed publications, international conference presentations, and mentoring of graduate and undergraduate researchers, complemented by teaching experience, leadership in student organizations, and prior analytical development work in a GLP/cGMP-regulated pharmaceutical industry. Motivated to contribute to mechanistic photo(electro)catalysis research on semiconductor surfaces and interfaces, with a strong interest in hydrogen evolution and in developing expertise in thin-film photoelectrochemistry, in situ spectroscopy, and interfacial characterization.
 
 This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
 
