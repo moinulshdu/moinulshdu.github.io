@@ -80,7 +80,7 @@ $$
   <img src="{{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png"
        alt="Light traversing through a bulk semiconductor"
        style="display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;">
-  <figcaption style="margin-top: 0.5em;">
+  <figcaption style="display: block; clear: both; width: 100%; margin-top: 0.5em; text-align: center;">
     <strong>Figure:</strong> Light traversing through a bulk semiconductor.
   </figcaption>
 </figure>
@@ -108,8 +108,8 @@ Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the
 > <figure style="text-align: center; margin-left: auto; margin-right: auto;">
 >   <img src="{{ site.baseurl }}/images/science/light transmitting through m number of bulk semiconductor slabs.png"
 >        alt="Geometric derivation of the exponential attenuation law"
->        style="display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;">
->   <figcaption style="margin-top: 0.5em;">
+>        style="display: block; width: 100%; max-width: 250px; height: auto; margin: 0 auto;">
+>   <figcaption style="display: block; clear: both; width: 100%; margin-top: 0.5em; text-align: center;">
 >     <strong>Figure:</strong> Geometric derivation of the exponential attenuation law.
 >   </figcaption>
 > </figure>
