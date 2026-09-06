@@ -79,7 +79,7 @@ $$
 <figure style="text-align: center;">
   <img src="{{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png"
        alt="Light traversing through a bulk semiconductor"
-       style="width: 100%; max-width: 700px; height: auto;">
+       style="display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;">
   <figcaption style="margin-top: 0.5em;">
     <strong>Figure:</strong> Light traversing through a bulk semiconductor.
   </figcaption>
@@ -104,15 +104,17 @@ Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the
 -->
 
 > ### Derivation of absorption coefficient
-> <figure style="text-align: center;">
-  <img src="{{ site.baseurl }}/images/science/light transmitting through m number of bulk semiconductor slabs.png"
-       alt="Geometric derivation of the exponential attenuation law"
-       style="width: 100%; max-width: 600px; height: auto;">
-  <figcaption style="margin-top: 0.5em;">
-    <strong>Figure:</strong> Geometric derivation of the exponential attenuation law.
-  </figcaption>
-</figure>
-> Assume that the bulk slab is cut into many thiner slabs with thickness of $\Delta x$. If each individual thinner slab absorbs a finite fraction $f$ of incident light, then the remainig portion, $1-f$, is transmitted. Now for the first sub-slab:
+>
+> <figure style="text-align: center; margin-left: auto; margin-right: auto;">
+>   <img src="{{ site.baseurl }}/images/science/light transmitting through m number of bulk semiconductor slabs.png"
+>        alt="Geometric derivation of the exponential attenuation law"
+>        style="display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;">
+>   <figcaption style="margin-top: 0.5em;">
+>     <strong>Figure:</strong> Geometric derivation of the exponential attenuation law.
+>   </figcaption>
+> </figure>
+>
+> Assume that the bulk slab is cut into many thinner slabs with thickness $\Delta x$. If each  individual thinner slab absorbs a finite fraction $f$ of incident light, then the remainig portion, $1-f$, is transmitted. Now for the first sub-slab:
 >
 > $$I_1 = (1-f)I_0$$
 >
