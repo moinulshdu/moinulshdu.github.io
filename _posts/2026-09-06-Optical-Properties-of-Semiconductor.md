@@ -76,6 +76,9 @@ $$
 
 ## Purpose, scope, and reader promise
 
+![Absorption spectrum]({{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png)
+
+
 **One-sentence promise:** Starting with the question *“How much light comes through my sample?”*, this post builds a physically consistent path to absorption, complex refractive index, dielectric response, nanocrystal local fields, and scattering.
 
 **Target audience:** Graduate students and researchers who measure UV-vis-NIR spectra, work with semiconductor films or nanocrystal dispersions, and want to know what each fitted or tabulated optical quantity actually means.
