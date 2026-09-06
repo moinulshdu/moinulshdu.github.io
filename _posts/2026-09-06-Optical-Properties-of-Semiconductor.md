@@ -832,7 +832,9 @@ I_{\rm ballistic}=I_0e^{-\mu_tL}.
 
 
 Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
+
 $$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
+
 Here, $A$ is the absorbance, $\epsilon_{\mathrm{molar}}$ is the molar extinction coefficient with unit of $\mathrm{M^{-1} \, cm^{-1}}$, $[c]$ is the molar concentration of the absorbing species in $\mathrm{M}$, and $l$ is the path length of the light through the material in $\mathrm{cm}$.
 
 
