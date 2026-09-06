@@ -74,7 +74,7 @@ $$
 
 # DO NOT trust this piece of text yet as it is still under construction and the outline is completely taken from generative AI and have not been verified.
 
-## Purpose, scope, and reader promise
+# Exponential Attenuation Law
 
 <figure>
   <img src="{{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png"
@@ -83,6 +83,33 @@ $$
     <strong>Figure:</strong> Light traversing through a bulk semiconductor.
   </figcaption>
 </figure>
+
+When light passes through a material, the intensity of traversed light through a bulk material with thickness of $x$ attenuates by following an exponential attenuation law:
+
+$$ I = I_0 \cdot e^{-\alpha x} $$
+
+Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the attenuated light, $\alpha$ is the absorption coefficient of the material with unit of $\mathrm{cm}^{-1}$, $x$ is the thickness traversed by the light through the material. The absorption coefficient is a frequency dependent value, typically ranging from $10^3$ to $10^5$ $\mathrm{cm}^{-1}$ for bulk semiconductor. 
+
+| Bulk Semiconductor | Absorption coefficient @ band edge |
+|----|----|
+| Si | $1.0\times10^5$ $\mathrm{cm}^{-1}$ @ $1.10$ $\mathrm{eV}$
+| ZnS | $5.0\times10^2$ $\mathrm{cm}^{-1}$ @ $3.70$ $\mathrm{eV}$
+| CdS | $5.5\times10^4$ $\mathrm{cm}^{-1}$ @ $2.50$ $\mathrm{eV}$
+| CdSe | $8.0\times10^3$ $\mathrm{cm}^{-1}$ @ $1.74$ $\mathrm{eV}$
+| GaAs | $8.2\times10^3$ $\mathrm{cm}^{-1}$ @ $1.43$ $\mathrm{eV}$
+
+<!-- 
+> Note to cautious redear : Material's polarizability is also denoted by $\alpha$, DO NOT confuse with absorption coefficient 
+-->
+
+Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
+
+$$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
+
+Here, $A$ is the absorbance, $\epsilon_{\mathrm{molar}}$ is the molar extinction coefficient with unit of $\mathrm{M^{-1} \, cm^{-1}}$, $[c]$ is the molar concentration of the absorbing species in $\mathrm{M}$, and $l$ is the path length of the light through the material in $\mathrm{cm}$.
+
+
+## Purpose, scope, and reader promise
 
 **One-sentence promise:** Starting with the question *“How much light comes through my sample?”*, this post builds a physically consistent path to absorption, complex refractive index, dielectric response, nanocrystal local fields, and scattering.
 
@@ -828,13 +855,5 @@ I_{\rm ballistic}=I_0e^{-\mu_tL}.
 
 
 
-
-
-
-Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
-
-$$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
-
-Here, $A$ is the absorbance, $\epsilon_{\mathrm{molar}}$ is the molar extinction coefficient with unit of $\mathrm{M^{-1} \, cm^{-1}}$, $[c]$ is the molar concentration of the absorbing species in $\mathrm{M}$, and $l$ is the path length of the light through the material in $\mathrm{cm}$.
 
 
