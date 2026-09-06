@@ -3,74 +3,14 @@ title: 'Optical Properties of Semiconductor'
 date: 2026-09-06
 permalink: /posts/2026/09/optical-properties-of-semiconductor/
 tags:
-  - cool posts
-  - category1
-  - category2
+  - Absorbance
+  - Absorption coefficient
+  - Exponential attenuation law
 ---
 
 
 
 # What happens when a beam of light interacts with thin matter?
-
-## Formatting conventions
-
-Insert title, section, subsection, subsubsection, bold text, italic text, inline code, links, figures, code blocks using the following syntax:
-```markdown
-# Title
-## Section
-### Subsection
-#### Subsubsection  
-**Bold text**
-*Italic text* 
-`Inline code` 
-[Link](https://example.com) 
-![Figure caption](https://example.com/figure.png)
-```
-
-```python
-``` python (or matlab, markdown, bash, etc.)
-# Python code block
-def hello_world():
-    print("Hello, world!")
-# do not forget to close the code block with three backticks (```)
-```
-
-Insert a table using the following syntax:
-```markdown
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
-``` 
-
-Insert a list using the following syntax:
-```markdown
-- Item 1
-- Item 2
-  - Subitem 2.1
-  - Subitem 2.2
-- Item 3        
-```
-Insert a numbered list using the following syntax:
-```markdown
-1. First item
-2. Second item
-   1. Subitem 2.1
-   2. Subitem 2.2
-3. Third item
-```
-Insert a blockquote using the following syntax:
-```markdown 
-> This is a blockquote. 
-```
-Insert complex mathematical expressions using LaTeX syntax within dollar signs for inline math or double dollar signs for display math. For example:
-```markdown
-Inline math: $E=mc^2$  
-Display math: 
-$$
-E=h\nu=h\frac{c}{\lambda_0}=\hbar\omega \tag{1}
-$$
-```
 
 # DO NOT trust this piece of text yet as it is still under construction and the outline is completely taken from generative AI and have not been verified.
 
@@ -147,6 +87,67 @@ Beer-Lambert law defines the relationship between the absorption of light by an 
 $$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
 
 Here, $A$ is the absorbance, $\epsilon_{\mathrm{molar}}$ is the molar extinction coefficient with unit of $\mathrm{M^{-1} \, cm^{-1}}$, $[c]$ is the molar concentration of the absorbing species in $\mathrm{M}$, and $l$ is the path length of the light through the material in $\mathrm{cm}$.
+
+
+## Formatting conventions
+
+Insert title, section, subsection, subsubsection, bold text, italic text, inline code, links, figures, code blocks using the following syntax:
+```markdown
+# Title
+## Section
+### Subsection
+#### Subsubsection  
+**Bold text**
+*Italic text* 
+`Inline code` 
+[Link](https://example.com) 
+![Figure caption](https://example.com/figure.png)
+```
+
+```python
+``` python (or matlab, markdown, bash, etc.)
+# Python code block
+def hello_world():
+    print("Hello, world!")
+# do not forget to close the code block with three backticks (```)
+```
+
+Insert a table using the following syntax:
+```markdown
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
+| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+``` 
+
+Insert a list using the following syntax:
+```markdown
+- Item 1
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+- Item 3        
+```
+Insert a numbered list using the following syntax:
+```markdown
+1. First item
+2. Second item
+   1. Subitem 2.1
+   2. Subitem 2.2
+3. Third item
+```
+Insert a blockquote using the following syntax:
+```markdown 
+> This is a blockquote. 
+```
+Insert complex mathematical expressions using LaTeX syntax within dollar signs for inline math or double dollar signs for display math. For example:
+```markdown
+Inline math: $E=mc^2$  
+Display math: 
+$$
+E=h\nu=h\frac{c}{\lambda_0}=\hbar\omega \tag{1}
+$$
+```
 
 
 ## Purpose, scope, and reader promise
