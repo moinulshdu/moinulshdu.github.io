@@ -109,9 +109,27 @@ Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the
 >
 > For the second slab:
 >
-> $$I_2 = (1-f)I_1 = (1-f)^2I_1$$
+> $$I_2 = (1-f)I_1 = (1-f)^2I_0$$
 >
-> For $m$ number of 
+> For a total $m$ number of slabs $[x=m\cdot \Delta x]$
+> 
+> $$I = I_m = (1-f)^m I_0 = (1-f)^{x/\Delta x}I_0$$
+> 
+> With some algebric rearrangement:
+> 
+> $$ \frac{I}{I_0} = \left[ \left(\frac{1}{1-f}\right)^{\frac{1}{\Delta x}} \right]^{-x} $$
+> 
+> Here both $f$ and $\Delta x$ are constants and the term can be called with another constant $y$
+> 
+> $$ \frac{I}{I_0} = y^{-x} = e^{-x \cdot \ln(y)} $$
+> 
+> Here, the term $\ln(y)$ is the absorption coefficient $\alpha$, where, 
+> 
+> $$ \alpha = \frac{1}{\Delta x} \ln\left(\frac{1}{1-f}\right) $$
+> 
+> So, the resulting attenuation relationship becomes:
+> 
+> $$ \frac{I}{I_0} = e^{-\alpha \cdot x} $$
 
 Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
 
