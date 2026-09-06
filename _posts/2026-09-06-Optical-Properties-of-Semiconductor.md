@@ -82,6 +82,16 @@ Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the
 > 
 > $$ \frac{I}{I_0} = e^{-\alpha \cdot x} $$
 
+Here, the absorption coefficient give the idea of how rapidly light intensity is absorbed as light travels through a material. For example, the absorption coefficient for bulk CdSe is 8000 $\mathrm{cm}^{-1}$ means that for every centimeter of travel throgh bulk CdSe, the *exponent attenuation* of the traversed light increases by 8000 (caution: that does not mean that light intensity decrease by 8000 times). To put this in perspective, let's consider a 200 nm thick CdSe film. Then :
+
+$$ I = I_0 \cdot e^{- 8000 \text{ } \mathrm{cm}^{-1} \times 200 \text{ } \mathrm{nm} \times \frac{1 \text{ } \mathrm{cm}}{10^7 \text{ } \mathrm{nm}}} = 0.85 I_0$$
+
+That means 85% of the incident light will pass throght the 200 nm CdSe film when its absorption coefficient is 8000 $\mathrm{cm}^{-1}$.
+
+Now, for molecular system this attenuation law can be written as :
+
+$$ $$
+
 Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
 
 $$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
