@@ -76,8 +76,13 @@ $$
 
 ## Purpose, scope, and reader promise
 
-![Absorption spectrum]({{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png)
-
+<figure>
+  <img src="{{ site.baseurl }}/images/science/light transmitting through a bulk semiconductor.png"
+       alt="Light traversing through a bulk semiconductor">
+  <figcaption>
+    <strong>Figure:</strong> Light traversing through a bulk semiconductor.
+  </figcaption>
+</figure>
 
 **One-sentence promise:** Starting with the question *“How much light comes through my sample?”*, this post builds a physically consistent path to absorption, complex refractive index, dielectric response, nanocrystal local fields, and scattering.
 
