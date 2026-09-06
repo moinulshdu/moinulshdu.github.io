@@ -102,12 +102,16 @@ Here, $I_0$ is the intensity of the incidient light, $I$ is the intensity of the
 > Note to cautious redear : Material's polarizability is also denoted by $\alpha$, DO NOT confuse with absorption coefficient 
 -->
 
->>> #### Derivation of absorption coefficient
->>> Assume that the bulk slab is cut into many thiner slabs with thickness of $\Delta x$. If each individual thinner slab absorbs a finite fraction $f$ of incident light, then the remainig portion, $1-f$, is transmitted. Now for the first sub-slab:
->>> $$I_1 = (1-f)I_0$$
->>> For the second slab:
->>> $$I_2 = (1-f)I_1 = (1-f)^2I_1$$
->>> For $m$ number of 
+> ### Derivation of absorption coefficient
+> Assume that the bulk slab is cut into many thiner slabs with thickness of $\Delta x$. If each individual thinner slab absorbs a finite fraction $f$ of incident light, then the remainig portion, $1-f$, is transmitted. Now for the first sub-slab:
+>
+> $$I_1 = (1-f)I_0$$
+>
+> For the second slab:
+>
+> $$I_2 = (1-f)I_1 = (1-f)^2I_1$$
+>
+> For $m$ number of 
 
 Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
 
