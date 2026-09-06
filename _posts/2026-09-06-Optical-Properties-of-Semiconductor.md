@@ -1,7 +1,7 @@
 ---
 title: 'Future Blog Post'
-date: 2199-01-01
-permalink: /posts/2012/08/blog-post-4/
+date: 2026-09-05
+permalink: /posts/2012/08/Optical Properties of Semiconductor/
 tags:
   - cool posts
   - category1
