@@ -88,9 +88,21 @@ $$ I = I_0 \cdot e^{- 8000 \text{ } \mathrm{cm}^{-1} \times 200 \text{ } \mathrm
 
 That means 85% of the incident light will pass throght the 200 nm CdSe film when its absorption coefficient is 8000 $\mathrm{cm}^{-1}$.
 
+Check this calculator:
+<iframe
+  src="{{ site.baseurl }}/assets/calculators/calc-alpha-from-thickness-transmittance.html"
+  title="Absorption coefficient calculator"
+  width="300"
+  height="300"
+  style="display: block; max-width: 100%; margin: 1.5em auto; border: none;"
+  loading="lazy">
+</iframe>
+
 Now, for molecular system this attenuation law can be written as :
 
-$$ $$
+$$ I = I_0 e^{- \sigma \cdot [n] \cdot l} $$
+
+Where, $l$ is the path length of the traversed light throgh a absorber material (i.e., molecular dye dispersed in a solvent or semiconducting nanocrystals disperse in a solvent) containing in a non-absorbing medium. Typical unit of $l$ is in $\mathrm{cm}$.  
 
 Beer-Lambert law defines the relationship between the absorption of light by an absorber and the properties of the material through which the light is traveling. 
 

@@ -1,0 +1,289 @@
+<div id="absorption-calculator">
+  <style>
+    #absorption-calculator {
+      width: min(100%, 300px);
+      height: 300px;
+      margin: 1.5em auto;
+      position: relative;
+      font-family: inherit;
+
+      background: white;
+      box-sizing: border-box;
+    }
+
+    #absorption-calculator::before {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 5px;
+        width: 102%;
+        height: 270px; /* Change only this value */
+        border: 2px solid black;
+        box-sizing: border-box;
+        pointer-events: none;
+    }
+
+    #absorption-calculator .ac-diagram {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    #absorption-calculator svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Horizontal thickness slider */
+    #absorption-calculator .ac-x-scale {
+      position: absolute;
+      left: 8.333%;
+      bottom: 74px;
+      width: 72%;
+      height: 20px;
+      background: linear-gradient(90deg, #ffe1ca 0%, #ec8069 48%, #c51032 100%);
+    }
+
+    /* Vertical transmittance slider */
+    #absorption-calculator .ac-t-scale {
+      position: absolute;
+      right: 8.333%;
+      top: 55px;
+      width: 20px;
+      height: 135px;
+      background: linear-gradient(180deg, #eadcf0 0%, #b88ac6 48%, #6d3b86 100%);
+    }
+
+    #absorption-calculator input[type="range"] {
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    #absorption-calculator input[type="range"]::-webkit-slider-runnable-track {
+      height: 20px;
+      background: transparent;
+    }
+
+    #absorption-calculator input[type="range"]::-moz-range-track {
+      height: 20px;
+      background: transparent;
+    }
+
+    #absorption-calculator input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 12px;
+      height: 26px;
+      margin-top: -3px;
+      background: white;
+      border: 1.5px solid black;
+    }
+
+    #absorption-calculator input[type="range"]::-moz-range-thumb {
+      width: 10px;
+      height: 22px;
+      background: white;
+      border: 1.5px solid black;
+      border-radius: 0;
+    }
+
+    #absorption-calculator #ac-x-slider {
+      width: 100%;
+      height: 20px;
+      margin: 0;
+    }
+
+    #absorption-calculator #ac-t-slider {
+      position: absolute;
+      width: 135px;
+      height: 20px;
+      top: 58px;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%) rotate(-90deg);
+      transform-origin: center;
+    }
+
+    #absorption-calculator .ac-label {
+      position: absolute;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    #absorption-calculator .ac-zero { left: 8.333%; bottom: 53px; }
+    #absorption-calculator .ac-max-x {
+      left: 80.333%;
+      bottom: 53px;
+      transform: translateX(-100%);
+    }
+
+    #absorption-calculator .ac-x-title {
+      left: 44%;
+      bottom: 52px;
+      transform: translateX(-50%);
+      font-weight: 600;
+    }
+
+    #absorption-calculator .ac-t-title {
+      right: 5px;
+      top: 30px;
+      height: 135px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-weight: 600;
+    }
+
+    #absorption-calculator .ac-t-top { right: -3px; top: 49px; }
+    #absorption-calculator .ac-t-bottom { right: 7px; top: 181px; }
+
+    #absorption-calculator .ac-result {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    #absorption-calculator .ac-result-value {
+      color: #9e1128;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  </style>
+
+  <div class="ac-diagram">
+    <svg viewBox="0 0 300 300" role="img"
+         aria-label="Interactive absorption coefficient calculator">
+      <defs>
+        <linearGradient id="ac-front-gradient" x1="0%" x2="100%">
+          <stop offset="0%" stop-color="#ec403f"></stop>
+          <stop offset="100%" stop-color="#bd281f"></stop>
+        </linearGradient>
+
+        <filter id="ac-white-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"></feGaussianBlur>
+          <feFlood flood-color="white" result="white"></feFlood>
+          <feComposite in="white" in2="blur" operator="in" result="glow"></feComposite>
+          <feMerge>
+            <feMergeNode in="glow"></feMergeNode>
+            <feMergeNode in="SourceGraphic"></feMergeNode>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- 3D box -->
+      <g id="ac-box">
+        <rect id="ac-front" fill="url(#ac-front-gradient)"></rect>
+        <polygon id="ac-top" fill="#ff8585"></polygon>
+        <polygon id="ac-side" fill="#ff6969"></polygon>
+
+        <text id="ac-box-x-text" text-anchor="middle" fill="black"
+              font-weight="700" filter="url(#ac-white-glow)"></text>
+        <text id="ac-box-t-text" text-anchor="middle" fill="black"
+              font-weight="700" filter="url(#ac-white-glow)"></text>
+      </g>
+    </svg>
+
+    <div class="ac-x-scale">
+      <input id="ac-x-slider" type="range" min="1" max="2000" value="200" step="1"
+             aria-label="Thickness in nanometers">
+    </div>
+
+    <div class="ac-t-scale">
+      <input id="ac-t-slider" type="range" min="0.1" max="99.9" value="85.21437889" step="0.1"
+             aria-label="Transmittance in percent">
+    </div>
+
+    <span class="ac-label ac-zero">0 nm</span>
+    <span class="ac-label ac-max-x">2000 nm</span>
+    <span class="ac-label ac-x-title">Thickness, x</span>
+    <span class="ac-label ac-t-title">Transmittance, T</span>
+    <span class="ac-label ac-t-top">100%</span>
+    <span class="ac-label ac-t-bottom">0%</span>
+
+    <div class="ac-result" aria-live="polite">
+      Absorption coefficient, α<br>
+      <span class="ac-result-value" id="ac-alpha-value"></span> cm<sup>−1</sup>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.getElementById("absorption-calculator");
+      const xSlider = root.querySelector("#ac-x-slider");
+      const tSlider = root.querySelector("#ac-t-slider");
+      const alphaValue = root.querySelector("#ac-alpha-value");
+
+      const front = root.querySelector("#ac-front");
+      const topFace = root.querySelector("#ac-top");
+      const side = root.querySelector("#ac-side");
+      const boxXText = root.querySelector("#ac-box-x-text");
+      const boxTText = root.querySelector("#ac-box-t-text");
+
+      function updateCalculator() {
+        const x = Number(xSlider.value);
+        const tPercent = Number(tSlider.value);
+        const T = tPercent / 100;
+
+        const alpha = -Math.log(T) / (x * 1e-7);
+        alphaValue.textContent = alpha.toExponential(2);
+
+        /* x = 25 is the same location as 0 nm on the slider. */
+        const xStart = 25;
+        const scaleWidth = 216;
+        const width = scaleWidth * (x / 2000);
+
+        /* Fixed box height, independent of transmittance. */
+        const height = 125;
+        const bottom = 190;
+        const boxTop = bottom - height;
+        const depth = 12;
+        const xEnd = xStart + width;
+
+        front.setAttribute("x", xStart);
+        front.setAttribute("y", boxTop);
+        front.setAttribute("width", width);
+        front.setAttribute("height", height);
+
+        /* Top face */
+        topFace.setAttribute(
+          "points",
+          `${xStart},${boxTop} ${xEnd},${boxTop} ` +
+          `${xEnd + depth},${boxTop - depth} ${xStart + depth},${boxTop - depth}`
+        );
+
+        /* Right-side face */
+        side.setAttribute(
+          "points",
+          `${xEnd},${boxTop} ${xEnd + depth},${boxTop - depth} ` +
+          `${xEnd + depth},${bottom - depth} ${xEnd},${bottom}`
+        );
+
+        const centerX = xStart + width / 2;
+        const centerY = boxTop + height / 2;
+        const textSize = Math.max(8, Math.min(13, width / 13));
+
+        boxXText.setAttribute("x", centerX);
+        boxXText.setAttribute("y", centerY - 10);
+        boxXText.setAttribute("font-size", textSize);
+        boxXText.textContent = `x = ${x.toLocaleString()} nm`;
+
+        boxTText.setAttribute("x", centerX);
+        boxTText.setAttribute("y", centerY + 12);
+        boxTText.setAttribute("font-size", textSize);
+        boxTText.textContent = `T = ${tPercent.toFixed(1)}%`;
+      }
+
+      xSlider.addEventListener("input", updateCalculator);
+      tSlider.addEventListener("input", updateCalculator);
+      updateCalculator();
+    })();
+  </script>
+</div>
