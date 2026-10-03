@@ -20,9 +20,9 @@ Go to [DeepSkyStacker](http://deepskystacker.free.fr/) to stack your astrophotog
 For download to their [GitHub Link](https://github.com/deepskystacker/DSS/releases#release-6.2.3-Beta2). Download the latest version. Go to Assets and find your suitable installation file for your suitable operating system. 
 
 Organize captured photos into 
-- biases
-- darks
-- flats
+- biases - Cap On, high sutter speed
+- darks - Same ISO, same focus - just lens cap ON
+- flats - 
 - lights - Photos of Andromeda
 
 Open picture files > go to light frames folder > choose all the light frames (cntrl+A) > Open > Check all > you should see the number of light frames
