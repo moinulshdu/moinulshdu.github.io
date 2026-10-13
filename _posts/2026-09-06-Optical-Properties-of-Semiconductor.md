@@ -111,6 +111,18 @@ $$ A = \epsilon_{\mathrm{molar}} \cdot [c] \cdot l $$
 Here, $A$ is the absorbance, $\epsilon_{\mathrm{molar}}$ is the molar extinction coefficient with unit of $\mathrm{M^{-1} \, cm^{-1}}$, $[c]$ is the molar concentration of the absorbing species in $\mathrm{M}$, and $l$ is the path length of the light through the material in $\mathrm{cm}$.
 
 
+> ### Can you directly subtract the transmittance values of two samples to find the difference, or do they need to be converted to absorbance first?
+> No, you cannot directly subtract transmittance values. You must always convert transmittance (\(T\)) to absorbance (\(A\)) before performing any subtraction.
+> Why You Can't Subtract Transmittance
+> • Transmittance is multiplicative, not additive: Transmittance represents the fraction of light that successfully passes through a sample (\(T = I/I_0\)). If you stack two absorbing materials, their combined effect is found by multiplying their transmittance values (\(T_{\text{total}} = T_1 \times T_2\)), not by adding or subtracting them.
+> • It is non-linear: Transmittance drops exponentially as the concentration of a sample increases. Because the scale is non-linear, subtracting two transmittance percentages will give you a mathematically incorrect and physically meaningless result regarding the difference in chemical concentration.
+> Why You Must Use Absorbance
+> • Absorbance is linear: Absorbance is calculated using a logarithmic transformation of transmittance:
+\(A=-\log _{10}(T)\)
+> • It follows the Beer-Lambert Law: Absorbance scales linearly and directly with both the concentration of the absorbing molecules and the path length of the light.
+> • Spectral subtraction works: Because absorbance is linear and additive, you can mathematically isolate a specific signal by subtracting a baseline, solvent blank, or reference sample (\(A_{\text{net}} = A_{\text{sample}} - A_{\text{blank}}\)). This is a standard and necessary practice in optical spectroscopy (such as UV-Vis or FTIR).
+
+
 ## Formatting conventions
 
 Insert title, section, subsection, subsubsection, bold text, italic text, inline code, links, figures, code blocks using the following syntax:
