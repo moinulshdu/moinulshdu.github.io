@@ -1,0 +1,124 @@
+---
+layout: default
+title: Private
+permalink: /private/
+noindex: true
+---
+<div class="wrap page private">
+  <noscript><p>This page needs JavaScript.</p></noscript>
+
+  <!-- Shown when Firebase has not been set up yet -->
+  <section class="pv-view" data-view="setup" hidden>
+    <div class="auth-card">
+      <h1>Private area</h1>
+      <p>The sign-in system is not connected yet. Follow part 6 of <code>HOW-TO-UPDATE.md</code> to connect Firebase, then paste your settings into <code>assets/js/firebase-config.js</code>.</p>
+    </div>
+  </section>
+
+  <section class="pv-view" data-view="loading"><div class="auth-card"><p class="muted">Loading…</p></div></section>
+
+  <!-- Sign in -->
+  <section class="pv-view" data-view="signin" hidden>
+    <form class="auth-card" id="f-signin" autocomplete="on">
+      <h1>Sign in</h1>
+      <label>Email<input type="email" name="email" autocomplete="username" required></label>
+      <label>Password<input type="password" name="password" autocomplete="current-password" required minlength="8"></label>
+      <label class="check"><input type="checkbox" name="remember"> Keep me signed in on this device</label>
+      <button class="btn primary wide" type="submit">Sign in</button>
+      <p class="pv-msg" role="status"></p>
+      <p class="auth-links"><a href="#reset" data-go="reset">Forgot password?</a> · <a href="#signup" data-go="signup">Create account</a></p>
+    </form>
+  </section>
+
+  <!-- Sign up -->
+  <section class="pv-view" data-view="signup" hidden>
+    <form class="auth-card" id="f-signup" autocomplete="on">
+      <h1>Create account</h1>
+      <label>Email<input type="email" name="email" autocomplete="username" required></label>
+      <label>Password <small>(at least 10 characters)</small><input type="password" name="password" autocomplete="new-password" required minlength="10"></label>
+      <label>Repeat password<input type="password" name="password2" autocomplete="new-password" required minlength="10"></label>
+      <button class="btn primary wide" type="submit">Create account</button>
+      <p class="pv-msg" role="status"></p>
+      <p class="auth-links"><a href="#signin" data-go="signin">Back to sign in</a></p>
+    </form>
+  </section>
+
+  <!-- Reset password -->
+  <section class="pv-view" data-view="reset" hidden>
+    <form class="auth-card" id="f-reset">
+      <h1>Reset password</h1>
+      <p class="muted">Enter your email. If it belongs to an account, a link to set a new password is sent to it.</p>
+      <label>Email<input type="email" name="email" autocomplete="username" required></label>
+      <button class="btn primary wide" type="submit">Send reset link</button>
+      <p class="pv-msg" role="status"></p>
+      <p class="auth-links"><a href="#signin" data-go="signin">Back to sign in</a></p>
+    </form>
+  </section>
+
+  <!-- Verify email -->
+  <section class="pv-view" data-view="verify" hidden>
+    <div class="auth-card">
+      <h1>Confirm your email</h1>
+      <p>A confirmation link was sent to <strong class="pv-email"></strong>. Open it, then come back and press the button.</p>
+      <button class="btn primary wide" id="b-verified">I've confirmed — continue</button>
+      <button class="btn wide" id="b-resend">Send the link again</button>
+      <p class="pv-msg" role="status"></p>
+      <p class="auth-links"><a href="#" class="pv-signout">Sign out</a></p>
+    </div>
+  </section>
+
+  <!-- The vault -->
+  <section class="pv-view" data-view="vault" hidden>
+    <header class="vault-head">
+      <div><h1>My documents</h1><p class="muted">Signed in as <span class="pv-email"></span></p></div>
+      <div class="btns">
+        <button class="btn primary" id="b-add-link">+ Add link</button>
+        <button class="btn" id="b-add-page">+ New private page</button>
+        <div class="menu-wrap">
+          <button class="btn" id="b-more" aria-haspopup="true" aria-expanded="false">⋯</button>
+          <div class="menu" id="m-more" hidden>
+            <a href="{{ '/drafts/' | relative_url }}">Draft article previews</a>
+            <button type="button" id="b-export">Export everything (JSON)</button>
+            <button type="button" id="b-pwreset">Email me a password-change link</button>
+            <button type="button" class="pv-signout">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="vault-tools">
+      <input type="search" id="q" placeholder="Search titles, notes, categories…" aria-label="Search">
+      <div class="cats" id="cats"></div>
+    </div>
+    <div id="vault-list" class="vault-list"></div>
+    <p class="muted small-note">Only you can read these entries: they are stored in your Firebase database, protected by your sign-in, and are not part of this website's files. Links to Google Drive still follow Google's own sharing settings.</p>
+  </section>
+</div>
+
+<!-- Editor dialog -->
+<dialog id="dlg-edit" class="dlg">
+  <form method="dialog" id="f-edit">
+    <h2 id="dlg-title">Add link</h2>
+    <label>Title<input name="title" required maxlength="200"></label>
+    <label class="for-link">Link (URL)<input name="url" type="url" placeholder="https://drive.google.com/…"></label>
+    <label>Category<input name="category" list="cat-list" placeholder="e.g. Health" maxlength="60"></label>
+    <datalist id="cat-list"></datalist>
+    <label class="for-link">Notes<textarea name="notes" rows="3" maxlength="5000"></textarea></label>
+    <label class="for-page">Page text <small>(# heading, **bold**, - list, links)</small><textarea name="body" rows="14" maxlength="900000"></textarea></label>
+    <label class="check"><input type="checkbox" name="pinned"> Pin to top</label>
+    <div class="dlg-btns">
+      <button class="btn danger" type="button" id="b-delete">Delete</button>
+      <span></span>
+      <button class="btn" value="cancel" formnovalidate>Cancel</button>
+      <button class="btn primary" id="b-save" value="save">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Reader dialog for private pages -->
+<dialog id="dlg-read" class="dlg wide">
+  <div class="dlg-read-head"><h2 id="read-title"></h2><div><button class="btn" id="b-read-edit">Edit</button> <button class="btn" id="b-read-close">Close</button></div></div>
+  <div id="read-body" class="prose"></div>
+</dialog>
+
+<script src="{{ '/assets/js/firebase-config.js' | relative_url }}"></script>
+<script type="module" src="{{ '/assets/js/private.js' | relative_url }}"></script>

@@ -1,0 +1,9 @@
+# Top menu. Order here = order on the website.
+- title: "About"
+  url: /
+- title: "Apps & Articles"
+  url: /apps/
+- title: "Publications"
+  url: /publications/
+- title: "CV"
+  url: /cv/

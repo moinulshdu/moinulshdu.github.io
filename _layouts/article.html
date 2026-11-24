@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article class="wrap article">
+  <nav class="crumbs"><a href="{{ '/apps/#articles' | relative_url }}">Articles</a></nav>
+  <header class="article-head">
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ site.author.name }} · <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.last_modified_at %} · updated {{ page.last_modified_at | date: "%B %-d, %Y" }}{% endif %}</p>
+    {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    {% if page.toc_figure and page.toc_figure != "" %}<figure class="toc-fig"><img src="{{ page.toc_figure | relative_url }}" alt="Overview figure for {{ page.title }}"></figure>{% endif %}
+  </header>
+  <div class="prose">
+    {{ content }}
+  </div>
+  {% if page.tags.size > 0 %}<p class="tags">{% for t in page.tags %}<span class="chip">{{ t }}</span>{% endfor %}</p>{% endif %}
+  <footer class="article-foot">
+    <img src="{{ site.author.photo | relative_url }}" alt="" width="56" height="56">
+    <p>Written by <a href="{{ '/' | relative_url }}">{{ site.author.name }}</a> ({{ site.author.job_title }}, {{ site.author.affiliation }}). Questions or corrections? <a href="mailto:{{ site.author.email }}">Email me</a>.</p>
+  </footer>
+</article>

@@ -1,0 +1,61 @@
+{%- comment -%} Structured data so search engines and AI assistants can read who you are. {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "{{ '/#person' | absolute_url }}",
+      "name": {{ site.author.name | jsonify }},
+      "alternateName": ["Moinul Islam", "Md. Moinul Islam", "moinulshdu"],
+      "jobTitle": {{ site.author.job_title | jsonify }},
+      "description": {{ site.description | normalize_whitespace | jsonify }},
+      "url": {{ '/' | absolute_url | jsonify }},
+      "image": {{ site.author.photo | absolute_url | jsonify }},
+      "email": "mailto:{{ site.author.email }}",
+      "address": {"@type": "PostalAddress", "addressLocality": "Columbia", "addressRegion": "SC", "addressCountry": "US"},
+      "affiliation": {"@type": "CollegeOrUniversity", "name": {{ site.author.affiliation | jsonify }}},
+      "alumniOf": [
+        {"@type": "CollegeOrUniversity", "name": "University of South Carolina"},
+        {"@type": "CollegeOrUniversity", "name": "University of Dhaka"}
+      ],
+      "knowsAbout": {{ site.data.profile.keywords | jsonify }},
+      "sameAs": [
+        {{ site.author.linkedin | jsonify }},
+        {{ site.author.scholar | jsonify }},
+        "https://github.com/{{ site.author.github }}"{% if site.author.orcid != "" %},
+        {{ site.author.orcid | jsonify }}{% endif %}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ '/#website' | absolute_url }}",
+      "url": {{ '/' | absolute_url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "author": {"@id": "{{ '/#person' | absolute_url }}"}
+    }{% if page.layout == "article" %},
+    {
+      "@type": "Article",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.summary | strip_html | normalize_whitespace | jsonify }},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      {% if page.last_modified_at %}"dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",{% endif %}
+      "url": {{ page.url | absolute_url | jsonify }},
+      {% if page.toc_figure %}"image": {{ page.toc_figure | absolute_url | jsonify }},{% endif %}
+      "author": {"@id": "{{ '/#person' | absolute_url }}"}
+    }{% endif %}{% if page.layout == "app" %},
+    {
+      "@type": "SoftwareApplication",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.tagline | jsonify }},
+      "applicationCategory": {{ page.category | default: "ScientificApplication" | jsonify }},
+      "operatingSystem": "Windows, macOS, Linux",
+      "url": {{ page.url | absolute_url | jsonify }},
+      {% if page.repo %}"downloadUrl": "https://github.com/{{ site.author.github }}/{{ page.repo }}/releases/latest",
+      "sameAs": "https://github.com/{{ site.author.github }}/{{ page.repo }}",{% endif %}
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "author": {"@id": "{{ '/#person' | absolute_url }}"}
+    }{% endif %}
+  ]
+}
+</script>

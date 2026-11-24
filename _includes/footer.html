@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <strong>{{ site.author.name }}</strong><br>
+      {{ site.author.job_title }}, {{ site.author.affiliation }}<br>
+      {{ site.author.location }}
+    </div>
+    {% include social.html %}
+    <div class="footer-small">© {{ site.time | date: "%Y" }} {{ site.author.name }} · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></div>
+  </div>
+</footer>

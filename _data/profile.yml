@@ -1,0 +1,166 @@
+# ----------------------------------------------------------------------------
+#  Everything about you lives in this one file. The About, CV and Publications
+#  pages are built from it, so update it here once and every page follows.
+# ----------------------------------------------------------------------------
+
+headline: >-
+  I make and study atomically precise semiconductor nanocrystals — and build the
+  instruments and software that make the measurements faster and more reliable.
+
+summary: >-
+  Ph.D. candidate in Chemistry at the University of South Carolina (advisor:
+  Prof. Andrew B. Greytak). My research resolves site-specific thermodynamics of
+  ligand binding on CdSe "magic-sized" nanocrystal surfaces using isothermal
+  titration calorimetry (ITC) and NMR — the molecular-level chemistry behind
+  surface passivation, interface control and selectivity in nanomaterial and
+  thin-film processes. I designed an automated gel-permeation chromatography
+  (GPC) platform with in-line UV–Vis monitoring, write MATLAB and Python tools
+  for global data analysis, and bring 14 months of GLP/cGMP analytical
+  development experience from the pharmaceutical industry.
+
+open_to: >-
+  Open to industry and postdoctoral roles in semiconductor process and module
+  development, materials characterization, nanomaterials, and
+  photo(electro)chemistry of semiconductor surfaces and interfaces.
+
+# Used by search engines / AI assistants (schema.org "knowsAbout").
+keywords:
+  - Semiconductor nanocrystals
+  - Quantum dots
+  - CdSe magic-sized clusters
+  - Colloidal nanocrystal synthesis
+  - Surface chemistry and ligand exchange
+  - Isothermal titration calorimetry (ITC)
+  - NMR spectroscopy
+  - UV-Vis and photoluminescence spectroscopy
+  - STEM and PXRD
+  - Gel permeation chromatography (GPC)
+  - Process development
+  - Materials characterization
+  - MATLAB data analysis
+  - Python
+  - GLP / cGMP analytical method development
+  - Scientific software development
+
+highlights:
+  - { value: "8",  label: "publications & manuscripts" }
+  - { value: "4",  label: "conference presentations, incl. 2 ACS national oral talks" }
+  - { value: "14 mo", label: "GLP/cGMP industry experience" }
+  - { value: "10", label: "scientific desktop apps built" }
+
+research:
+  - title: "Ligand-exchange thermodynamics"
+    text: "Stoichiometry and regioselectivity of ligand exchange on atomically precise CdSe nanocrystals, resolved site by site with ITC and NMR."
+  - title: "Automated purification & in-situ monitoring"
+    text: "In-house automated GPC with an in-line UV–Vis flow cell for millisecond-resolved absorption, spectral deconvolution of mixtures and reproducible purification."
+  - title: "Quantitative data analysis"
+    text: "MATLAB tools for global ITC fitting across conditions and spectral fitting (e.g., dual pKa from pH-dependent absorption), used across the group."
+  - title: "Collaborative surface chemistry"
+    text: "Thermodynamic analysis for lead-halide perovskite and magnetic iron-oxide nanocrystals, boronic esters and photoactive macrocycles."
+
+skills:
+  - group: "Materials & process development"
+    items: "Colloidal nanocrystal synthesis (CdSe, metal oxides), surface modification and ligand exchange, phase transfer, GPC purification, air-free (vacuum / inert-atmosphere) handling, multi-condition experiment design"
+  - group: "Characterization"
+    items: "STEM, PXRD, FTIR, NMR, UV–Vis and fluorescence, time-resolved PL, ITC, TGA, DSC, BET, MALDI, HPLC, GC, optical microscopy"
+  - group: "Data analysis & software"
+    items: "MATLAB (custom fitting, global analysis, spectral deconvolution), Python, Igor Pro, Origin, ImageJ, NanoAnalyze, TopSpin, Maple, VESTA, ChemDraw, LaTeX"
+  - group: "Instrumentation & hardware"
+    items: "Design, automation and troubleshooting of custom instruments (automated GPC with in-line flow-cell spectroscopy), Arduino, Onshape and AutoCAD"
+  - group: "Quality, safety & compliance"
+    items: "GLP/cGMP documentation, deviation investigation and corrective actions, internal audits, SOP writing and training, nanomaterial and toxic-compound handling"
+
+education:
+  - degree: "Ph.D. in Chemistry"
+    school: "University of South Carolina, Columbia, SC"
+    dates: "Aug 2021 – 2026 (expected)"
+    role: "Graduate Research Assistant · Advisor: Prof. Andrew B. Greytak"
+    thesis: "Thermodynamics of Ligand Exchange in Atomically Precise Semiconducting Nanocrystals"
+    bullets:
+      - "Lead the synthesis and surface engineering of atomically precise CdSe nanocrystals; resolved distinct nanocrystal–ligand binding-site thermodynamics using ITC and NMR."
+      - "Designed systematic titration series quantifying ligand-exchange stoichiometry and site regioselectivity on CdSe magic-sized nanocrystals."
+      - "Built an automated GPC platform for nanocrystal purification with an in-line UV–Vis flow cell (millisecond-resolved absorption) on analytical and preparative scales, improving reproducibility and throughput."
+      - "Created MATLAB tools for global ITC analysis and spectral fitting that are used across group projects."
+      - "Mentored five graduate and undergraduate researchers; maintain instruments and write SOPs."
+  - degree: "M.S. in Applied Chemistry and Chemical Engineering"
+    school: "University of Dhaka, Bangladesh"
+    dates: "Jan 2019 – Mar 2021"
+    role: "Graduate Student Researcher · Advisor: Prof. M. Ashraful Islam Molla"
+    thesis: "Photo-degradation of Rhodamine B in Water with Metal Oxide Nanoparticles"
+    bullets:
+      - "Synthesized, doped and characterized metal-oxide nanomaterials for photocatalytic dye degradation, focusing on structure–property relationships."
+      - "Optimized photodegradation conditions with quantitative UV–Vis and PXRD analysis (2 publications)."
+
+experience:
+  - title: "Analytical Development Executive"
+    org: "Eskayef Pharmaceuticals Limited — R&D Division, Gazipur, Bangladesh"
+    dates: "Feb 2020 – Apr 2021"
+    bullets:
+      - "Developed and standardized analytical methods for raw materials for FDA-regulated markets."
+      - "Investigated process deviations, optimized measurement protocols and implemented corrective actions."
+      - "Maintained controlled documentation (specifications, CofAs, methods, logbooks) and conducted internal audits for data integrity and regulatory readiness."
+      - "Worked cross-functionally with Quality Control under GLP and cGMP."
+
+publications:
+  - group: "Ph.D."
+    items:
+      - authors: "Adhikari, B.; <b>Islam, M. M.</b>; Greytak, A. B.*"
+        title: "Zwitterionic Ligand Passivation of Lead Halide Perovskite (CsPbBr<sub>3</sub>) NCs: Spectroscopic and Thermodynamic Perspectives."
+        venue: "Manuscript in preparation."
+      - authors: "<b>Islam, M. M.</b>; Drake, G. A.; Greytak, A. B.*"
+        title: "Stoichiometry and regioselectivity of ligand exchange on CdSe ‘magic-sized’ nanocrystals."
+        venue: "Manuscript in preparation."
+      - authors: "Burrell, J. M.; <b>Islam, M. M.</b>; Morgan, C. M.; Pellechia, P. J.; Greytak, A. B.*"
+        title: "Interactions of catechol and nitrocatechol ligands with magnetic metal oxide nanocrystal surfaces."
+        venue: "Manuscript in preparation."
+      - authors: "Boyt, J. A.; Stetzler, J.; Lackovic, L. L.; Burrell, J. M.; <b>Islam, M. M.</b>; Moody, C. R.; Fracassa, M.; Greytak, A. B.; Rassolov, V. A.; Lavigne, J. J.*"
+        title: "Tuning boron Lewis acidity across a wide range: How catechol substituents dominate Lewis acidity in conjugated phenylboronic esters."
+        venue: "Revised manuscript submitted to <i>The Journal of Organic Chemistry</i>."
+      - authors: "Samant, V. A.<sup>†</sup>; Wijesekera, G. I. P.<sup>†</sup>; Stetzler, J.; Wijesekera, A.; Bhatia, M.; Zubaer, K. M.; Hyman, L. C.; <b>Islam, M. M.</b>; Smith, M. D.; Ge, T.; Garashchuk, S.; Shimizu, L. S.*"
+        title: "Confined-space selectivity in enone photodimerization enabled by a photoactive terphenyl bis-urea macrocycle."
+        venue: "<i>Org. Chem. Front.</i> <b>2026</b>, 13 (19), 6846–6856."
+      - authors: "Greytak, A. B.*; Abiodun, S. L.; Burrell, J. M.; Cook, E. N.; Jayaweera, N. P.; <b>Islam, M. M.</b>; Shaker, A. E."
+        title: "Thermodynamics of Nanocrystal–Ligand Binding through Isothermal Titration Calorimetry."
+        venue: "<i>Chem. Commun.</i> <b>2022</b>, 58 (94), 13037–13058."
+        link: "https://doi.org/10.1039/D2CC05012A"
+  - group: "M.S."
+    items:
+      - authors: "Ahmed, A. Z.; <b>Islam, Md. M.</b>; Islam, M. M. ul; Masum, S. Md.; Islam, R.; Molla, Md. A. I.*"
+        title: "Fabrication and Characterization of B/Sn-Doped ZnO Nanoparticles via Mechanochemical Method for Photocatalytic Degradation of Rhodamine B."
+        venue: "<i>Inorg. Nano-Met. Chem.</i> <b>2020</b>, 51 (10), 1369–1378."
+      - authors: "<b>Islam, Md. M.</b>; Ahmed, A. Z.; Kabir, S. F.; Islam, R.; Islam Molla, Md. A.*"
+        title: "Optimization of Photodegradation Conditions of Rhodamine B in Water with Dye-sensitized Titanium Dioxide."
+        venue: "<i>J. CleanWAS</i> <b>2020</b>, 4 (1), 28–31."
+
+presentations:
+  - kind: "Oral talk & Sci-Mix poster"
+    event: "ACS Spring National Meeting, Colloid & Surface Chemistry Symposium"
+    place: "Atlanta, GA"
+    date: "Mar 2026"
+  - kind: "Poster"
+    event: "Inaugural American Conference on Inorganic Nanoscience (ACIN)"
+    place: "Dover, VT"
+    date: "Jul 2025"
+  - kind: "Poster"
+    event: "Discover USC Day, Graduate Symposium"
+    place: "Columbia, SC"
+    date: "Apr 2025"
+  - kind: "Oral talk"
+    event: "ACS Fall National Meeting, Colloid & Surface Chemistry Symposium"
+    place: "Denver, CO"
+    date: "Aug 2024"
+
+teaching:
+  - "Physical Chemistry Lab I & II (CHEM 541L / 542L), University of South Carolina — Fall 2022 – present"
+  - "Teaching assistant, Physical Chemistry lecture (CHEM 541) — Spring 2022"
+  - "Organic Chemistry Lab (CHEM 331L) — Fall 2021"
+  - "USC Outreach: chemistry demonstrations of color and light for K–12 students — 2022 – present"
+  - "Research mentor to five graduate and undergraduate researchers (synthesis, ITC, spectroscopy, data analysis) — 2023 – present"
+
+leadership:
+  - "President (2024–25) and General Secretary (2022–23), Bangladesh Student Association of USC"
+  - "Member, American Chemical Society (2024 – present)"
+
+awards:
+  - "USC Graduate School Award (2024)"
+  - "USC Durig Travel Award (2024, 2025, 2026)"

@@ -1,0 +1,67 @@
+---
+layout: default
+---
+{% assign gh = "https://github.com/" | append: site.author.github | append: "/" | append: page.repo %}
+<article class="wrap app-page">
+  <nav class="crumbs"><a href="{{ '/apps/' | relative_url }}">Apps</a> <span>/</span> {{ page.title }}</nav>
+  <header class="app-head">
+    <img class="app-icon big" src="{{ page.icon | relative_url }}" alt="{{ page.title }} icon" width="120" height="120">
+    <div>
+      <h1>{{ page.title }}</h1>
+      <p class="lead">{{ page.tagline }}</p>
+      <div class="chips">
+        {% for p in page.platforms %}<span class="chip">{{ p }}</span>{% endfor %}
+        {% if page.status == "released" %}
+          <span class="chip chip-dl" data-repo="{{ page.repo }}"><span class="dl-n">–</span>&nbsp;downloads</span>
+          <span class="chip chip-ver" data-repo-version="{{ page.repo }}" hidden></span>
+        {% else %}<span class="chip chip-soon">Coming soon</span>{% endif %}
+      </div>
+      <div class="btns">
+        {% if page.status == "released" %}
+          <a class="btn primary" href="#download">Download &amp; install</a>
+          <a class="btn" href="{{ gh }}" target="_blank" rel="noopener">View on GitHub</a>
+        {% endif %}
+        {% if page.web_app and page.web_app != "" %}<a class="btn" href="{{ page.web_app }}" target="_blank" rel="noopener">Open in browser</a>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  {% if page.screenshots and page.screenshots.size > 0 %}
+  <section class="shots" aria-label="Screenshots">
+    {% for s in page.screenshots %}
+    <figure><a href="{{ s.src | relative_url }}" class="shot"><img src="{{ s.src | relative_url }}" alt="{{ s.caption | default: page.title }}" loading="lazy"></a>{% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}</figure>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <div class="prose readme">
+    {{ content }}
+
+    <h2 id="download">Download &amp; install</h2>
+    {% if page.status == "released" %}
+    <p>The app is free and open source. Downloads, release notes and the full installation guide are on GitHub.</p>
+    <p><a class="btn primary" href="{{ gh }}/releases/latest" target="_blank" rel="noopener">Download the latest release on GitHub →</a></p>
+    <ol>
+      <li>On the GitHub release page, under <strong>Assets</strong>, download the <code>.zip</code> file.</li>
+      <li>Unzip it and move the folder somewhere permanent (for example <em>Documents</em>), not <em>Downloads</em> or a cloud-synced folder.</li>
+      <li>Start the app by double-clicking the launcher: the <code>.bat</code> file on Windows, the <code>.command</code> file on macOS, or the <code>.sh</code> file on Linux.</li>
+      <li>On first start the app checks for the Python packages it needs and asks before installing anything.</li>
+    </ol>
+    <p class="muted">Needs Python 3. On macOS, unsigned apps may show a security warning the first time; the installation guide in the repository explains how to open it. Questions or bugs: <a href="{{ gh }}/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>
+    {% else %}
+    <p>This app is being prepared for public release. Check back soon, or follow <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">my GitHub profile</a> to see it when it is published.</p>
+    {% endif %}
+
+    <h2>Credits &amp; license</h2>
+    <p>Idea, design and testing by {{ site.author.name }}. Code and documentation were written with the help of Claude (Anthropic), following my specifications. Free to use with acknowledgment{% if page.status == "released" %} — see the license in the <a href="{{ gh }}" target="_blank" rel="noopener">repository</a>{% endif %}.</p>
+  </div>
+
+  <nav class="app-more">
+    <h2>More apps</h2>
+    <div class="app-grid small">
+      {% assign others = site.apps | sort: "order" %}
+      {% for app in others %}{% if app.url != page.url %}{% include app-tile.html %}{% endif %}{% endfor %}
+    </div>
+  </nav>
+</article>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">×</button></div>
