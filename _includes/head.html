@@ -1,5 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta name="theme-color" content="#f4f2ed" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151619" media="(prefers-color-scheme: dark)">
 {% if page.url == "/" %}{% assign page_title = site.title | append: " — " | append: site.author.job_title %}{% else %}{% assign page_title = page.title | append: " · " | append: site.title %}{% endif %}
 {% assign page_desc = page.summary | default: page.tagline | default: page.description | default: site.description | strip_html | normalize_whitespace | truncate: 300 %}
 {% if page.image %}{% assign page_img = page.image %}{% elsif page.toc_figure %}{% assign page_img = page.toc_figure %}{% elsif page.icon %}{% assign page_img = page.icon %}{% else %}{% assign page_img = site.author.photo %}{% endif %}

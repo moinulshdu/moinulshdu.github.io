@@ -6,6 +6,6 @@
       {{ site.author.location }}
     </div>
     {% include social.html %}
-    <div class="footer-small">© {{ site.time | date: "%Y" }} {{ site.author.name }} · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></div>
+    <div class="footer-small">© {{ site.time | date: "%Y" }} {{ site.author.name }} · <a href="{{ '/feed.xml' | relative_url }}">RSS</a>{% if site.private_area %}<a class="footer-lock" href="{{ '/private/' | relative_url }}" aria-label="Sign in" title="Sign in">🔒</a>{% endif %}</div>
   </div>
 </footer>

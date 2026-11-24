@@ -6,6 +6,14 @@
     t.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
+  // Light / dark theme switch (remembers your choice; otherwise follows the device setting)
+  var tt = document.querySelector(".theme-toggle");
+  if (tt) tt.addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+
   // Show the "Private" menu item only on a device where you are signed in.
   try { if (localStorage.getItem("ms-private-nav") === "1") { var p = document.querySelector(".nav-private"); if (p) p.hidden = false; } } catch (e) {}
 

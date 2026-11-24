@@ -8,6 +8,26 @@ You never need Terminal.
 
 ---
 
+## 0. Two ways to edit the website
+
+**A) On github.com (quickest, works from any computer)**
+1. Go to https://github.com/moinulshdu/moinulshdu.github.io and click the file you want, for example `_data/profile.yml`.
+2. Click the **pencil icon ✏️** (top right of the file), make your change, then click **Commit changes…** › **Commit changes**.
+3. To add pictures or PDFs, open the folder (for example `images/apps`), then click **Add file › Upload files**, drag the files in and click **Commit changes**.
+
+**B) On your computer with GitHub Desktop (best for many files or pictures)**
+1. In GitHub Desktop, click **Fetch origin** / **Pull origin** first, so you start from the newest version.
+2. Click **Repository › Show in Finder**, then edit the files with any text editor (VS Code or TextEdit in plain-text mode) or copy pictures into the folders.
+3. Back in GitHub Desktop, write a short summary, click **Commit to main**, then **Push origin**.
+
+Either way: wait 1–2 minutes, then reload the page with Cmd+Shift+R. If you edit in both places, always **Pull** in GitHub Desktop before you start, or the two copies get out of step.
+
+**Where things are:** your text and CV content is in `_data/profile.yml`; the settings are in `_config.yml`; each app is one file in `_apps/`; each article is one file in `_posts/`; the colors and layout are in `assets/css/main.css`.
+
+**Light and dark theme:** the sun/moon button in the top bar switches themes, and the site remembers each visitor's choice. Visitors who have never clicked it get the same theme as their device. The 🔒 in the footer leads to your Private sign-in page.
+
+---
+
 ## 1. Replace the old site with the new one (one time only)
 
 1. Open **GitHub Desktop**. Choose the repository **moinulshdu.github.io** and click **Fetch origin** / **Pull** so the local copy is up to date.
