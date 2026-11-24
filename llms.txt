@@ -1,0 +1,38 @@
+---
+layout: null
+permalink: /llms.txt
+---
+{% assign p = site.data.profile %}# {{ site.author.name }}
+
+> {{ site.author.job_title }}, {{ site.author.affiliation }} ({{ site.author.location }}). {{ p.headline | normalize_whitespace }}
+
+{{ p.summary | normalize_whitespace }}
+
+{{ p.open_to | normalize_whitespace }}
+
+Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Google Scholar: {{ site.author.scholar }} · GitHub: https://github.com/{{ site.author.github }}
+
+## Pages
+- [About]({{ '/' | absolute_url }}): profile, research, skills
+- [CV]({{ '/cv/' | absolute_url }}): full curriculum vitae in HTML
+- [Publications]({{ '/publications/' | absolute_url }}): papers and presentations
+- [Apps & Articles]({{ '/apps/' | absolute_url }}): software and educational articles
+
+## Education
+{% for e in p.education %}- {{ e.degree }}, {{ e.school }} ({{ e.dates }}). Thesis: {{ e.thesis }}
+{% endfor %}
+## Experience
+{% for x in p.experience %}- {{ x.title }}, {{ x.org }} ({{ x.dates }})
+{% endfor %}
+## Skills
+{% for s in p.skills %}- {{ s.group }}: {{ s.items }}
+{% endfor %}
+## Publications
+{% for g in p.publications %}{% for item in g.items %}- {{ item.authors | strip_html }}. {{ item.title | strip_html }} {{ item.venue | strip_html }}
+{% endfor %}{% endfor %}
+## Software
+{% assign apps = site.apps | sort: "order" %}{% for app in apps %}- [{{ app.title }}]({{ app.url | absolute_url }}): {{ app.tagline }}
+{% endfor %}
+## Articles
+{% assign posts = site.posts | where_exp: "post", "post.draft != true" %}{% for post in posts %}- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.summary | normalize_whitespace }}
+{% endfor %}

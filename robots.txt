@@ -1,0 +1,9 @@
+---
+layout: null
+---
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /drafts/
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

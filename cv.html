@@ -1,0 +1,64 @@
+---
+layout: default
+permalink: /cv/
+title: CV
+description: "Curriculum vitae of Md Moinul Islam: Ph.D. in Chemistry (University of South Carolina), semiconductor nanocrystals, surface chemistry, ITC, GLP/cGMP analytical development."
+---
+{% assign p = site.data.profile %}
+{% assign cv_found = site.static_files | where: "path", site.cv_pdf | size %}
+<div class="wrap page cv">
+  <header class="page-head cv-head">
+    <div>
+      <h1>{{ site.author.name }}</h1>
+      <p class="lead">{{ site.author.job_title }} · {{ site.author.affiliation }} · {{ site.author.location }}</p>
+      <p class="muted"><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a> · <a href="mailto:{{ site.author.email_personal }}">{{ site.author.email_personal }}</a> · <a href="{{ site.author.linkedin }}">LinkedIn</a> · <a href="{{ site.author.scholar }}">Google Scholar</a> · <a href="https://github.com/{{ site.author.github }}">GitHub</a></p>
+    </div>
+    {% if cv_found > 0 %}<a class="btn primary" href="{{ site.cv_pdf | relative_url }}">Download PDF</a>{% endif %}
+  </header>
+
+  <section class="section"><h2>Profile</h2><p>{{ p.summary }}</p></section>
+
+  <section class="section"><h2>Education &amp; research experience</h2>
+    {% for e in p.education %}
+    <div class="cv-item">
+      <div class="cv-row"><strong>{{ e.degree }}</strong><span class="muted">{{ e.dates }}</span></div>
+      <div>{{ e.school }} — {{ e.role }}</div>
+      <div class="muted">Thesis: <em>{{ e.thesis }}</em></div>
+      <ul>{% for b in e.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="section"><h2>Industry experience</h2>
+    {% for x in p.experience %}
+    <div class="cv-item">
+      <div class="cv-row"><strong>{{ x.title }}</strong><span class="muted">{{ x.dates }}</span></div>
+      <div>{{ x.org }}</div>
+      <ul>{% for b in x.bullets %}<li>{{ b }}</li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="section"><h2>Technical skills</h2>
+    <dl class="skills">{% for s in p.skills %}<div><dt>{{ s.group }}</dt><dd>{{ s.items }}</dd></div>{% endfor %}</dl>
+  </section>
+
+  <section class="section"><h2>Publications</h2>
+    {% for g in p.publications %}
+    <h3>During {{ g.group }}</h3>
+    <ol class="pubs">{% for item in g.items %}<li>{{ item.authors }}. {{ item.title }} {{ item.venue }}</li>{% endfor %}</ol>
+    {% endfor %}
+  </section>
+
+  <section class="section"><h2>Selected presentations</h2>
+    <ul class="plain">{% for t in p.presentations %}<li><strong>{{ t.kind }}</strong> — {{ t.event }}, {{ t.place }} <span class="muted">· {{ t.date }}</span></li>{% endfor %}</ul>
+  </section>
+
+  <section class="section"><h2>Teaching &amp; mentoring</h2><ul>{% for t in p.teaching %}<li>{{ t }}</li>{% endfor %}</ul></section>
+  <section class="section"><h2>Leadership &amp; affiliations</h2><ul>{% for t in p.leadership %}<li>{{ t }}</li>{% endfor %}</ul></section>
+  <section class="section"><h2>Awards</h2><ul>{% for t in p.awards %}<li>{{ t }}</li>{% endfor %}</ul></section>
+
+  <section class="section"><h2>Software</h2>
+    <p>Free desktop apps I designed for research and teaching: {% assign apps = site.apps | sort: "order" %}{% for app in apps %}<a href="{{ app.url | relative_url }}">{{ app.title }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}.</p>
+  </section>
+</div>

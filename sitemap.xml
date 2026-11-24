@@ -1,0 +1,9 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for pg in site.html_pages %}{% unless pg.noindex or pg.url contains "/private/" or pg.url contains "404" %}  <url><loc>{{ pg.url | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
+{% endunless %}{% endfor %}{% for app in site.apps %}  <url><loc>{{ app.url | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
+{% endfor %}{% for post in site.posts %}{% unless post.draft %}  <url><loc>{{ post.url | absolute_url }}</loc><lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod></url>
+{% endunless %}{% endfor %}</urlset>

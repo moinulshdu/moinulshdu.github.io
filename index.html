@@ -1,0 +1,82 @@
+---
+layout: default
+title: About
+---
+{% assign p = site.data.profile %}
+<section class="hero">
+  <div class="wrap hero-inner">
+    <img class="hero-photo" src="{{ site.author.photo | relative_url }}" alt="Portrait of {{ site.author.name }}" width="220" height="220">
+    <div>
+      <p class="eyebrow">{{ site.author.job_title }} · {{ site.author.affiliation }}</p>
+      <h1>{{ site.author.name }}</h1>
+      <p class="hero-lead">{{ p.headline }}</p>
+      <div class="btns">
+        {% assign cv_found = site.static_files | where: "path", site.cv_pdf | size %}
+        {% if cv_found > 0 %}<a class="btn primary" href="{{ site.cv_pdf | relative_url }}">Download CV (PDF)</a>{% else %}<a class="btn primary" href="{{ '/cv/' | relative_url }}">View CV</a>{% endif %}
+        <a class="btn" href="mailto:{{ site.author.email }}">Email me</a>
+        <a class="btn" href="{{ site.author.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      {% include social.html %}
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="stats" aria-label="At a glance">
+    {% for h in p.highlights %}<div><strong>{{ h.value }}</strong><span>{{ h.label }}</span></div>{% endfor %}
+  </section>
+
+  <section class="section two-col">
+    <div>
+      <h2>About me</h2>
+      <p>{{ p.summary }}</p>
+      <p class="callout">{{ p.open_to }}</p>
+    </div>
+    <div>
+      <h2>Education</h2>
+      <ul class="timeline">
+        {% for e in p.education %}<li><strong>{{ e.degree }}</strong><span>{{ e.school }}</span><span class="muted">{{ e.dates }}</span></li>{% endfor %}
+        {% for x in p.experience %}<li><strong>{{ x.title }}</strong><span>{{ x.org }}</span><span class="muted">{{ x.dates }}</span></li>{% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Research</h2>
+    <div class="grid-2">
+      {% for r in p.research %}<div class="card pad"><h3>{{ r.title }}</h3><p>{{ r.text }}</p></div>{% endfor %}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Skills</h2>
+    <dl class="skills">
+      {% for s in p.skills %}<div><dt>{{ s.group }}</dt><dd>{{ s.items }}</dd></div>{% endfor %}
+    </dl>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Apps I've built</h2><a href="{{ '/apps/' | relative_url }}">All apps & articles →</a></div>
+    <div class="app-grid small">
+      {% assign apps = site.apps | sort: "order" %}
+      {% for app in apps limit: 6 %}{% include app-tile.html %}{% endfor %}
+    </div>
+  </section>
+
+  {% assign posts = site.posts | where_exp: "post", "post.draft != true" %}
+  {% if posts.size > 0 %}
+  <section class="section">
+    <div class="section-head"><h2>Latest articles</h2><a href="{{ '/apps/#articles' | relative_url }}">All articles →</a></div>
+    <div class="article-list">
+      {% for post in posts limit: 2 %}{% include article-card.html %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section">
+    <div class="section-head"><h2>Selected publications</h2><a href="{{ '/publications/' | relative_url }}">All publications →</a></div>
+    <ol class="pubs compact">
+      {% for item in p.publications[0].items %}{% if item.venue contains "<b>20" %}<li>{{ item.authors }}. {{ item.title }} {{ item.venue }}{% if item.link %} <a href="{{ item.link }}" target="_blank" rel="noopener">[link]</a>{% endif %}</li>{% endif %}{% endfor %}
+    </ol>
+  </section>
+</div>
