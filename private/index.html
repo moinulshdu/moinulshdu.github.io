@@ -74,10 +74,11 @@ noindex: true
       <div class="btns">
         <button class="btn primary" id="b-add-link">+ Add link</button>
         <button class="btn" id="b-add-page">+ New private page</button>
+        <button class="btn" id="b-add-article">+ New draft article</button>
         <div class="menu-wrap">
           <button class="btn" id="b-more" aria-haspopup="true" aria-expanded="false">⋯</button>
           <div class="menu" id="m-more" hidden>
-            <a href="{{ '/drafts/' | relative_url }}">Draft article previews</a>
+            <button type="button" id="b-import">Import article (.md file) as a draft</button>
             <button type="button" id="b-export">Export everything (JSON)</button>
             <button type="button" id="b-pwreset">Email me a password-change link</button>
             <button type="button" class="pv-signout">Sign out</button>
@@ -103,7 +104,16 @@ noindex: true
     <label>Category<input name="category" list="cat-list" placeholder="e.g. Health" maxlength="60"></label>
     <datalist id="cat-list"></datalist>
     <label class="for-link">Notes<textarea name="notes" rows="3" maxlength="5000"></textarea></label>
-    <label class="for-page">Page text <small>(# heading, **bold**, - list, links)</small><textarea name="body" rows="14" maxlength="900000"></textarea></label>
+    <div class="for-article">
+      <div class="row2">
+        <label>Publication date<input name="date" type="date"></label>
+        <label>Tags <small>(comma-separated)</small><input name="tags" placeholder="Spectroscopy, Nanocrystals"></label>
+      </div>
+      <label>Summary <small>(shown on the article card and in Google)</small><textarea name="summary" rows="3" maxlength="2000"></textarea></label>
+      <label>Overview (TOC) figure <small>(e.g. /images/articles/my-figure.png)</small><input name="toc_figure" placeholder="/images/articles/…"></label>
+      <label class="check"><input type="checkbox" name="math"> Has equations ($…$ or $$…$$)</label>
+    </div>
+    <label class="for-page for-article"><span class="lbl-page">Page text <small>(# heading, **bold**, - list, links)</small></span><span class="lbl-article">Article text <small>(Markdown, same as the files in _posts)</small></span><textarea name="body" rows="14" maxlength="900000"></textarea></label>
     <label class="check"><input type="checkbox" name="pinned"> Pin to top</label>
     <div class="dlg-btns">
       <button class="btn danger" type="button" id="b-delete">Delete</button>
@@ -116,9 +126,10 @@ noindex: true
 
 <!-- Reader dialog for private pages -->
 <dialog id="dlg-read" class="dlg wide">
-  <div class="dlg-read-head"><h2 id="read-title"></h2><div><button class="btn" id="b-read-edit">Edit</button> <button class="btn" id="b-read-close">Close</button></div></div>
+  <div class="dlg-read-head"><h2 id="read-title"></h2><div class="btns"><button class="btn primary" id="b-read-publish" hidden>Download for publishing</button><button class="btn" id="b-read-edit">Edit</button><button class="btn" id="b-read-close">Close</button></div></div>
   <div id="read-body" class="prose"></div>
 </dialog>
 
+<input type="file" id="f-import" accept=".md,.markdown,text/markdown,text/plain" hidden>
 <script src="{{ '/assets/js/firebase-config.js' | relative_url }}"></script>
 <script type="module" src="{{ '/assets/js/private.js' | relative_url }}"></script>

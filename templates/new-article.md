@@ -1,7 +1,6 @@
 ---
 title: "Your article title"
 date: 2026-12-01              # publication date (YYYY-MM-DD)
-draft: true                   # true = draft (hidden). Change to false to publish.
 math: false                   # true if the article has equations ($ ... $ or $$ ... $$)
 summary: >-
   Two or three sentences that appear on the article card and in Google results.

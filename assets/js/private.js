@@ -174,6 +174,7 @@ async function start() {
 
   function iconFor(i) {
     if (i.type === "page") return "📝";
+    if (i.type === "article") return "📰";
     const u = (i.url || "").toLowerCase();
     if (u.includes("docs.google.com/document")) return "📄";
     if (u.includes("docs.google.com/spreadsheets")) return "📊";
@@ -188,12 +189,14 @@ async function start() {
     const el = document.createElement("div"); el.className = "vault-item";
     const ic = document.createElement("span"); ic.className = "vi-icon"; ic.textContent = iconFor(i);
     const main = document.createElement("div"); main.className = "vi-main";
-    const t = document.createElement(i.type === "page" ? "button" : "a");
+    const isDoc = i.type === "page" || i.type === "article";
+    const t = document.createElement(isDoc ? "button" : "a");
     t.className = "vi-title"; t.textContent = (i.pinned ? "★ " : "") + (i.title || "(untitled)");
-    if (i.type === "page") { t.type = "button"; t.onclick = () => openReader(i); }
+    if (isDoc) { t.type = "button"; t.onclick = () => openReader(i); }
     else if (safeUrl(i.url)) { t.href = i.url; t.target = "_blank"; t.rel = "noopener noreferrer"; }
     main.append(t);
-    const sub = i.type === "page" ? (i.body || "").replace(/[#*_>\-]/g, "").slice(0, 140) : (i.notes || "");
+    const sub = i.type === "article" ? "Draft article" + (i.date ? " · " + i.date : "") + (i.summary ? " — " + i.summary : "")
+      : i.type === "page" ? (i.body || "").replace(/[#*_>\-]/g, "").slice(0, 140) : (i.notes || "");
     if (sub) { const n = document.createElement("p"); n.className = "vi-notes"; n.textContent = sub; main.append(n); }
     const ed = document.createElement("button"); ed.className = "btn small"; ed.type = "button"; ed.textContent = "Edit";
     ed.onclick = () => openEditor(i.type || "link", i);
@@ -208,20 +211,25 @@ async function start() {
   function openEditor(type, item = null) {
     editing = { type, id: item ? item.id : null };
     fe.reset();
-    $("#dlg-title").textContent = (item ? "Edit " : "New ") + (type === "page" ? "private page" : "link");
-    $$(".for-link", fe).forEach(x => (x.hidden = type === "page"));
-    $$(".for-page", fe).forEach(x => (x.hidden = type !== "page"));
-    fe.url.required = type !== "page";
+    $("#dlg-title").textContent = (item ? "Edit " : "New ") + ({ page: "private page", article: "draft article", link: "link" })[type];
+    $$(".for-link, .for-page, .for-article", fe).forEach(x => (x.hidden = !x.classList.contains("for-" + type)));
+    $(".lbl-page", fe).hidden = type !== "page"; $(".lbl-article", fe).hidden = type !== "article";
+    dlg.classList.toggle("article-mode", type === "article");
+    fe.url.required = type === "link";
     $("#b-delete").hidden = !item;
     if (item) {
       fe.title.value = item.title || ""; fe.url.value = item.url || ""; fe.category.value = item.category || "";
       fe.notes.value = item.notes || ""; fe.body.value = item.body || ""; fe.pinned.checked = !!item.pinned;
-    } else if (activeCat !== "All") fe.category.value = activeCat;
+      fe.date.value = item.date || ""; fe.summary.value = item.summary || ""; fe.toc_figure.value = item.toc_figure || "";
+      fe.tags.value = (item.tags || []).join(", "); fe.math.checked = !!item.math;
+    } else if (type === "article") { fe.category.value = "Draft articles"; fe.date.value = new Date().toISOString().slice(0, 10); }
+    else if (activeCat !== "All") fe.category.value = activeCat;
     else if (type === "page") fe.category.value = "Unpublished pages";
     dlg.showModal();
   }
   $("#b-add-link").onclick = () => openEditor("link");
   $("#b-add-page").onclick = () => openEditor("page");
+  $("#b-add-article").onclick = () => openEditor("article");
   $("#q").addEventListener("input", render);
 
   fe.addEventListener("submit", async e => {
@@ -231,8 +239,13 @@ async function start() {
     const data = {
       type: editing.type, title: fe.title.value.trim(), category: fe.category.value.trim() || "Other",
       url: editing.type === "link" ? fe.url.value.trim() : "", notes: editing.type === "link" ? fe.notes.value : "",
-      body: editing.type === "page" ? fe.body.value : "", pinned: fe.pinned.checked, updated: F.serverTimestamp()
+      body: editing.type !== "link" ? fe.body.value : "", pinned: fe.pinned.checked, updated: F.serverTimestamp()
     };
+    if (editing.type === "article") Object.assign(data, {
+      date: fe.date.value || new Date().toISOString().slice(0, 10), summary: fe.summary.value.trim(),
+      toc_figure: fe.toc_figure.value.trim(), math: fe.math.checked,
+      tags: fe.tags.value.split(",").map(x => x.trim()).filter(Boolean)
+    });
     try {
       if (editing.id) await F.updateDoc(F.doc(col(), editing.id), data);
       else await F.addDoc(col(), { ...data, created: F.serverTimestamp() });
@@ -246,12 +259,42 @@ async function start() {
 
   // ---------- reader for private pages ----------
   let reading = null;
-  function openReader(i) {
+  async function openReader(i) {
     reading = i;
-    $("#read-title").textContent = i.title || "";
-    $("#read-body").innerHTML = miniMarkdown(i.body || "");
+    const isArt = i.type === "article";
+    $("#read-title").textContent = isArt ? "Preview (only you can see this)" : (i.title || "");
+    $("#b-read-publish").hidden = !isArt;
+    $("#dlg-read").classList.toggle("article-mode", isArt);
+    if (!isArt) { $("#read-body").innerHTML = miniMarkdown(i.body || ""); $("#dlg-read").showModal(); return; }
+    $("#read-body").innerHTML = '<p class="muted">Rendering…</p>';
     $("#dlg-read").showModal();
+    try { $("#read-body").innerHTML = await renderArticle(i); if (i.math) typeset($("#read-body")).catch(() => {}); }
+    catch (e) { $("#read-body").textContent = "Preview could not load (no internet?). " + e; }
   }
+  $("#b-read-publish").onclick = () => downloadArticle(reading);
+
+  // ---------- import an existing .md article as a private draft ----------
+  $("#b-import").onclick = () => { more.hidden = true; $("#f-import").click(); };
+  $("#f-import").addEventListener("change", async e => {
+    const file = e.target.files[0]; e.target.value = "";
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+      let meta = {}, body = text;
+      if (m) { await loadScript(LIBS.yaml); meta = window.jsyaml.load(m[1]) || {}; body = text.slice(m[0].length); }
+      const fromName = (file.name.match(/^(\d{4}-\d{2}-\d{2})-/) || [])[1];
+      const d = meta.date ? new Date(meta.date) : null;
+      await F.addDoc(col(), {
+        type: "article", title: String(meta.title || file.name.replace(/\.(md|markdown)$/, "")),
+        date: d && !isNaN(d) ? d.toISOString().slice(0, 10) : (fromName || new Date().toISOString().slice(0, 10)),
+        summary: String(meta.summary || "").trim(), toc_figure: String(meta.toc_figure || ""), math: !!meta.math,
+        tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [], body: body.replace(/^\s+/, ""),
+        category: "Draft articles", url: "", notes: "", pinned: false, created: F.serverTimestamp(), updated: F.serverTimestamp()
+      });
+      alert("Imported “" + (meta.title || file.name) + "” as a private draft. You can now delete the file from the website's _posts folder.");
+    } catch (err) { alert("Could not import this file: " + (err.message || err)); }
+  });
   $("#b-read-close").onclick = () => $("#dlg-read").close();
   $("#b-read-edit").onclick = () => { $("#dlg-read").close(); openEditor("page", reading); };
 
@@ -270,6 +313,52 @@ async function start() {
     try { await A.sendPasswordResetEmail(auth, user.email, { url: location.href }); alert("A link to set a new password was sent to " + user.email + "."); }
     catch (err) { alert(friendly(err)); }
   };
+}
+
+// ---------- full article preview & publishing ----------
+const LIBS = {
+  marked: "https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js",
+  purify: "https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js",
+  yaml: "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js",
+  mathjax: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+};
+const loaded = {};
+function loadScript(src) {
+  return loaded[src] ||= new Promise((ok, bad) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = () => bad(new Error("could not load " + src)); document.head.append(s); });
+}
+const escHtml = s => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+async function renderArticle(i) {
+  await Promise.all([loadScript(LIBS.marked), loadScript(LIBS.purify)]);
+  let src = (i.body || "").replace(/\{\{\s*site\.baseurl\s*\}\}/g, "");
+  const math = [];                 // keep equations away from the Markdown parser
+  if (i.math) src = src.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|\$(?!\$)[^$\n]+?\$/g, m => { math.push(m); return "MATHPH" + (math.length - 1) + "X"; });
+  let html = window.DOMPurify.sanitize(window.marked.parse(src));
+  html = html.replace(/MATHPH(\d+)X/g, (_, k) => escHtml(math[+k]));
+  const d = i.date ? new Date(i.date + "T12:00:00") : null;
+  const dateTxt = d ? d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : "";
+  return `<p class="preview-note">Private draft preview — not on the public website. When it's ready, click <b>Download for publishing</b>.</p>
+    <div class="article-head"><h1>${escHtml(i.title)}</h1><p class="meta">Md Moinul Islam · ${escHtml(dateTxt)}</p>
+    ${i.summary ? `<p class="lead">${escHtml(i.summary)}</p>` : ""}
+    ${i.toc_figure ? `<figure class="toc-fig"><img src="${escHtml(i.toc_figure)}" alt=""></figure>` : ""}</div>
+    <div class="prose">${html}</div>
+    ${(i.tags || []).length ? `<p class="tags">${i.tags.map(t => `<span class="chip">${escHtml(t)}</span>`).join("")}</p>` : ""}`;
+}
+async function typeset(el) {
+  window.MathJax = window.MathJax || { tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] }, startup: { typeset: false } };
+  await loadScript(LIBS.mathjax);
+  if (window.MathJax.startup && window.MathJax.startup.promise) await window.MathJax.startup.promise;
+  if (window.MathJax.typesetPromise) await window.MathJax.typesetPromise([el]);
+}
+function downloadArticle(i) {
+  const date = i.date || new Date().toISOString().slice(0, 10);
+  const slug = (i.title || "article").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "article";
+  const q = v => JSON.stringify(String(v || ""));          // JSON strings are valid YAML
+  const fm = ["---", "title: " + q(i.title), "date: " + date, "math: " + (i.math ? "true" : "false"),
+    "summary: " + q(i.summary), "toc_figure: " + q(i.toc_figure), "tags: " + JSON.stringify(i.tags || []), "---", ""].join("\n");
+  const blob = new Blob([fm + (i.body || "").replace(/\s*$/, "\n")], { type: "text/markdown" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = date + "-" + slug + ".md"; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  alert("Saved " + a.download + " to your Downloads folder.\n\nTo publish: on GitHub open the _posts folder → Add file → Upload files → drop this file → Commit changes. Upload any pictures to images/articles first. The article appears on the website about 2 minutes later.");
 }
 
 // Small, safe Markdown: escapes HTML first, then # headings, **bold**, *italic*, - lists, [text](https://links).

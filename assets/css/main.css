@@ -315,3 +315,12 @@ html[data-theme="dark"] .card-fig:has(.fig-ph) { background: var(--surface); }
 html[data-theme="dark"] .app-name { color: var(--ink-2); }
 html[data-theme="dark"] .lightbox { background: rgba(0, 0, 0, .9); }
 @media (max-width: 760px) { .header-right { gap: 2px; } }
+
+/* Draft articles in the private area */
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+.dlg.article-mode { width: min(900px, 96vw); }
+.dlg.article-mode textarea[name=body] { min-height: 340px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9rem; }
+.dlg-read-head .btns { margin: 0 0 10px; }
+.preview-note { background: var(--warn); border-radius: 8px; padding: 8px 12px; font-size: .88rem; margin-bottom: 18px; }
+#read-body .article-head h1 { font-size: 2rem; }

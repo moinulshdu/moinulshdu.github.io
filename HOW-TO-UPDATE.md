@@ -107,28 +107,39 @@ The download count and the "Latest: v…" label then appear by themselves.
 
 ---
 
-## 5. Articles, with drafts (like Google Sites)
+## 5. Articles, with private drafts (like Google Sites)
 
-Articles appear on the **Apps & Articles** page, under the app icons. Each one shows a card with the overview (TOC) figure, a short summary and a **Read details** button that opens the full article.
+Published articles appear on the **Apps & Articles** page, under the app icons, as cards with the overview (TOC) figure, a short summary and **Read details**.
 
-**Write a new article.**
-1. Copy `templates/new-article.md` into the `_posts` folder.
-2. Rename it to `YYYY-MM-DD-short-title.md`, for example `2026-12-05-what-is-a-quantum-dot.md`. Use lowercase letters and hyphens. The name becomes the web address: `/articles/what-is-a-quantum-dot/`.
-3. Fill in the title, summary and `toc_figure`. Put the figures in `images/articles/`.
-4. Leave **`draft: true`**, then commit and push.
+**Drafts live in your Private area, not on the website.** Nobody else can see them: not on the site, not on GitHub, not with a link.
 
-**Preview a draft.** Go to **https://moinulshdu.github.io/drafts/**. The link is also in the **⋯** menu of your Private page. Drafts look exactly like the final page, with a yellow DRAFT banner. They are not in the menu, the article list, the RSS feed or search engines.
+**Write a draft**
+1. Sign in at https://moinulshdu.github.io/private/ and click **+ New draft article**.
+2. Fill in the title, date, tags, summary, overview (TOC) figure, and the article text in Markdown. Tick **Has equations** if you use `$...$` or `$$...$$`.
+3. Click **Save**. It is stored in the category **Draft articles**, and you can edit it as often as you like.
 
-**Publish.** Change `draft: true` to `draft: false`, then commit and push. It appears for everyone about 2 minutes later.
+**Preview it.** Click the draft's title. The preview looks like the published page, equations included. Only you can see it.
 
-**Unpublish.** Change it back to `draft: true`.
+**Pictures.**
+- Upload pictures to the website's `images/articles/` folder (github.com › `images` › `articles` › **Add file › Upload files**).
+- Then type the path, for example `/images/articles/my-figure.png`, in the figure box, or use `![caption](/images/articles/my-figure.png)` in the text.
+- The pictures themselves are public files, but nothing links to them until you publish.
 
-**Good to know**
-- A draft is *unlisted*, not *secret*. Anyone who guesses the exact link can open it. Because the repository is public, the Markdown file can also be read on github.com. Keep anything confidential in the Private area (part 6) instead.
-- An article dated in the future stays hidden until that date has passed and the site is rebuilt.
-- For equations, set `math: true` and write `$...$` or `$$...$$`.
+**Publish**
+1. Open the draft and click **Download for publishing**. A file such as `2026-12-05-what-is-a-quantum-dot.md` is saved to your Downloads folder.
+2. On github.com, open the `_posts` folder and click **Add file › Upload files**. Drop the file in and click **Commit changes**.
+3. About 2 minutes later it is live on the website. You can keep the draft in your private area as a backup, or delete it.
 
-**Your two old blog posts.** "Optical Properties of Semiconductors" and "Hunt for Andromeda" are now **drafts**, so nothing is lost. The optical-properties text says it is unverified and AI-outlined, so it shouldn't be public in front of recruiters until you finish it.
+**Change or unpublish a published article.**
+- To change it, edit the file in `_posts` on GitHub (pencil ✏️).
+- To unpublish it, delete the file there, or download it first and use **⋯ › Import article (.md file) as a draft** to move it back into your private area.
+
+**Your two old blog posts.**
+- "Optical Properties of Semiconductors" and "Hunt for Andromeda" are no longer on the website.
+- Import them once with **⋯ › Import article (.md file) as a draft**, using the two `.md` files I sent.
+- After that, they live only in your private area.
+
+An article dated in the future stays hidden until that date has passed and the site has rebuilt.
 
 ---
 
@@ -192,8 +203,9 @@ The **Private** page (`/private/`) has these features:
 - **+ Add link:** for a Google Drive file or folder, a Google Doc, a PDF link and so on. Give it a title, a category (for example *Health*, *Documents*, *Unpublished pages*) and notes.
 - **+ New private page:** for text you write directly in the private area, such as notes or unpublished pages. It supports simple formatting: `# heading`, `**bold**`, `- list`, links.
 - Search, category filters and ★ pin-to-top help you find entries.
+- **+ New draft article:** write and preview articles privately (part 5).
 - The **⋯** menu has these options:
-  - Draft article previews
+  - Import article (.md file) as a draft
   - **Export everything** (a backup file)
   - Email me a password-change link
   - Sign out
@@ -204,7 +216,7 @@ The **Private** page (`/private/`) has these features:
 
 - Keep your health documents in Google Drive with sharing set to **Restricted**. The private page only stores the link. Google still requires your Google sign-in to open the file.
 - Turn on 2-step verification for your Google account, because it controls both Drive and Firebase.
-- Don't put real documents or secrets in the website folder itself (not in `files/`, not in `_posts/`). Everything in the repository is public.
+- Don't put real documents, secrets or unfinished articles in the website folder itself (not in `files/`, not in `_posts/`). Everything in the repository is public.
 
 ---
 
