@@ -324,3 +324,22 @@ html[data-theme="dark"] .lightbox { background: rgba(0, 0, 0, .9); }
 .dlg-read-head .btns { margin: 0 0 10px; }
 .preview-note { background: var(--warn); border-radius: 8px; padding: 8px 12px; font-size: .88rem; margin-bottom: 18px; }
 #read-body .article-head h1 { font-size: 2rem; }
+
+/* Learn page: courses */
+.jump { display: flex; gap: 8px; margin-top: 6px; }
+.jump a { font-weight: 600; text-decoration: none; padding: 4px 12px; border-radius: 999px; background: var(--soft); color: var(--ink-2); }
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+.course-card { display: flex; flex-direction: column; overflow: hidden; text-decoration: none; color: var(--ink); transition: transform .15s ease; }
+.course-card:hover { transform: translateY(-2px); text-decoration: none; }
+.course-cover { display: flex; align-items: center; justify-content: center; height: 160px; background: var(--fig-bg); border-bottom: 1px solid var(--line); padding: 10px; }
+.course-cover img { max-height: 140px; object-fit: contain; }
+.course-cover .fig-ph { font-size: 2rem; min-height: 0; height: 100%; }
+.course-card .card-body { display: flex; flex-direction: column; gap: 4px; }
+.course-title { font: 700 1.2rem/1.25 var(--serif); }
+.course-sum { color: var(--ink-2); font-size: .95rem; }
+.lessons { padding-left: 0; list-style: none; counter-reset: l; display: grid; gap: 12px; }
+.lessons li.card { counter-increment: l; position: relative; padding-left: 58px; }
+.lessons li::before { content: counter(l); position: absolute; left: 18px; top: 18px; font: 700 1.1rem var(--serif); color: var(--accent); }
+.lessons p { margin: 4px 0 0; }
+.lesson-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px !important; }
+.course .eyebrow { margin-bottom: 4px; }

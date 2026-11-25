@@ -109,7 +109,7 @@ The download count and the "Latest: v…" label then appear by themselves.
 
 ## 5. Articles, with private drafts (like Google Sites)
 
-Published articles appear on the **Apps & Articles** page, under the app icons, as cards with the overview (TOC) figure, a short summary and **Read details**.
+Published articles appear on the **Learn** page (https://moinulshdu.github.io/learn/), under Courses. Each one is a card with the overview (TOC) figure, a short summary and **Read details**. Their web addresses look like `/learn/articles/what-is-a-quantum-dot/`.
 
 **Drafts live in your Private area, not on the website.** Nobody else can see them: not on the site, not on GitHub, not with a link.
 
@@ -142,6 +142,23 @@ Published articles appear on the **Apps & Articles** page, under the app icons, 
 An article dated in the future stays hidden until that date has passed and the site has rebuilt.
 
 ---
+
+## 5b. Courses (on the Learn page)
+
+The **Learn** page has two parts: **Courses** (your teaching material) and **Articles** (short explainers). Until you add a course, it lists the courses you have taught, taken from `teaching:` in `_data/profile.yml`.
+
+**Add a course**
+1. Copy `templates/new-course.md` into the `_courses` folder and rename it, for example `_courses/physical-chemistry-lab.md`. The name becomes the address `/learn/courses/physical-chemistry-lab/`.
+2. Fill in the title, code, level, term, summary and (optionally) a cover picture from `images/courses/`.
+3. List the lessons under `lessons:`. Each lesson can link to one of your articles (`article:`), slides or a handout (PDF files in `files/courses/…`) and a video.
+4. Write the course description, goals and resources below the second `---`.
+5. While it is unfinished, keep `published: false`, which keeps it off the website. Change it to `published: true` to publish.
+
+The course file is visible on GitHub even while it's unpublished. Write unfinished or private text in your Private page first (**+ New private page** or **+ New draft article**).
+
+**Rename "Learn"**
+- In `_data/navigation.yml`, change `title: "Learn"`, for example to "Teaching" or "Notes".
+- To change the page heading as well, edit `title:` and the `<h1>` in `learn.html`.
 
 ## 6. Private area (sign-in, documents, password reset)
 
@@ -251,5 +268,5 @@ To make sure people actually reach it:
   - the Academic Pages / Minimal Mistakes sample text, Guide, Portfolio, Talks and Teaching sample pages;
   - the sample publications, sample blog posts and talk map;
   - the template's GitHub workflows.
-- **New menu:** About · Apps & Articles · Publications · CV, plus 🔒 Private on your own signed-in devices.
+- **Menu:** About · Apps · Learn · Publications · CV, plus 🔒 Private on your own signed-in devices.
 - The site no longer depends on a theme or plugins, so GitHub builds it as is.

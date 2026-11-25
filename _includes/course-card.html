@@ -1,0 +1,8 @@
+<a class="card course-card" href="{{ course.url | relative_url }}">
+  <span class="course-cover">{% if course.cover and course.cover != "" %}<img src="{{ course.cover | relative_url }}" alt="" loading="lazy">{% else %}<span class="fig-ph">{{ course.code | default: course.title | slice: 0, 4 }}</span>{% endif %}</span>
+  <span class="card-body">
+    <span class="meta">{% if course.code %}{{ course.code }} · {% endif %}{{ course.level }}{% if course.term %} · {{ course.term }}{% endif %}</span>
+    <span class="course-title">{{ course.title }}</span>
+    <span class="course-sum">{{ course.summary | strip_html | truncatewords: 30 }}</span>
+  </span>
+</a>

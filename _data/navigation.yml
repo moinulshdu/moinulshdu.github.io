@@ -1,8 +1,10 @@
 # Top menu. Order here = order on the website.
 - title: "About"
   url: /
-- title: "Apps & Articles"
+- title: "Apps"
   url: /apps/
+- title: "Learn"          # teaching courses + educational articles (rename freely)
+  url: /learn/
 - title: "Publications"
   url: /publications/
 - title: "CV"

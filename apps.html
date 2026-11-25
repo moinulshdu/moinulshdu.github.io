@@ -1,12 +1,12 @@
 ---
 layout: default
 permalink: /apps/
-title: Apps & Articles
-description: "Free scientific desktop apps by Md Moinul Islam for nanocrystal research, figures, teaching and data work, plus educational articles."
+title: Apps
+description: "Free scientific desktop apps by Md Moinul Islam for nanocrystal research, figures, teaching and data work."
 ---
 <div class="wrap">
   <header class="page-head">
-    <h1>Apps &amp; Articles</h1>
+    <h1>Apps</h1>
     <p class="lead">Free desktop apps I designed for my own research and teaching — nanocrystal modelling, figure making, instrumentation and physics. They run on Windows, macOS and Linux. Click an icon for details, screenshots and downloads.</p>
   </header>
 
@@ -17,17 +17,9 @@ description: "Free scientific desktop apps by Md Moinul Islam for nanocrystal re
     </div>
     <p class="muted small-note">Download counts come live from GitHub Releases.</p>
   </section>
-
-  <section id="articles" class="section">
-    <h2>Articles</h2>
-    <p class="muted">Short educational write-ups on spectroscopy, nanomaterials, instrumentation and the tools I use.</p>
-    {% assign posts = site.posts | where_exp: "post", "post.draft != true" %}
-    {% if posts.size > 0 %}
-      <div class="article-list">
-        {% for post in posts %}{% include article-card.html %}{% endfor %}
-      </div>
-    {% else %}
-      <div class="card pad empty">The first articles are being written. Check back soon.</div>
-    {% endif %}
+  <section class="section card pad">
+    <h2>Learning material</h2>
+    <p>Courses and short educational articles on spectroscopy, nanomaterials and instrumentation are on the <a href="{{ '/learn/' | relative_url }}">Learn</a> page.</p>
   </section>
+
 </div>

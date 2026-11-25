@@ -16,7 +16,8 @@ Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Goog
 - [About]({{ '/' | absolute_url }}): profile, research, skills
 - [CV]({{ '/cv/' | absolute_url }}): full curriculum vitae in HTML
 - [Publications]({{ '/publications/' | absolute_url }}): papers and presentations
-- [Apps & Articles]({{ '/apps/' | absolute_url }}): software and educational articles
+- [Apps]({{ '/apps/' | absolute_url }}): scientific desktop software
+- [Learn]({{ '/learn/' | absolute_url }}): teaching courses and educational articles
 
 ## Education
 {% for e in p.education %}- {{ e.degree }}, {{ e.school }} ({{ e.dates }}). Thesis: {{ e.thesis }}
@@ -32,6 +33,9 @@ Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Goog
 {% endfor %}{% endfor %}
 ## Software
 {% assign apps = site.apps | sort: "order" %}{% for app in apps %}- [{{ app.title }}]({{ app.url | absolute_url }}): {{ app.tagline }}
+{% endfor %}
+## Courses
+{% assign courses = site.courses | where_exp: "c", "c.draft != true" | sort: "order" %}{% for c in courses %}- [{{ c.title }}]({{ c.url | absolute_url }}): {{ c.summary | normalize_whitespace }}
 {% endfor %}
 ## Articles
 {% assign posts = site.posts | where_exp: "post", "post.draft != true" %}{% for post in posts %}- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.summary | normalize_whitespace }}

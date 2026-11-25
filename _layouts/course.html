@@ -1,0 +1,42 @@
+---
+layout: default
+---
+<article class="wrap article course">
+  <nav class="crumbs"><a href="{{ '/learn/' | relative_url }}">Learn</a> <span>/</span> <a href="{{ '/learn/#courses' | relative_url }}">Courses</a></nav>
+  <header class="article-head">
+    <p class="eyebrow">{% if page.code %}{{ page.code }} · {% endif %}{{ page.level }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.institution }}{% if page.term %} · {{ page.term }}{% endif %}{% if page.role %} · {{ page.role }}{% endif %}</p>
+    {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    {% if page.cover and page.cover != "" %}<figure class="toc-fig"><img src="{{ page.cover | relative_url }}" alt="Course overview figure"></figure>{% endif %}
+    {% if page.prerequisites %}<p><strong>Prerequisites:</strong> {{ page.prerequisites }}</p>{% endif %}
+  </header>
+
+  {% if page.lessons and page.lessons.size > 0 %}
+  <section class="section">
+    <h2>Lessons</h2>
+    <ol class="lessons">
+      {% for l in page.lessons %}
+      <li class="card pad">
+        <strong>{{ l.title }}</strong>
+        {% if l.summary %}<p>{{ l.summary }}</p>{% endif %}
+        <p class="lesson-links">
+          {% if l.article %}<a class="btn small" href="{{ l.article | relative_url }}">Read</a>{% endif %}
+          {% if l.slides %}<a class="btn small" href="{{ l.slides | relative_url }}" target="_blank" rel="noopener">Slides</a>{% endif %}
+          {% if l.handout %}<a class="btn small" href="{{ l.handout | relative_url }}" target="_blank" rel="noopener">Handout</a>{% endif %}
+          {% if l.video %}<a class="btn small" href="{{ l.video }}" target="_blank" rel="noopener">Video</a>{% endif %}
+        </p>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+  <footer class="article-foot">
+    <img src="{{ site.author.photo | relative_url }}" alt="" width="56" height="56">
+    <p>Prepared by <a href="{{ '/' | relative_url }}">{{ site.author.name }}</a> ({{ site.author.job_title }}, {{ site.author.affiliation }}). Questions or corrections? <a href="mailto:{{ site.author.email }}">Email me</a>.</p>
+  </footer>
+</article>

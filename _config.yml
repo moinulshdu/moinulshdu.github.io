@@ -45,8 +45,11 @@ collections:
   apps:
     output: true
     permalink: /apps/:name/
+  courses:
+    output: true
+    permalink: /learn/courses/:name/
 
-permalink: /articles/:title/
+permalink: /learn/articles/:title/
 markdown: kramdown
 kramdown:
   input: GFM
@@ -60,6 +63,8 @@ defaults:
     values: { layout: article }
   - scope: { path: "", type: apps }
     values: { layout: app }
+  - scope: { path: "", type: courses }
+    values: { layout: course }
   - scope: { path: "" }
     values: { layout: page }
 
