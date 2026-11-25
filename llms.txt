@@ -18,6 +18,7 @@ Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Goog
 - [Publications]({{ '/publications/' | absolute_url }}): papers and presentations
 - [Apps]({{ '/apps/' | absolute_url }}): scientific desktop software
 - [Learn]({{ '/learn/' | absolute_url }}): teaching courses and educational articles
+- [Fun Projects]({{ '/fun-projects/' | absolute_url }}): Arduino builds (playable in the browser) and other hobby projects
 
 ## Education
 {% for e in p.education %}- {{ e.degree }}, {{ e.school }} ({{ e.dates }}). Thesis: {{ e.thesis }}
@@ -33,6 +34,9 @@ Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Goog
 {% endfor %}{% endfor %}
 ## Software
 {% assign apps = site.apps | sort: "order" %}{% for app in apps %}- [{{ app.title }}]({{ app.url | absolute_url }}): {{ app.tagline }}
+{% endfor %}
+## Fun projects
+{% assign projects = site.projects | sort: "order" %}{% for pr in projects %}- [{{ pr.title }}]({{ pr.url | absolute_url }}): {{ pr.summary | normalize_whitespace }}
 {% endfor %}
 ## Courses
 {% assign courses = site.courses | where_exp: "c", "c.draft != true" | sort: "order" %}{% for c in courses %}- [{{ c.title }}]({{ c.url | absolute_url }}): {{ c.summary | normalize_whitespace }}

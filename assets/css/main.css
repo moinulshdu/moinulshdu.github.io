@@ -343,3 +343,49 @@ html[data-theme="dark"] .lightbox { background: rgba(0, 0, 0, .9); }
 .lessons p { margin: 4px 0 0; }
 .lesson-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px !important; }
 .course .eyebrow { margin-bottom: 4px; }
+
+/* Fun Projects */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.project-card { display: flex; flex-direction: column; overflow: hidden; text-decoration: none; color: var(--ink); transition: transform .15s ease; }
+.project-card:hover { transform: translateY(-2px); text-decoration: none; }
+.project-thumb { position: relative; display: flex; align-items: center; justify-content: center; height: 200px; background: #111; overflow: hidden; }
+.project-thumb img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.badge-play { position: absolute; top: 10px; right: 10px; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .78rem; padding: 3px 10px; border-radius: 999px; }
+.project-page { max-width: 980px; }
+.project-body { margin-top: 10px; }
+.circuit-fig img { image-rendering: auto; }
+
+/* Arduino simulator */
+.sim-device { background: #1d2a24; border-radius: 22px; padding: 22px; box-shadow: var(--shadow), inset 0 0 0 2px rgba(255,255,255,.05); color: #e8efe9; }
+.sim-screen-wrap { position: relative; max-width: 640px; margin: 0 auto; border: 10px solid #0b0d0c; border-radius: 10px; background: #000; aspect-ratio: 4 / 3; }
+.sim-screen { display: block; width: 100%; height: 100%; image-rendering: pixelated; opacity: .08; transition: opacity .2s; }
+.sim-device.lit .sim-screen { opacity: 1; }
+.sim-off { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #3c4a43; font-size: .9rem; pointer-events: none; }
+.sim-device.lit .sim-off { display: none; }
+.sim-caption { max-width: 640px; margin: 10px auto 0; min-height: 1.6em; text-align: center; font-size: .95rem; color: #bfe6cf; opacity: 0; transition: opacity .2s; }
+.sim-caption.on { opacity: 1; }
+.sim-row { display: flex; gap: 26px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin-top: 14px; }
+.sim-keypad { display: grid; grid-template-columns: repeat(4, 58px); gap: 8px; background: #20252b; padding: 12px; border-radius: 12px; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.sim-key { height: 52px; border-radius: 8px; border: 0; background: #f3f3f1; color: #1c1c1f; font: 700 1.2rem var(--sans); cursor: pointer; box-shadow: 0 3px 0 #9a9a96; }
+.sim-key-letter { background: #e0483e; color: #fff; box-shadow: 0 3px 0 #8f2620; }
+.sim-key-sym { background: #3b82c4; color: #fff; box-shadow: 0 3px 0 #1f4f7d; }
+.sim-key.down { transform: translateY(3px); box-shadow: none; filter: brightness(.9); }
+.sim-side { display: flex; flex-direction: column; gap: 10px; min-width: 240px; max-width: 320px; }
+.sim-side .btn { padding: 8px 14px; }
+.sim-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.sim-btns .btn:not(.primary) { background: #2c3833; color: #e8efe9; border-color: #3d4b45; }
+.sim-side .btn.small { align-self: flex-start; background: transparent; color: #a8b8af; border-color: #3d4b45; }
+.sim-batt, .sim-usb { font-size: .9rem; font-weight: 500; color: #cfdcd4; display: flex; align-items: center; gap: 8px; margin: 0; }
+.sim-batt input { flex: 1; }
+.sim-hint { font-size: .85rem; color: #9fb0a7; margin: 0; }
+.sim-status { font-size: .8rem; color: #7f9188; }
+.sim-table-wrap { overflow-x: auto; }
+.sim-nets { border-collapse: collapse; width: 100%; font-size: .92rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.sim-nets th, .sim-nets td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+.sim-nets code { font-size: .8rem; }
+.sim-bom { columns: 2 260px; }
+.sim-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.sim-code { background: #1f2024; color: #f2f2f2; padding: 14px 16px; border-radius: 10px; overflow: auto; max-height: 520px; font-size: .82rem; line-height: 1.5; }
+@media (max-width: 520px) { .sim-device { padding: 12px; } .sim-keypad { grid-template-columns: repeat(4, 1fr); width: 100%; } .sim-side { max-width: none; width: 100%; } }
+.project-card .card-body { display: flex; flex-direction: column; gap: 4px; }
+.sim-more { margin-top: 12px; } .sim-more summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }

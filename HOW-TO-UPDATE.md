@@ -160,6 +160,38 @@ The course file is visible on GitHub even while it's unpublished. Write unfinish
 - In `_data/navigation.yml`, change `title: "Learn"`, for example to "Teaching" or "Notes".
 - To change the page heading as well, edit `title:` and the `<h1>` in `learn.html`.
 
+## 5c. Fun Projects (Arduino builds you can play in the browser)
+
+The **Fun Projects** page (`/fun-projects/`) shows one card per project. Each project is one file in `_projects/`, and its files (pictures, programs, sounds) go in `files/projects/<project-name>/`.
+
+**Musa & Isa's Math Game Kit** (`_projects/musa-math-game.md`) is playable: the page runs the real compiled Arduino program on a virtual Nano. Visitors can press keys and hear the sounds, but they can't change the code or the wiring.
+
+| File in `files/projects/musa-math-game/` | What it is |
+|---|---|
+| `firmware.hex` | the compiled program the simulator runs |
+| `MusaMathGameCircuit2.circuit` | your Circuit Studio file (parts list, connections and the read-only code on the page are read from it) |
+| `MathGameKit-sketch.zip` | the sketch for download |
+| `mp3/0001.mp3 … 0039.mp3` | **you add these:** the recordings from the SD card |
+| `captions.json` | the text shown while each sound plays |
+| `screen.png` | the card picture |
+
+**Add the sounds.** Upload the files from your SD card's `mp3` folder (0001.mp3, 0002.mp3, …) into `files/projects/musa-math-game/mp3/` (github.com › that folder › **Add file › Upload files**). Until a sound file is there, the simulator plays a short beep and shows the caption. The recordings will be public, so only upload ones you're happy to share.
+
+**Add a picture of the circuit.**
+1. In Circuit Studio, open the project and take a screenshot (Mac: **Cmd+Shift+4**; Windows: **Win+Shift+S**).
+2. Upload it as `files/projects/musa-math-game/circuit.png`.
+3. In `_projects/musa-math-game.md`, set `circuit_image: /files/projects/musa-math-game/circuit.png`. Set `thumbnail:` to the same path if you want it on the card too.
+
+**After you change the Arduino code**
+1. In the Arduino IDE, choose **Sketch › Export Compiled Binary**.
+2. In the sketch's `build` folder, find the `.hex` file *without* "with_bootloader" in its name.
+3. Upload it as `files/projects/musa-math-game/firmware.hex`.
+4. Also upload the updated `.circuit` file and sketch zip, so the code shown on the page matches.
+
+**Add another project**
+1. Copy `templates/new-project.md` into `_projects/` and fill it in.
+2. For a playable Arduino project, copy the `sim:` block from the Musa project and change the pins. The simulator currently understands an Arduino Nano/Uno-type board with an ILI9341 screen, a matrix keypad, a DFPlayer Mini and a battery reading. Ask for help to add other parts (LEDs, buttons, other displays).
+
 ## 6. Private area (sign-in, documents, password reset)
 
 The **Private** page (`/private/`) has these features:
@@ -268,5 +300,5 @@ To make sure people actually reach it:
   - the Academic Pages / Minimal Mistakes sample text, Guide, Portfolio, Talks and Teaching sample pages;
   - the sample publications, sample blog posts and talk map;
   - the template's GitHub workflows.
-- **Menu:** About · Apps · Learn · Publications · CV, plus 🔒 Private on your own signed-in devices.
+- **Menu:** About · Learn · Apps · Fun Projects · Publications · CV, plus 🔒 Private on your own signed-in devices.
 - The site no longer depends on a theme or plugins, so GitHub builds it as is.

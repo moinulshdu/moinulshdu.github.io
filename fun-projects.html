@@ -1,0 +1,22 @@
+---
+layout: default
+permalink: /fun-projects/
+title: Fun Projects
+description: "Hobby projects by Md Moinul Islam: Arduino builds you can play in the browser, and other things made for fun."
+---
+{% assign projects = site.projects | sort: "order" %}
+<div class="wrap">
+  <header class="page-head">
+    <h1>Fun Projects</h1>
+    <p class="lead">Things I build for fun — mostly Arduino gadgets for my kids, and other experiments. Arduino projects run right here in your browser: open one and press <strong>Power on</strong> to play.</p>
+  </header>
+  <section class="section">
+    {% if projects.size > 0 %}
+    <div class="project-grid">
+      {% for project in projects %}{% include project-card.html %}{% endfor %}
+    </div>
+    {% else %}
+    <div class="card pad empty">Projects are on their way.</div>
+    {% endif %}
+  </section>
+</div>

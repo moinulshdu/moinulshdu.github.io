@@ -1,0 +1,1936 @@
+{
+ "app": "Circuit Studio",
+ "format": 1,
+ "title": "MusaMathGameCircuit2",
+ "next_id": 178,
+ "parts": [
+  {
+   "id": "p8",
+   "kind": "ili9341",
+   "x": -400.0,
+   "y": -110.0,
+   "rot": 270,
+   "flip": false,
+   "props": {
+    "size": "2.8\""
+   },
+   "name": "ILI9341 TFT display 1"
+  },
+  {
+   "id": "p10",
+   "kind": "header_female",
+   "x": -60.0,
+   "y": 30.0,
+   "rot": 90,
+   "flip": false,
+   "props": {
+    "n": 8,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 1"
+  },
+  {
+   "id": "p51",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 50.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 3"
+  },
+  {
+   "id": "p52",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 60.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 4"
+  },
+  {
+   "id": "p53",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 70.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 5"
+  },
+  {
+   "id": "p54",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 80.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 6"
+  },
+  {
+   "id": "p55",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 90.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 7"
+  },
+  {
+   "id": "p56",
+   "kind": "resistor",
+   "x": -110.0,
+   "y": 100.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "2000"
+   },
+   "name": "Resistor 8"
+  },
+  {
+   "id": "p67",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 50.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 11"
+  },
+  {
+   "id": "p68",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 60.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 12"
+  },
+  {
+   "id": "p69",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 70.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 13"
+  },
+  {
+   "id": "p70",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 80.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 14"
+  },
+  {
+   "id": "p71",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 90.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 15"
+  },
+  {
+   "id": "p72",
+   "kind": "resistor",
+   "x": 30.0,
+   "y": 100.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 16"
+  },
+  {
+   "id": "p73",
+   "kind": "arduino_nano",
+   "x": 240.0,
+   "y": 40.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "usb": true
+   },
+   "name": "Arduino Nano 1"
+  },
+  {
+   "id": "p74",
+   "kind": "dfplayer",
+   "x": 250.0,
+   "y": -190.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "folder": "C:/Users/mdmoinul/Downloads/Junk/MusaMathGame/MusaMathGame/sd-card/mp3",
+    "tracks": 10,
+    "seconds": 10.0
+   },
+   "name": "DFPlayer Mini 1"
+  },
+  {
+   "id": "p75",
+   "kind": "speaker",
+   "x": 440.0,
+   "y": -120.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "ohm": "8 \u03a9",
+    "watt": "0.5 W",
+    "size": "40 mm"
+   },
+   "name": "Speaker 1"
+  },
+  {
+   "id": "p76",
+   "kind": "membrane_keypad",
+   "x": -330,
+   "y": 480,
+   "rot": 0,
+   "flip": false,
+   "props": {},
+   "name": "4\u00d74 membrane keypad 1"
+  },
+  {
+   "id": "p99",
+   "kind": "resistor",
+   "x": 200.0,
+   "y": -150.0,
+   "rot": 90,
+   "flip": false,
+   "props": {
+    "r": "1000"
+   },
+   "name": "Resistor 17"
+  },
+  {
+   "id": "p110",
+   "kind": "liion_21700",
+   "x": -730.0,
+   "y": 330.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "size": "21700",
+    "mah": 4000,
+    "soc": 68.29465130865782,
+    "speed": 120,
+    "rint": 0.025,
+    "wrap": "Teal"
+   },
+   "name": "Li-ion cell 21700 1"
+  },
+  {
+   "id": "p111",
+   "kind": "tp4056",
+   "x": -660.0,
+   "y": 400.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "usb": false,
+    "iset": "1000 mA"
+   },
+   "name": "TP4056 Li-ion charger 1"
+  },
+  {
+   "id": "p112",
+   "kind": "j5019",
+   "x": -490.0,
+   "y": 480.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "usb": false,
+    "vout": 5.0
+   },
+   "name": "J5019 charger + boost 1"
+  },
+  {
+   "id": "p115",
+   "kind": "toggle_switch",
+   "x": -500.0,
+   "y": 410.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "type": "SPDT (3 pins)",
+    "on": "Down"
+   },
+   "name": "Toggle switch 1"
+  },
+  {
+   "id": "p119",
+   "kind": "resistor",
+   "x": 210.0,
+   "y": 190.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "10000"
+   },
+   "name": "Resistor 18"
+  },
+  {
+   "id": "p120",
+   "kind": "header_female",
+   "x": -450.0,
+   "y": 440.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "n": 2,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 2"
+  },
+  {
+   "id": "p125",
+   "kind": "header_female",
+   "x": 330.0,
+   "y": 190.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "n": 1,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 3"
+  },
+  {
+   "id": "p128",
+   "kind": "resistor",
+   "x": 350.0,
+   "y": 190.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "r": "10000"
+   },
+   "name": "Resistor 19"
+  },
+  {
+   "id": "p131",
+   "kind": "header_female",
+   "x": -50,
+   "y": 280,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "n": 2,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 4"
+  },
+  {
+   "id": "p146",
+   "kind": "header_female",
+   "x": 10.0,
+   "y": 30.0,
+   "rot": 90,
+   "flip": false,
+   "props": {
+    "n": 8,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 5"
+  },
+  {
+   "id": "p172",
+   "kind": "header_female",
+   "x": -120.0,
+   "y": 170.0,
+   "rot": 0,
+   "flip": false,
+   "props": {
+    "n": 1,
+    "rows": "1",
+    "color": "Black"
+   },
+   "name": "Female pin header 6"
+  }
+ ],
+ "wires": [
+  {
+   "id": "w26",
+   "a": [
+    "p10",
+    "1"
+   ],
+   "b": [
+    "p8",
+    "VCC"
+   ],
+   "pts": [
+    [
+     -60,
+     -60
+    ],
+    [
+     -15,
+     -60
+    ],
+    [
+     -15,
+     -375
+    ],
+    [
+     -490,
+     -375
+    ],
+    [
+     -490,
+     -110
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w77",
+   "a": [
+    "p72",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D6"
+   ],
+   "pts": [
+    [
+     190,
+     100
+    ],
+    [
+     190,
+     20
+    ],
+    [
+     300,
+     20
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w78",
+   "a": [
+    "p71",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D13"
+   ],
+   "pts": [
+    [
+     200,
+     90
+    ],
+    [
+     200,
+     115
+    ],
+    [
+     240,
+     115
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w79",
+   "a": [
+    "p70",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D11"
+   ],
+   "pts": [
+    [
+     180,
+     80
+    ],
+    [
+     180,
+     10
+    ],
+    [
+     250,
+     10
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w81",
+   "a": [
+    "p68",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D8"
+   ],
+   "pts": [
+    [
+     160,
+     60
+    ],
+    [
+     160,
+     -10
+    ],
+    [
+     280,
+     -10
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w82",
+   "a": [
+    "p69",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D9"
+   ],
+   "pts": [
+    [
+     170,
+     70
+    ],
+    [
+     170,
+     0
+    ],
+    [
+     270,
+     0
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w83",
+   "a": [
+    "p67",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "D10"
+   ],
+   "pts": [
+    [
+     150,
+     50
+    ],
+    [
+     150,
+     -20
+    ],
+    [
+     260,
+     -20
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w87",
+   "a": [
+    "p51",
+    "1"
+   ],
+   "b": [
+    "p52",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w88",
+   "a": [
+    "p52",
+    "1"
+   ],
+   "b": [
+    "p53",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w89",
+   "a": [
+    "p53",
+    "1"
+   ],
+   "b": [
+    "p54",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w90",
+   "a": [
+    "p54",
+    "1"
+   ],
+   "b": [
+    "p55",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w91",
+   "a": [
+    "p55",
+    "1"
+   ],
+   "b": [
+    "p56",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w96",
+   "a": [
+    "p74",
+    "SPK_2"
+   ],
+   "b": [
+    "p75",
+    "-"
+   ],
+   "pts": [
+    [
+     230,
+     -120
+    ],
+    [
+     230,
+     -95
+    ],
+    [
+     440,
+     -95
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w97",
+   "a": [
+    "p74",
+    "SPK_1"
+   ],
+   "b": [
+    "p75",
+    "+"
+   ],
+   "pts": [
+    [
+     220,
+     -140
+    ],
+    [
+     220,
+     -85
+    ],
+    [
+     460,
+     -85
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w98",
+   "a": [
+    "p73",
+    "A7"
+   ],
+   "b": [
+    "p74",
+    "BUSY"
+   ],
+   "pts": [
+    [
+     340,
+     115
+    ],
+    [
+     400,
+     115
+    ],
+    [
+     400,
+     -190
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w100",
+   "a": [
+    "p74",
+    "RX"
+   ],
+   "b": [
+    "p99",
+    "1"
+   ],
+   "pts": [
+    [
+     200,
+     -180
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w101",
+   "a": [
+    "p99",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "A4"
+   ],
+   "pts": [
+    [
+     200,
+     -75
+    ],
+    [
+     415,
+     -75
+    ],
+    [
+     415,
+     130
+    ],
+    [
+     310,
+     130
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w102",
+   "a": [
+    "p76",
+    "R1"
+   ],
+   "b": [
+    "p73",
+    "D2"
+   ],
+   "pts": [
+    [
+     -330,
+     585
+    ],
+    [
+     475,
+     585
+    ],
+    [
+     475,
+     -10
+    ],
+    [
+     340,
+     -10
+    ]
+   ],
+   "color": "Orange"
+  },
+  {
+   "id": "w103",
+   "a": [
+    "p73",
+    "A3"
+   ],
+   "b": [
+    "p76",
+    "C4"
+   ],
+   "pts": [
+    [
+     300,
+     505
+    ],
+    [
+     -260,
+     505
+    ]
+   ],
+   "color": "Brown"
+  },
+  {
+   "id": "w104",
+   "a": [
+    "p76",
+    "C3"
+   ],
+   "b": [
+    "p73",
+    "A2"
+   ],
+   "pts": [
+    [
+     -270,
+     515
+    ],
+    [
+     290,
+     515
+    ]
+   ],
+   "color": "Brown"
+  },
+  {
+   "id": "w105",
+   "a": [
+    "p73",
+    "A1"
+   ],
+   "b": [
+    "p76",
+    "C2"
+   ],
+   "pts": [
+    [
+     280,
+     525
+    ],
+    [
+     -280,
+     525
+    ]
+   ],
+   "color": "Brown"
+  },
+  {
+   "id": "w106",
+   "a": [
+    "p76",
+    "C1"
+   ],
+   "b": [
+    "p73",
+    "A0"
+   ],
+   "pts": [
+    [
+     -290,
+     535
+    ],
+    [
+     270,
+     535
+    ]
+   ],
+   "color": "Brown"
+  },
+  {
+   "id": "w107",
+   "a": [
+    "p76",
+    "R4"
+   ],
+   "b": [
+    "p73",
+    "D5"
+   ],
+   "pts": [
+    [
+     -300,
+     550
+    ],
+    [
+     430,
+     550
+    ],
+    [
+     430,
+     20
+    ],
+    [
+     310,
+     20
+    ]
+   ],
+   "color": "Orange"
+  },
+  {
+   "id": "w108",
+   "a": [
+    "p73",
+    "D4"
+   ],
+   "b": [
+    "p76",
+    "R3"
+   ],
+   "pts": [
+    [
+     320,
+     10
+    ],
+    [
+     445,
+     10
+    ],
+    [
+     445,
+     560
+    ],
+    [
+     -310,
+     560
+    ]
+   ],
+   "color": "Orange"
+  },
+  {
+   "id": "w109",
+   "a": [
+    "p76",
+    "R2"
+   ],
+   "b": [
+    "p73",
+    "D3"
+   ],
+   "pts": [
+    [
+     -320,
+     570
+    ],
+    [
+     460,
+     570
+    ],
+    [
+     460,
+     0
+    ],
+    [
+     330,
+     0
+    ]
+   ],
+   "color": "Orange"
+  },
+  {
+   "id": "w113",
+   "a": [
+    "p110",
+    "-"
+   ],
+   "b": [
+    "p111",
+    "B-"
+   ],
+   "pts": [
+    [
+     -730,
+     355
+    ],
+    [
+     -625,
+     355
+    ],
+    [
+     -625,
+     430
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w114",
+   "a": [
+    "p110",
+    "+"
+   ],
+   "b": [
+    "p111",
+    "B+"
+   ],
+   "pts": [
+    [
+     -450,
+     355
+    ],
+    [
+     -600,
+     355
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w116",
+   "a": [
+    "p111",
+    "OUT+"
+   ],
+   "b": [
+    "p115",
+    "1"
+   ],
+   "pts": [
+    [
+     -530,
+     400
+    ],
+    [
+     -530,
+     430
+    ],
+    [
+     -500,
+     430
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w117",
+   "a": [
+    "p111",
+    "OUT-"
+   ],
+   "b": [
+    "p112",
+    "B-"
+   ],
+   "pts": [
+    [
+     -550,
+     430
+    ],
+    [
+     -550,
+     455
+    ],
+    [
+     -460,
+     455
+    ],
+    [
+     -460,
+     510
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w121",
+   "a": [
+    "p115",
+    "C"
+   ],
+   "b": [
+    "p120",
+    "1"
+   ],
+   "pts": [
+    [
+     -480,
+     440
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w122",
+   "a": [
+    "p120",
+    "1"
+   ],
+   "b": [
+    "p120",
+    "2"
+   ],
+   "pts": [],
+   "color": "Red"
+  },
+  {
+   "id": "w123",
+   "a": [
+    "p120",
+    "2"
+   ],
+   "b": [
+    "p112",
+    "B+"
+   ],
+   "pts": [],
+   "color": "Red"
+  },
+  {
+   "id": "w124",
+   "a": [
+    "p120",
+    "2"
+   ],
+   "b": [
+    "p119",
+    "1"
+   ],
+   "pts": [
+    [
+     -385,
+     440
+    ],
+    [
+     -385,
+     360
+    ],
+    [
+     210,
+     360
+    ]
+   ],
+   "color": "Blue"
+  },
+  {
+   "id": "w126",
+   "a": [
+    "p119",
+    "2"
+   ],
+   "b": [
+    "p125",
+    "1"
+   ],
+   "pts": [],
+   "color": "Blue"
+  },
+  {
+   "id": "w127",
+   "a": [
+    "p125",
+    "1"
+   ],
+   "b": [
+    "p73",
+    "A6"
+   ],
+   "pts": [],
+   "color": "Blue"
+  },
+  {
+   "id": "w129",
+   "a": [
+    "p125",
+    "1"
+   ],
+   "b": [
+    "p128",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w130",
+   "a": [
+    "p128",
+    "2"
+   ],
+   "b": [
+    "p73",
+    "GND"
+   ],
+   "pts": [
+    [
+     390,
+     170
+    ],
+    [
+     370,
+     170
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w132",
+   "a": [
+    "p112",
+    "OUT+"
+   ],
+   "b": [
+    "p131",
+    "1"
+   ],
+   "pts": [
+    [
+     -370,
+     480
+    ],
+    [
+     -370,
+     450
+    ],
+    [
+     -370,
+     445
+    ],
+    [
+     -370,
+     375
+    ],
+    [
+     -50,
+     375
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w133",
+   "a": [
+    "p112",
+    "OUT-"
+   ],
+   "b": [
+    "p131",
+    "2"
+   ],
+   "pts": [
+    [
+     -355,
+     510
+    ],
+    [
+     -355,
+     460
+    ],
+    [
+     -355,
+     440
+    ],
+    [
+     -355,
+     390
+    ],
+    [
+     -335,
+     390
+    ],
+    [
+     -40,
+     390
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w138",
+   "a": [
+    "p56",
+    "1"
+   ],
+   "b": [
+    "p131",
+    "2"
+   ],
+   "pts": [
+    [
+     -110,
+     235
+    ],
+    [
+     -40,
+     235
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w147",
+   "a": [
+    "p146",
+    "3"
+   ],
+   "b": [
+    "p67",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w148",
+   "a": [
+    "p146",
+    "4"
+   ],
+   "b": [
+    "p68",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w149",
+   "a": [
+    "p146",
+    "5"
+   ],
+   "b": [
+    "p69",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w150",
+   "a": [
+    "p146",
+    "6"
+   ],
+   "b": [
+    "p70",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w151",
+   "a": [
+    "p146",
+    "7"
+   ],
+   "b": [
+    "p71",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w152",
+   "a": [
+    "p146",
+    "8"
+   ],
+   "b": [
+    "p72",
+    "1"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w153",
+   "a": [
+    "p10",
+    "1"
+   ],
+   "b": [
+    "p146",
+    "1"
+   ],
+   "pts": [],
+   "color": "Red"
+  },
+  {
+   "id": "w154",
+   "a": [
+    "p10",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "2"
+   ],
+   "pts": [],
+   "color": "Black"
+  },
+  {
+   "id": "w156",
+   "a": [
+    "p8",
+    "GND"
+   ],
+   "b": [
+    "p10",
+    "2"
+   ],
+   "pts": [
+    [
+     -475,
+     -120
+    ],
+    [
+     -475,
+     -360
+    ],
+    [
+     -5,
+     -360
+    ],
+    [
+     -5,
+     -220
+    ],
+    [
+     -5,
+     -55
+    ],
+    [
+     -50,
+     -55
+    ],
+    [
+     -50,
+     40
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w157",
+   "a": [
+    "p8",
+    "CS"
+   ],
+   "b": [
+    "p10",
+    "3"
+   ],
+   "pts": [
+    [
+     -465,
+     -130
+    ],
+    [
+     -465,
+     -350
+    ],
+    [
+     5,
+     -350
+    ],
+    [
+     5,
+     -50
+    ],
+    [
+     -45,
+     -50
+    ],
+    [
+     -45,
+     50
+    ]
+   ],
+   "color": "Orange"
+  },
+  {
+   "id": "w158",
+   "a": [
+    "p8",
+    "RESET"
+   ],
+   "b": [
+    "p52",
+    "2"
+   ],
+   "pts": [
+    [
+     -455,
+     -140
+    ],
+    [
+     -455,
+     -335
+    ],
+    [
+     15,
+     -335
+    ],
+    [
+     15,
+     -45
+    ],
+    [
+     -40,
+     -45
+    ],
+    [
+     -40,
+     60
+    ]
+   ],
+   "color": "Purple"
+  },
+  {
+   "id": "w159",
+   "a": [
+    "p8",
+    "DC"
+   ],
+   "b": [
+    "p53",
+    "2"
+   ],
+   "pts": [
+    [
+     -445,
+     -150
+    ],
+    [
+     -445,
+     -325
+    ],
+    [
+     25,
+     -325
+    ],
+    [
+     25,
+     -40
+    ],
+    [
+     -35,
+     -40
+    ],
+    [
+     -35,
+     70
+    ]
+   ],
+   "color": "Brown"
+  },
+  {
+   "id": "w160",
+   "a": [
+    "p53",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "5"
+   ],
+   "pts": [],
+   "color": "Brown"
+  },
+  {
+   "id": "w161",
+   "a": [
+    "p8",
+    "SDI(MOSI)"
+   ],
+   "b": [
+    "p54",
+    "2"
+   ],
+   "pts": [
+    [
+     -435,
+     -160
+    ],
+    [
+     -435,
+     -310
+    ],
+    [
+     35,
+     -310
+    ],
+    [
+     35,
+     -35
+    ],
+    [
+     -30,
+     -35
+    ],
+    [
+     -30,
+     80
+    ]
+   ],
+   "color": "Pink"
+  },
+  {
+   "id": "w162",
+   "a": [
+    "p54",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "6"
+   ],
+   "pts": [],
+   "color": "Pink"
+  },
+  {
+   "id": "w163",
+   "a": [
+    "p8",
+    "SCK"
+   ],
+   "b": [
+    "p55",
+    "2"
+   ],
+   "pts": [
+    [
+     -425,
+     -170
+    ],
+    [
+     -425,
+     -300
+    ],
+    [
+     45,
+     -300
+    ],
+    [
+     45,
+     -30
+    ],
+    [
+     -25,
+     -30
+    ],
+    [
+     -25,
+     90
+    ]
+   ],
+   "color": "Green"
+  },
+  {
+   "id": "w164",
+   "a": [
+    "p55",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "7"
+   ],
+   "pts": [],
+   "color": "Green"
+  },
+  {
+   "id": "w165",
+   "a": [
+    "p8",
+    "LED"
+   ],
+   "b": [
+    "p56",
+    "2"
+   ],
+   "pts": [
+    [
+     -415,
+     -180
+    ],
+    [
+     -415,
+     -290
+    ],
+    [
+     55,
+     -290
+    ],
+    [
+     55,
+     -25
+    ],
+    [
+     -20,
+     -25
+    ],
+    [
+     -20,
+     100
+    ]
+   ],
+   "color": "Blue"
+  },
+  {
+   "id": "w166",
+   "a": [
+    "p56",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "8"
+   ],
+   "pts": [],
+   "color": "Blue"
+  },
+  {
+   "id": "w167",
+   "a": [
+    "p52",
+    "2"
+   ],
+   "b": [
+    "p146",
+    "4"
+   ],
+   "pts": [],
+   "color": "Purple"
+  },
+  {
+   "id": "w168",
+   "a": [
+    "p10",
+    "3"
+   ],
+   "b": [
+    "p146",
+    "3"
+   ],
+   "pts": [],
+   "color": "Orange"
+  },
+  {
+   "id": "w169",
+   "a": [
+    "p51",
+    "1"
+   ],
+   "b": [
+    "p10",
+    "2"
+   ],
+   "pts": [
+    [
+     -110,
+     40
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w170",
+   "a": [
+    "p74",
+    "GND"
+   ],
+   "b": [
+    "p146",
+    "2"
+   ],
+   "pts": [
+    [
+     210,
+     -130
+    ],
+    [
+     210,
+     -30
+    ],
+    [
+     140,
+     -30
+    ],
+    [
+     140,
+     40
+    ]
+   ],
+   "color": "Black"
+  },
+  {
+   "id": "w171",
+   "a": [
+    "p74",
+    "VCC"
+   ],
+   "b": [
+    "p146",
+    "1"
+   ],
+   "pts": [
+    [
+     190,
+     -190
+    ],
+    [
+     190,
+     -40
+    ],
+    [
+     130,
+     -40
+    ],
+    [
+     130,
+     30
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w173",
+   "a": [
+    "p10",
+    "1"
+   ],
+   "b": [
+    "p172",
+    "1"
+   ],
+   "pts": [
+    [
+     -120,
+     30
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w174",
+   "a": [
+    "p172",
+    "1"
+   ],
+   "b": [
+    "p131",
+    "1"
+   ],
+   "pts": [
+    [
+     -120,
+     245
+    ],
+    [
+     -50,
+     245
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w175",
+   "a": [
+    "p172",
+    "1"
+   ],
+   "b": [
+    "p73",
+    "5V"
+   ],
+   "pts": [
+    [
+     350,
+     170
+    ]
+   ],
+   "color": "Red"
+  },
+  {
+   "id": "w176",
+   "a": [
+    "p10",
+    "3"
+   ],
+   "b": [
+    "p51",
+    "2"
+   ],
+   "pts": [],
+   "color": "Orange"
+  }
+ ],
+ "code": {
+  "p73": "/*\n  =====================================================================\n   MUSA & ISA'S GAME KIT   (version 1.1)\n   Arduino Nano + 2.8\" ILI9341 screen + 4x4 keypad + DFPlayer Mini\n   Power: 21700 cell -> TP4056 USB-C (charge + protection) -> toggle\n          switch -> J5019 (5V boost).  Full guide: README.md\n  =====================================================================\n\n  HOW THIS SKETCH IS ORGANIZED (each part is its own tab in the Arduino IDE)\n\n    MathGameKit.ino   this tab: setup, the menu, and the math ENGINE\n                      (10-problem sessions, 3 tries, adaptive levels)\n    config.h          all settings and pin numbers\n    games.h           the list of games on the menu\n    game_addition     MUSA's addition game (one small function)\n    game_letters      ISA's letters game A-Z (no score)\n    screen            drawing on the screen\n    keypad            reading the keypad\n    sound             playing your recorded MP3 messages\n    battery           the battery percentage\n    storage           saving levels in the Nano's EEPROM memory\n\n  The hardware tabs never change. A new game is one new tab plus two\n  lines in games.h (see the notes there).\n\n  HOW TO PLAY\n    Menu (\"Who wants to play?\"):  A = MUSA (addition)   B = ISA (letters)\n                                  D = progress\n    MUSA:  type the answer, # = check, * = erase. Three tries per problem.\n           Your recorded message plays after every try.\n    ISA:   a big letter appears, its sound and a cheer play, then ANY key\n           shows the next letter. Hold # for 3 seconds to go back.\n    The screen goes dark after 2 minutes without a key; any key wakes it.\n\n  LIBRARIES (Arduino IDE > Tools > Manage Libraries)\n    - Adafruit ILI9341   (say YES to installing Adafruit GFX and BusIO too)\n    SPI and EEPROM come with the Arduino IDE.\n\n  BOARD SETTINGS (Tools menu)\n    Board: Arduino Nano.  Processor: ATmega328P (Old Bootloader) for most\n    clone Nanos. If upload fails, try ATmega328P.\n*/\n\n#include <SPI.h>\n#include <EEPROM.h>\n#include <Adafruit_GFX.h>\n#include <Adafruit_ILI9341.h>\n#include \"config.h\"\n#include \"games.h\"\n\n// The screen object (used by the screen tab)\nAdafruit_ILI9341 tft = Adafruit_ILI9341(PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST);\n\n// Saved progress (used by the storage tab)\nint levels[MAX_GAMES];       // one level per game\nint sessionCount = 0;        // sessions played, all games together\n\n// The shuffled deck of difficulties for one session: 'E', 'M' or 'H'\nchar deck[PROBLEMS_PER_SESSION];\n\n// Screen sleep (used by the screen and keypad tabs)\nunsigned long lastKeyTime = 0;    // when a key was last pressed\nunsigned long lastKeyHoldMs = 0;  // how long the last key was held down\nbool screenAsleep = false;        // true while the backlight is off\n\n\n// =====================================================================\n//  SETUP - runs once at power on\n// =====================================================================\n\nvoid setup() {\n  keypadBegin();\n  screenBegin();\n  loadProgress();\n  soundBegin();\n}\n\n\n// =====================================================================\n//  LOOP - menu, play, repeat\n// =====================================================================\n\nvoid loop() {\n  int gameNumber = chooseGame();\n\n  if (GAMES[gameNumber].play != nullptr) {   // an activity (Isa's letters)\n    GAMES[gameNumber].play();                // runs until it's time for the menu\n    return;\n  }\n\n  playSession(gameNumber);                   // a math game (Musa)\n  writeText(10, 215, 2, COLOR_HINT, F(\"Press # to go on\"));\n  waitForKey('#');\n}\n\n\n// =====================================================================\n//  THE MENU\n// =====================================================================\n\n// Shows the games and waits for a key. Returns the game's number in GAMES[].\nint chooseGame() {\n  while (true) {\n    tft.fillScreen(COLOR_BACKGROUND);\n    drawTopBar();\n    tft.setCursor(6, 7);\n    tft.print(F(\"Hi!\"));\n\n    writeText(20, 45, 3, COLOR_TEXT, F(\"Who's playing?\"));\n    for (int g = 0; g < GAME_COUNT; g++) {\n      tft.setTextSize(3);\n      tft.setCursor(30, 90 + g * 36);\n      tft.setTextColor(COLOR_ANSWER);\n      tft.print(GAMES[g].key);\n      tft.setTextColor(COLOR_TEXT);\n      tft.print(F(\"  \"));\n      tft.print(GAMES[g].name);\n    }\n    writeText(30, 215, 2, COLOR_HINT, F(\"D = my progress\"));\n    playSound(SND_WELCOME, false);         // don't wait, so he can press a key now\n\n    char key = getKey();\n    while (key == 0) {\n      key = getKey();\n    }\n    if (key == 'D') {\n      showProgress();                      // then draw the menu again\n      continue;\n    }\n    for (int g = 0; g < GAME_COUNT; g++) {\n      if (key == GAMES[g].key) {\n        randomSeed(micros());              // the moment he presses = a new random start\n        return g;\n      }\n    }\n  }\n}\n\n// Shows each math game's saved level and the number of sessions played.\n// (Activities like Isa's letters have no level, so they are skipped.)\nvoid showProgress() {\n  tft.fillScreen(COLOR_BACKGROUND);\n  drawTopBar();\n  tft.setCursor(6, 7);\n  tft.print(F(\"Progress\"));\n  int row = 0;\n  for (int g = 0; g < GAME_COUNT; g++) {\n    if (GAMES[g].make == nullptr) {\n      continue;\n    }\n    tft.setTextSize(3);\n    tft.setTextColor(COLOR_TEXT);\n    tft.setCursor(20, 50 + row * 32);\n    tft.print(GAMES[g].name);\n    tft.print(F(\" L\"));\n    tft.print(levels[g]);\n    row++;\n  }\n  writeText(20, 180, 2, COLOR_TEXT, F(\"Sessions played: \"));\n  tft.print(sessionCount);\n  writeText(20, 215, 2, COLOR_HINT, F(\"Press # to go back\"));\n  waitForKey('#');\n}\n\n\n// =====================================================================\n//  THE MATH ENGINE - one session of PROBLEMS_PER_SESSION problems\n//  Works the same for every math game.\n// =====================================================================\n\nvoid playSession(int g) {\n  int rightFirstTry = 0;\n  int solved        = 0;\n\n  makeDeck();\n  showBigMessage(\"LET'S GO\", COLOR_RIGHT);\n  playSound(SND_START, true);\n\n  for (int i = 0; i < PROBLEMS_PER_SESSION; i++) {\n\n    // 1) How hard is this problem?\n    int problemLevel = constrain(levels[g] + offsetFor(deck[i]), LEVEL_MIN, LEVEL_MAX);\n\n    // 2) Let the game make it\n    Problem p;\n    GAMES[g].make(problemLevel, p);\n\n    // 3) Ask it (returns 1, 2, 3 = which try was right, or 0 = not solved)\n    int triesUsed = askProblem(p, i + 1);\n\n    // 4) Change the level\n    if (triesUsed == 1) {\n      levels[g] += CHANGE_FIRST_TRY;\n      rightFirstTry++;\n    } else if (triesUsed == 2) {\n      levels[g] += CHANGE_SECOND_TRY;\n    } else if (triesUsed == 3) {\n      levels[g] += CHANGE_THIRD_TRY;\n    } else {\n      levels[g] += CHANGE_NOT_SOLVED;\n    }\n    if (triesUsed > 0) {\n      solved++;\n    }\n    levels[g] = constrain(levels[g], LEVEL_MIN, LEVEL_MAX);\n  }\n\n  sessionCount++;\n  saveProgress();\n\n  tft.fillScreen(COLOR_BACKGROUND);\n  drawTopBar();\n  writeText(70, 45, 6, COLOR_RIGHT, F(\"DONE!\"));\n  writeText(30, 115, 3, COLOR_TEXT, F(\"Solved:   \"));\n  tft.print(solved);\n  tft.print('/');\n  tft.print(PROBLEMS_PER_SESSION);\n  writeText(30, 145, 3, COLOR_TEXT, F(\"1st try:  \"));\n  tft.print(rightFirstTry);\n  writeText(30, 175, 3, COLOR_TEXT, F(\"Level:    \"));\n  tft.print(levels[g]);\n  playSound(SND_SESSION_DONE, true);\n}\n\n// Asks one problem with up to TRIES_PER_PROBLEM tries.\n// Returns which try was right (1, 2, 3...) or 0 if not solved.\nint askProblem(Problem &p, int problemNumber) {\n  for (int attempt = 1; attempt <= TRIES_PER_PROBLEM; attempt++) {\n\n    int guess = readAnswer(p, problemNumber, attempt);\n\n    if (guess == p.answer) {\n      showBigMessage(\"RIGHT!\", COLOR_RIGHT);\n      if (attempt == 1) {\n        playSound(pickPraiseSound(), true);\n      } else {\n        playSound(SND_RIGHT_RETRY, true);\n      }\n      return attempt;\n    }\n\n    if (attempt < TRIES_PER_PROBLEM) {\n      if (isClose(guess, p.answer)) {\n        showBigMessage(\"CLOSE!\", COLOR_CLOSE);\n        playSound(SND_CLOSE, true);\n      } else {\n        showBigMessage(\"AGAIN!\", COLOR_WRONG);\n        playSound(SND_FAR, true);\n      }\n    }\n  }\n\n  // Out of tries: show the answer\n  tft.fillScreen(COLOR_BACKGROUND);\n  drawTopBar();\n  tft.setCursor(6, 7);\n  tft.print(F(\"The answer is:\"));\n  showProblemLine(p.text);\n  showAnswerLine(p.answer, COLOR_RIGHT);\n  playSound(SND_OUT_OF_TRIES, true);\n  delay(2000);\n  return 0;\n}\n\n// Shows the problem and lets the kid type an answer. Returns the number typed.\nint readAnswer(Problem &p, int problemNumber, int attempt) {\n  int typed  = 0;\n  int digits = 0;\n\n  tft.fillScreen(COLOR_BACKGROUND);\n  drawTopBar();\n  tft.setCursor(6, 7);\n  tft.print(F(\"Problem \"));\n  tft.print(problemNumber);\n  tft.print('/');\n  tft.print(PROBLEMS_PER_SESSION);\n  tft.setTextColor(COLOR_HINT);\n  tft.setCursor(6, 36);\n  tft.print(F(\"Try \"));\n  tft.print(attempt);\n  tft.print(F(\" of \"));\n  tft.print(TRIES_PER_PROBLEM);\n\n  showProblemLine(p.text);\n  writeText(40, 215, 2, COLOR_HINT, F(\"#  check    *  erase\"));\n  showAnswerLine(-1, COLOR_ANSWER);          // -1 = nothing typed yet\n\n  while (true) {\n    char key = getKey();\n    if (key >= '0' && key <= '9' && digits < 3) {\n      typed = typed * 10 + (key - '0');      // add the digit on the right\n      digits++;\n      showAnswerLine(typed, COLOR_ANSWER);\n    }\n    else if (key == '*' && digits > 0) {\n      typed = typed / 10;                    // remove the right-most digit\n      digits--;\n      showAnswerLine(digits > 0 ? typed : -1, COLOR_ANSWER);\n    }\n    else if (key == '#' && digits > 0) {\n      return typed;\n    }\n    // A, B, C, D and nothing-pressed: ignored here\n  }\n}\n\n\n// =====================================================================\n//  ENGINE HELPERS (games use pickNumber and makeText)\n// =====================================================================\n\n// Fills the deck with E/M/H cards and shuffles it.\nvoid makeDeck() {\n  int n = 0;\n  for (int i = 0; i < EASY_COUNT;   i++) deck[n++] = 'E';\n  for (int i = 0; i < MEDIUM_COUNT; i++) deck[n++] = 'M';\n  for (int i = 0; i < HARD_COUNT;   i++) deck[n++] = 'H';\n  for (int i = PROBLEMS_PER_SESSION - 1; i > 0; i--) {\n    int j = random(i + 1);\n    char temp = deck[i];\n    deck[i] = deck[j];\n    deck[j] = temp;\n  }\n}\n\nint offsetFor(char card) {\n  if (card == 'E') return EASY_OFFSET;\n  if (card == 'H') return HARD_OFFSET;\n  return MEDIUM_OFFSET;\n}\n\n// A random number from minVal up to a \"top\" that grows with the level.\n// Level 1 -> small numbers.  Level 20 -> the full range up to maxVal.\nint pickNumber(int minVal, int maxVal, int level) {\n  int top = minVal + (long)(maxVal - minVal) * level / LEVEL_MAX;\n  if (top <= minVal) {\n    top = minVal + 1;\n  }\n  return random(minVal, top + 1);\n}\n\n// Writes \"a + b\" into the problem's text.\nvoid makeText(Problem &p, int a, char symbol, int b) {\n  char number[6];\n  char middle[4] = {' ', symbol, ' ', '\\0'};\n  itoa(a, p.text, 10);\n  strcat(p.text, middle);\n  itoa(b, number, 10);\n  strcat(p.text, number);\n}\n\nbool isClose(int guess, int answer) {\n  int window = answer * CLOSE_PERCENT / 100;\n  if (window < CLOSE_MIN) {\n    window = CLOSE_MIN;\n  }\n  return abs(guess - answer) <= window;\n}\n"
+ },
+ "files": {
+  "p73": {
+   "battery.ino": "/*\n  =====================================================================\n   battery  -  the battery percentage\n  =====================================================================\n   Two 100k resistors halve the cell voltage (4.2 V -> 2.1 V) so pin A6\n   can read it. We measure, then multiply back up.\n*/\n\n// Returns 0..100, or -1 when there is no battery (running on USB).\nint batteryPercent() {\n  long total = 0;\n  for (int i = 0; i < 8; i++) {            // average 8 readings\n    total += analogRead(PIN_BATTERY);\n  }\n  long pinMillivolts     = total / 8 * 5000 / 1023;\n  long batteryMillivolts = pinMillivolts * (DIVIDER_TOP + DIVIDER_BOTTOM) / DIVIDER_BOTTOM;\n\n  if (batteryMillivolts < BATTERY_USB_MV) {\n    return -1;\n  }\n  long percent = (batteryMillivolts - BATTERY_EMPTY_MV) * 100\n                 / (BATTERY_FULL_MV - BATTERY_EMPTY_MV);\n  return constrain(percent, 0, 100);\n}\n",
+   "config.h": "/*\n  =====================================================================\n   config.h  -  EVERYTHING YOU MIGHT WANT TO CHANGE LIVES HERE\n  =====================================================================\n   Pins, settings, colors and sound numbers for the Math Game Kit.\n   The hardware never changes between games, so new games can reuse\n   all of this.\n*/\n#ifndef CONFIG_H\n#define CONFIG_H\n\n#include <Arduino.h>\n\n\n// ---------------------------------------------------------------------\n//  Session settings (used by every MATH game: MUSA's games)\n// ---------------------------------------------------------------------\nconst int PROBLEMS_PER_SESSION = 10;\nconst int TRIES_PER_PROBLEM    = 3;\n\n// How many easy / medium / hard problems in one session (adds up to 10)\nconst int EASY_COUNT   = 5;               // 50%\nconst int MEDIUM_COUNT = 3;               // 30%\nconst int HARD_COUNT   = 2;               // 20%\n\n// How far easy / hard problems sit below / above the kid's level\nconst int EASY_OFFSET   = -3;\nconst int MEDIUM_OFFSET =  0;\nconst int HARD_OFFSET   = +3;\n\n// How the level changes after each problem\nconst int CHANGE_FIRST_TRY  = +1;\nconst int CHANGE_SECOND_TRY =  0;\nconst int CHANGE_THIRD_TRY  = -1;\nconst int CHANGE_NOT_SOLVED = -2;\n\nconst int LEVEL_MIN   = 1;\nconst int LEVEL_MAX   = 20;\nconst int LEVEL_START = 3;                // level the very first time\n\n// A wrong answer is \"close\" within CLOSE_MIN, or CLOSE_PERCENT % of the answer\nconst int CLOSE_MIN     = 2;\nconst int CLOSE_PERCENT = 10;\n\n// Set to true, upload once to wipe the saved levels, then set back to false\nconst bool RESET_PROGRESS = false;\n\n// Screen goes dark after this many seconds without a key press (saves battery)\nconst unsigned long SCREEN_SLEEP_SECONDS = 120;\n\n// Speaker volume: 0 (silent) .. 30 (loudest). Keep it around 20 on battery.\nconst int SPEAKER_VOLUME = 20;\n\n// ---------------------------------------------------------------------\n//  Battery meter: 21700 cell voltage, taken after the toggle switch\n//  (TP4056 OUT+ side), through a 100k + 100k divider into A6\n// ---------------------------------------------------------------------\nconst long BATTERY_FULL_MV  = 4150;       // 100%\nconst long BATTERY_EMPTY_MV = 3400;       //   0%  (charge it now)\nconst long BATTERY_USB_MV   = 2500;       // below this: no battery, running on USB\nconst long DIVIDER_TOP      = 100000;     // cell + side\nconst long DIVIDER_BOTTOM   = 100000;     // GND side\n\n// ---------------------------------------------------------------------\n//  PINS  (Arduino Nano)  -  must match the wiring slides\n// ---------------------------------------------------------------------\n// Screen (2.8\" ILI9341, SPI). Every line goes through a 1k / 2k divider\n// (1k in the wire, 2k from the screen pin to GND: 5V -> 3.33V).\nconst int PIN_TFT_CS  = 10;\nconst int PIN_TFT_DC  = 9;\nconst int PIN_TFT_RST = 8;\nconst int PIN_TFT_LED = 6;                // backlight: HIGH = on\n// D11 = MOSI (screen SDI) and D13 = SCK (screen SCK) are fixed by the Nano.\n// SPI speed: lower it to 4000000 if the screen shows garbage.\nconst unsigned long SPI_SPEED = 8000000;\n\n// Keypad 4x4\nconst byte ROWS = 4;\nconst byte COLS = 4;\nconst char KEYS[ROWS][COLS] = {\n  {'1', '2', '3', 'A'},\n  {'4', '5', '6', 'B'},\n  {'7', '8', '9', 'C'},\n  {'*', '0', '#', 'D'}\n};\nconst byte ROW_PINS[ROWS] = {2, 3, 4, 5};         // keypad R1, R2, R3, R4\nconst byte COL_PINS[COLS] = {A0, A1, A2, A3};     // keypad C1, C2, C3, C4\n\n// DFPlayer Mini\nconst int PIN_MP3_TX   = A4;              // -> 1k resistor -> DFPlayer RX\nconst int PIN_MP3_BUSY = A7;              // DFPlayer BUSY (A7 can only be read with analogRead)\n\n// Battery\nconst int PIN_BATTERY  = A6;              // middle of the 100k / 100k divider\n\n// Free for future ideas: D7, D12, A5\n\n// ---------------------------------------------------------------------\n//  Sound numbers  ->  /mp3/0001.mp3, /mp3/0002.mp3, ... on the DFPlayer card\n// ---------------------------------------------------------------------\nconst int SND_WELCOME      = 1;   // \"Who wants to play? If Musa wants to play, press A.\n                                  //  If Isa wants to play, press B.\"\nconst int SND_START        = 2;   // \"Let's go! Ten problems. You can do it!\"\nconst int SND_RIGHT_FIRST  = 3;   // \"You did it MUSA, amazing! Try the next one.\"\nconst int SND_RIGHT_RETRY  = 4;   // \"MUSA, you are doing great!! Solve the next problem.\"\nconst int SND_CLOSE        = 5;   // \"Pretty close, but not correct yet. Try one more time.\"\nconst int SND_FAR          = 6;   // \"You need to do better than this, keep trying.\"\nconst int SND_OUT_OF_TRIES = 7;   // \"That was a tricky one. Look at the answer...\"\nconst int SND_SESSION_DONE = 8;   // \"You finished all ten! I am so proud of you!\"\nconst int SND_EXTRA_PRAISE = 9;   // first of the extra cheers: 0009.mp3, 0010.mp3, ...\nconst int EXTRA_PRAISE_COUNT = 2; // how many extra cheers you recorded (0 = none)\n\n// ISA's letters game (key B)\nconst int SND_LETTER_A    = 11;   // 0011.mp3 = \"A, A for apple\" ... 0036.mp3 = \"Z, Z for zebra\"\nconst int SND_ISA_CHEER   = 37;   // first of Isa's short cheers: 0037.mp3, 0038.mp3, ...\nconst int ISA_CHEER_COUNT = 3;    // how many Isa cheers you recorded (0 = none)\n\n// Hold # this long (milliseconds) to leave the letters game and go back to the menu.\n// A short press of any key just shows the next letter.\nconst unsigned long EXIT_HOLD_MS = 3000;\n\n// ---------------------------------------------------------------------\n//  Screen colors (RGB565; search \"RGB565 color picker\" to make your own)\n// ---------------------------------------------------------------------\nconst uint16_t COLOR_BACKGROUND = 0x0000;   // black\nconst uint16_t COLOR_BAR        = 0x2945;   // dark grey top bar\nconst uint16_t COLOR_TEXT       = 0xFFFF;   // white\nconst uint16_t COLOR_ANSWER     = 0xFFE0;   // yellow\nconst uint16_t COLOR_HINT       = 0x8410;   // grey\nconst uint16_t COLOR_RIGHT      = 0x07E0;   // green\nconst uint16_t COLOR_CLOSE      = 0xFC00;   // orange\nconst uint16_t COLOR_WRONG      = 0xF800;   // red\n\n// ---------------------------------------------------------------------\n//  What a game is\n//  There are two kinds of games:\n//   1) A MATH game is ONE function that makes a problem for a given level.\n//      The engine does everything else: tries, sounds, levels, saving.\n//   2) An ACTIVITY (like Isa's letters) is ONE function that runs on its\n//      own and returns when it's time to go back to the menu.\n// ---------------------------------------------------------------------\nstruct Problem {\n  char text[16];      // what the screen shows, like \"12 + 35\"\n  int  answer;        // the right answer (0..999)\n};\n\ntypedef void (*MakeProblemFunction)(int level, Problem &p);\ntypedef void (*PlayFunction)();\n\nstruct Game {\n  char key;                    // menu key: 'A', 'B', 'C' ...\n  const char *name;            // menu name, like \"MUSA  1+2\"\n  MakeProblemFunction make;    // math game: makes a problem  (or nullptr)\n  PlayFunction play;           // activity: runs by itself    (or nullptr)\n};\n\nconst int MAX_GAMES = 8;       // room saved in EEPROM for up to 8 games\n\n#endif\n",
+   "games.h": "/*\n  =====================================================================\n   games.h  -  THE LIST OF GAMES\n  =====================================================================\n   To add a new MATH game (for example subtraction):\n     1. Copy the tab game_addition.ino, rename it game_subtraction.ino,\n        and change the function inside (see the notes in that tab).\n     2. Add one line \"void makeSubtraction(int level, Problem &p);\" below.\n     3. Add one line to the END of the GAMES list below, like\n            {'C', \"MUSA  5-3\", makeSubtraction, nullptr},\n   That's it. The menu, sounds, tries, levels and saving all work\n   automatically, and each game keeps its own level.\n\n   Important: keep the order of the list the same once games have been\n   played, because each game's saved level is stored by its position.\n*/\n#ifndef GAMES_H\n#define GAMES_H\n\n#include \"config.h\"\n\n// 1) One line per game function (the functions live in the game_*.ino tabs)\nvoid makeAddition(int level, Problem &p);\nvoid playLetters();\n\n// 2) The menu: key, name on screen, math function, activity function.\n//    A math game fills in the 3rd item and puts nullptr in the 4th.\n//    An activity puts nullptr in the 3rd and fills in the 4th.\nconst Game GAMES[] = {\n  {'A', \"MUSA  1+2\", makeAddition, nullptr},       // MUSA: adaptive addition\n  {'B', \"ISA   ABC\", nullptr,      playLetters},    // ISA: letters A-Z, no score\n  // {'C', \"MUSA  5-3\", makeSubtraction, nullptr},\n};\n\nconst int GAME_COUNT = sizeof(GAMES) / sizeof(GAMES[0]);\n\n#endif\n",
+   "game_addition.ino": "/*\n  =====================================================================\n   game_addition  -  ADAPTIVE ADDITION\n  =====================================================================\n   A game is one function: given a level (1..20), fill in the problem\n   text and the answer. Higher level = bigger numbers.\n\n   Level 1  ->  1..3   +  5..7\n   Level 10 ->  1..25  +  5..32\n   Level 20 ->  1..50  +  5..60\n\n   To make a new game, copy this tab and change only the numbers and\n   the answer line. For example subtraction:\n       int a = pickNumber(5, 60, level);\n       int b = pickNumber(1, a, level);          // never bigger than a\n       p.answer = a - b;\n       makeText(p, a, '-', b);\n*/\n\nconst int ADD_A_MIN = 1,  ADD_A_MAX = 50;   // first number\nconst int ADD_B_MIN = 5,  ADD_B_MAX = 60;   // second number\n\nvoid makeAddition(int level, Problem &p) {\n  int a = pickNumber(ADD_A_MIN, ADD_A_MAX, level);\n  int b = pickNumber(ADD_B_MIN, ADD_B_MAX, level);\n  p.answer = a + b;\n  makeText(p, a, '+', b);\n}\n",
+   "game_letters.ino": "/*\n  =====================================================================\n   game_letters  -  ISA'S LETTERS  (A to Z, no score)\n  =====================================================================\n   For a 2-year-old: a big colorful letter appears, the recorded sound\n   plays (\"G, G for goat\"), then a short cheer, then ANY key shows the\n   next letter. All 26 letters come in a random order before any letter\n   repeats. Nothing is scored or saved.\n\n   Hold # for 3 seconds (EXIT_HOLD_MS in config.h) to go back to the menu.\n\n   SOUND FILES (folder mp3 on the card)\n     0011.mp3 = A ... 0036.mp3 = Z      (letter number + 10)\n     0037.mp3, 0038.mp3, 0039.mp3        short cheers (ISA_CHEER_COUNT)\n\n   WORDS on the screen under the letter: change them to match what you\n   say in your recordings (max 9 letters each).\n*/\n\nconst char LETTER_WORDS[26][10] PROGMEM = {\n  \"Apple\",    \"Ball\",   \"Cat\",      \"Dog\",    \"Elephant\", \"Fish\",\n  \"Goat\",     \"Hat\",    \"Ice cream\",\"Juice\",  \"Kite\",     \"Lion\",\n  \"Moon\",     \"Nest\",   \"Orange\",   \"Pig\",    \"Queen\",    \"Rabbit\",\n  \"Sun\",      \"Tree\",   \"Umbrella\", \"Van\",    \"Whale\",    \"Xylophone\",\n  \"Yo-yo\",    \"Zebra\"\n};\n\n// Bright colors the letters take turns in\nconst uint16_t LETTER_COLORS[] = {\n  ILI9341_RED, ILI9341_ORANGE, ILI9341_YELLOW, ILI9341_GREEN,\n  ILI9341_CYAN, ILI9341_MAGENTA, ILI9341_PINK, ILI9341_GREENYELLOW\n};\nconst int LETTER_COLOR_COUNT = sizeof(LETTER_COLORS) / sizeof(LETTER_COLORS[0]);\n\nvoid playLetters() {\n  char order[26];\n  int next = 26;                     // 26 = \"used up\", so we shuffle first\n  int colorNumber = random(LETTER_COLOR_COUNT);\n\n  while (true) {\n    // 1) Shuffle a fresh A..Z order when all 26 have been shown\n    if (next >= 26) {\n      for (int i = 0; i < 26; i++) {\n        order[i] = 'A' + i;\n      }\n      for (int i = 25; i > 0; i--) {\n        int j = random(i + 1);\n        char temp = order[i];\n        order[i] = order[j];\n        order[j] = temp;\n      }\n      next = 0;\n    }\n    char letter = order[next];\n    next++;\n\n    // 2) Show it, say it, cheer\n    showLetter(letter, LETTER_COLORS[colorNumber]);\n    colorNumber = (colorNumber + 1) % LETTER_COLOR_COUNT;\n    playSound(SND_LETTER_A + (letter - 'A'), true);\n    if (ISA_CHEER_COUNT > 0) {\n      playSound(SND_ISA_CHEER + random(ISA_CHEER_COUNT), true);\n    }\n\n    // 3) Any key = next letter.  # held for EXIT_HOLD_MS = back to the menu\n    char key = getKey();\n    while (key == 0) {\n      key = getKey();\n    }\n    if (key == '#' && lastKeyHoldMs >= EXIT_HOLD_MS) {\n      return;\n    }\n  }\n}\n\n// Big \"G g\" in color, the word under it, and a small hint for grown-ups.\nvoid showLetter(char letter, uint16_t color) {\n  char big[4] = {letter, ' ', (char)(letter + 32), '\\0'};   // \"G g\"\n  char word[10];\n  strcpy_P(word, LETTER_WORDS[letter - 'A']);\n\n  tft.fillScreen(COLOR_BACKGROUND);\n  drawTopBar();\n  tft.setCursor(6, 7);\n  tft.print(F(\"ISA\"));\n\n  writeCentered(48, 12, color, big);          // 72 x 96 pixel letters\n  writeCentered(160, 4, COLOR_TEXT, word);\n  writeCentered(218, 2, COLOR_HINT, \"hold # = menu\");\n}\n",
+   "keypad.ino": "/*\n  =====================================================================\n   keypad  -  the 4x4 membrane keypad\n  =====================================================================\n   Each key joins one row wire to one column wire. We pull one column\n   LOW at a time and look for a row that turned LOW too: that's the key.\n*/\n\nvoid keypadBegin() {\n  for (int r = 0; r < ROWS; r++) {\n    pinMode(ROW_PINS[r], INPUT_PULLUP);    // rows read HIGH until a key is pressed\n  }\n  for (int c = 0; c < COLS; c++) {\n    pinMode(COL_PINS[c], INPUT);           // columns rest \"off\"\n  }\n}\n\n// Returns the key pressed ('0'-'9', '*', '#', 'A'-'D'), or 0 if nothing.\n// Waits until the key is let go, so one press = one key.\n// lastKeyHoldMs then tells how long it was held (used to leave Isa's game).\n// Also puts the screen to sleep when nobody has pressed a key for a while.\nchar getKey() {\n  if (!screenAsleep && millis() - lastKeyTime > SCREEN_SLEEP_SECONDS * 1000) {\n    screenSleep();\n  }\n\n  for (int c = 0; c < COLS; c++) {\n    pinMode(COL_PINS[c], OUTPUT);\n    digitalWrite(COL_PINS[c], LOW);        // \"ask\" this column\n\n    for (int r = 0; r < ROWS; r++) {\n      if (digitalRead(ROW_PINS[r]) == LOW) {   // this row answered: key found\n        unsigned long pressedAt = millis();\n        delay(20);                             // ignore the contact bounce\n        while (digitalRead(ROW_PINS[r]) == LOW) {\n          // wait for the finger to come off\n        }\n        lastKeyHoldMs = millis() - pressedAt;  // how long the key was held\n        delay(20);\n        pinMode(COL_PINS[c], INPUT);\n        lastKeyTime = millis();\n        if (screenAsleep) {                    // this press only wakes the screen\n          screenWake();\n          return 0;\n        }\n        return KEYS[r][c];\n      }\n    }\n\n    pinMode(COL_PINS[c], INPUT);           // stop asking this column\n  }\n  return 0;\n}\n\nvoid waitForKey(char wanted) {\n  while (getKey() != wanted) {\n    // just wait\n  }\n}\n",
+   "screen.ino": "/*\n  =====================================================================\n   screen  -  the 2.8\" ILI9341 color screen\n  =====================================================================\n   The screen is 320 pixels wide and 240 tall (landscape). (0,0) is the\n   top-left corner. Text size 1 letters are 6 x 8 pixels; size 6 letters\n   are 36 x 48.\n*/\n\nvoid screenBegin() {\n  pinMode(PIN_TFT_LED, OUTPUT);\n  digitalWrite(PIN_TFT_LED, HIGH);         // backlight on\n  tft.begin(SPI_SPEED);\n  tft.setRotation(1);                      // landscape: 320 wide x 240 tall\n  tft.fillScreen(COLOR_BACKGROUND);\n  writeText(10, 40, 3, COLOR_TEXT, F(\"Starting...\"));\n}\n\nvoid screenSleep() {\n  digitalWrite(PIN_TFT_LED, LOW);\n  screenAsleep = true;\n}\n\nvoid screenWake() {\n  digitalWrite(PIN_TFT_LED, HIGH);\n  screenAsleep = false;\n}\n\n// Small text at pixel (x, y). F(\"...\") keeps the text out of the Nano's small RAM.\nvoid writeText(int x, int y, int size, uint16_t color, const __FlashStringHelper *text) {\n  tft.setTextSize(size);\n  tft.setTextColor(color);\n  tft.setCursor(x, y);\n  tft.print(text);\n}\n\n// Text in the middle of the screen, left to right.\nvoid writeCentered(int y, int size, uint16_t color, const char *text) {\n  int width = strlen(text) * 6 * size;\n  tft.setTextSize(size);\n  tft.setTextColor(color);\n  tft.setCursor((320 - width) / 2, y);\n  tft.print(text);\n}\n\n// The grey bar at the top with the battery on the right.\n// Leaves the cursor ready for white size-2 text on the bar.\nvoid drawTopBar() {\n  tft.fillRect(0, 0, 320, 30, COLOR_BAR);\n  drawBattery();\n  tft.setTextSize(2);\n  tft.setTextColor(COLOR_TEXT);\n}\n\n// \"85%\" and a battery icon in the top-right corner.\nvoid drawBattery() {\n  int percent = batteryPercent();\n  uint16_t color = COLOR_RIGHT;\n  if (percent <= 50) color = COLOR_ANSWER;\n  if (percent <= 20) color = COLOR_WRONG;\n\n  tft.setTextSize(2);\n  tft.setTextColor(color);\n  tft.setCursor(222, 8);\n  if (percent < 0) {\n    tft.print(F(\" USB\"));\n    percent = 100;\n    color = COLOR_HINT;\n  } else {\n    if (percent < 100) tft.print(' ');\n    if (percent < 10)  tft.print(' ');\n    tft.print(percent);\n    tft.print('%');\n  }\n  tft.drawRect(274, 7, 36, 17, COLOR_TEXT);\n  tft.fillRect(310, 11, 4, 9, COLOR_TEXT);\n  tft.fillRect(276, 9, 32 * percent / 100, 13, color);\n}\n\n// The big problem in the middle, like \"12 + 35\"\nvoid showProblemLine(const char *text) {\n  writeCentered(60, 6, COLOR_TEXT, text);\n}\n\n// The answer line under it, like \"= 47\". Use -1 to show just \"=\".\nvoid showAnswerLine(int value, uint16_t color) {\n  char line[8] = \"= \";\n  if (value >= 0) {\n    itoa(value, line + 2, 10);\n  }\n  tft.fillRect(0, 130, 320, 60, COLOR_BACKGROUND);\n  writeCentered(135, 6, color, line);\n}\n\n// Whole screen in one color with a big word on it (max 8 letters).\nvoid showBigMessage(const char *message, uint16_t color) {\n  tft.fillScreen(color);\n  writeCentered(96, 6, COLOR_BACKGROUND, message);\n}\n",
+   "sound.ino": "/*\n  =====================================================================\n   sound  -  the DFPlayer Mini (plays your recorded MP3 messages)\n  =====================================================================\n   The Arduino only SENDS commands to the DFPlayer, one wire, 9600 baud.\n   Every command is the same 10-byte message:\n     start, version, length, command, no-reply, value (2 bytes),\n     checksum (2 bytes), end\n*/\n\nconst byte MP3_SET_VOLUME  = 0x06;   // value = 0..30\nconst byte MP3_PLAY_FOLDER = 0x12;   // value = file number in the /mp3 folder\n\nvoid soundBegin() {\n  pinMode(PIN_MP3_TX, OUTPUT);\n  digitalWrite(PIN_MP3_TX, HIGH);    // a serial line rests HIGH\n  delay(1500);                       // give the DFPlayer time to read its card\n                                     // (if a clone stays silent at power-on, try 3000)\n  mp3Command(MP3_SET_VOLUME, SPEAKER_VOLUME);\n}\n\n// Plays /mp3/000N.mp3. If waitUntilDone is true, waits for the sound to finish.\nvoid playSound(int fileNumber, bool waitUntilDone) {\n  mp3Command(MP3_PLAY_FOLDER, fileNumber);\n  if (!waitUntilDone) {\n    return;\n  }\n  delay(300);                        // give BUSY time to go LOW\n  unsigned long started = millis();\n  while (soundIsPlaying() && millis() - started < 15000) {\n    // still playing (15 second safety limit)\n  }\n  delay(200);\n}\n\n// BUSY is LOW while playing. A7 can only be read with analogRead.\nbool soundIsPlaying() {\n  return analogRead(PIN_MP3_BUSY) < 300;\n}\n\n// Picks the praise for a right-first-try answer: 0003.mp3 or one of the extras.\nint pickPraiseSound() {\n  int choice = random(EXTRA_PRAISE_COUNT + 1);     // 0 = the main one\n  if (choice == 0) {\n    return SND_RIGHT_FIRST;\n  }\n  return SND_EXTRA_PRAISE + choice - 1;\n}\n\nvoid mp3Command(byte command, int value) {\n  byte message[10] = {0x7E, 0xFF, 0x06, command, 0x00,\n                      highByte(value), lowByte(value), 0, 0, 0xEF};\n  int checksum = 0;\n  for (int i = 1; i <= 6; i++) {\n    checksum = checksum - message[i];      // checksum = minus the sum of bytes 1..6\n  }\n  message[7] = highByte(checksum);\n  message[8] = lowByte(checksum);\n  for (int i = 0; i < 10; i++) {\n    mp3SendByte(message[i]);\n  }\n}\n\n// Sends one byte at 9600 baud: a LOW start bit, 8 data bits (lowest first),\n// then a HIGH stop bit. Each bit lasts 1/9600 s = 104 microseconds.\nvoid mp3SendByte(byte value) {\n  noInterrupts();                          // keep the timing exact\n  digitalWrite(PIN_MP3_TX, LOW);           // start bit\n  delayMicroseconds(100);                  // 100 + ~4 for digitalWrite = 104\n  for (int bit = 0; bit < 8; bit++) {\n    digitalWrite(PIN_MP3_TX, bitRead(value, bit));\n    delayMicroseconds(100);\n  }\n  digitalWrite(PIN_MP3_TX, HIGH);          // stop bit\n  delayMicroseconds(100);\n  interrupts();\n}\n",
+   "storage.ino": "/*\n  =====================================================================\n   storage  -  saving progress in the Nano's EEPROM\n  =====================================================================\n   EEPROM is 1024 bytes inside the Nano that keep their contents with\n   the power off. We use:\n     byte 0       : 78, a marker meaning \"saved here before\"\n     bytes 1..8   : the level of game 1..8 (in the order of games.h)\n     bytes 9..10  : number of sessions played\n*/\n\nconst byte SAVE_MARKER = 78;\n\nvoid loadProgress() {\n  for (int g = 0; g < MAX_GAMES; g++) {\n    levels[g] = LEVEL_START;\n  }\n  if (RESET_PROGRESS || EEPROM.read(0) != SAVE_MARKER) {\n    saveProgress();                        // first time ever (or a reset)\n    return;\n  }\n  for (int g = 0; g < MAX_GAMES; g++) {\n    levels[g] = constrain(EEPROM.read(1 + g), LEVEL_MIN, LEVEL_MAX);\n  }\n  EEPROM.get(9, sessionCount);\n}\n\nvoid saveProgress() {\n  EEPROM.update(0, SAVE_MARKER);           // update() only writes bytes that changed\n  for (int g = 0; g < MAX_GAMES; g++) {\n    EEPROM.update(1 + g, levels[g]);\n  }\n  EEPROM.put(9, sessionCount);\n}\n"
+  }
+ },
+ "main_name": {
+  "p73": "MathGameKit.ino"
+ },
+ "code_links": {},
+ "view": [
+  0.8950980392156864,
+  -900.9704271631981,
+  -404.99999999999994
+ ]
+}

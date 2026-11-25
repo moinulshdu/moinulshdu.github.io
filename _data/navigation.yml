@@ -1,10 +1,13 @@
 # Top menu. Order here = order on the website.
+# (🔒 Private is added automatically at the end, only on devices where you signed in.)
 - title: "About"
   url: /
-- title: "Apps"
-  url: /apps/
 - title: "Learn"          # teaching courses + educational articles (rename freely)
   url: /learn/
+- title: "Apps"
+  url: /apps/
+- title: "Fun Projects"   # Arduino builds and other hobby projects
+  url: /fun-projects/
 - title: "Publications"
   url: /publications/
 - title: "CV"

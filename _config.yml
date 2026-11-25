@@ -48,6 +48,9 @@ collections:
   courses:
     output: true
     permalink: /learn/courses/:name/
+  projects:
+    output: true
+    permalink: /fun-projects/:name/
 
 permalink: /learn/articles/:title/
 markdown: kramdown
@@ -65,6 +68,8 @@ defaults:
     values: { layout: app }
   - scope: { path: "", type: courses }
     values: { layout: course }
+  - scope: { path: "", type: projects }
+    values: { layout: project }
   - scope: { path: "" }
     values: { layout: page }
 

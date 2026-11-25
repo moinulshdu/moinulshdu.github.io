@@ -1,0 +1,65 @@
+---
+layout: default
+---
+<article class="wrap project-page">
+  <nav class="crumbs"><a href="{{ '/fun-projects/' | relative_url }}">Fun Projects</a> <span>/</span> {{ page.title }}</nav>
+  <header class="article-head">
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    {% if page.tags.size > 0 %}<p class="chips">{% for t in page.tags %}<span class="chip">{{ t }}</span>{% endfor %}</p>{% endif %}
+  </header>
+
+  {% if page.sim %}
+  <section class="section" id="play">
+    <h2>Play it</h2>
+    {% if page.how_to_play %}<p class="muted">{{ page.how_to_play }}</p>{% endif %}
+    <div id="sim" class="sim-root"><noscript>The simulator needs JavaScript.</noscript></div>
+    <p class="muted small-note">This runs the real compiled Arduino program on a virtual ATmega328P (the Nano's chip). You can play, but the code and wiring can't be changed here. Saved levels stay in your browser only.</p>
+  </section>
+  {% endif %}
+
+  <div class="prose project-body">
+    {{ content }}
+  </div>
+
+  {% assign has_img = false %}{% if page.circuit_image and page.circuit_image != "" %}{% assign has_img = true %}{% endif %}
+  {% if has_img or page.sim.circuit %}
+  <section class="section" id="circuit">
+    <h2>Circuit</h2>
+    {% if has_img %}<figure class="toc-fig circuit-fig"><a href="{{ page.circuit_image | relative_url }}" target="_blank" rel="noopener"><img src="{{ page.circuit_image | relative_url }}" alt="Circuit design of {{ page.title }}"></a><figcaption class="muted">Circuit design (click to enlarge)</figcaption></figure>{% endif %}
+    {% if page.sim.circuit %}<div id="sim-circuit"><p class="muted">Loading the circuit…</p></div>{% endif %}
+  </section>
+  {% endif %}
+
+  {% if page.sim.circuit %}
+  <section class="section" id="code">
+    <h2>Arduino code <small class="muted">(read-only)</small></h2>
+    <div id="sim-code"></div>
+  </section>
+  {% endif %}
+
+  {% if page.downloads.size > 0 %}
+  <section class="section" id="downloads">
+    <h2>Downloads</h2>
+    <ul class="plain">{% for d in page.downloads %}<li><a href="{{ d.file | relative_url }}" download>{{ d.label }}</a>{% if d.note %} <span class="muted">— {{ d.note }}</span>{% endif %}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+</article>
+{% if page.sim %}
+<script src="{{ '/assets/js/arduino-sim.js' | relative_url }}"></script>
+<script>
+  (function () {
+    var cfg = {{ page.sim | jsonify }};
+    cfg.id = {{ page.slug | default: page.title | jsonify }};
+    var base = {{ site.baseurl | jsonify }};
+    ["hex", "circuit"].forEach(function (k) { if (cfg[k]) cfg[k] = base + cfg[k]; });
+    if (cfg.dfplayer) { cfg.dfplayer.folder = base + cfg.dfplayer.folder; if (cfg.dfplayer.captions) cfg.dfplayer.captions = base + cfg.dfplayer.captions; }
+    ArduinoSim.mount(document.getElementById("sim"), cfg);
+    if (cfg.circuit) {
+      ArduinoSim.circuit(document.getElementById("sim-circuit"), cfg.circuit)
+        .then(function (d) { return ArduinoSim.code(document.getElementById("sim-code"), cfg.circuit, d); })
+        .catch(function () { document.getElementById("sim-circuit").textContent = "Could not load the circuit file."; });
+    }
+  })();
+</script>
+{% endif %}

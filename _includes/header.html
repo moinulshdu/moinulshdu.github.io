@@ -17,7 +17,7 @@
         {% assign active = false %}
         {% if item.url == "/" %}{% if page.url == "/" %}{% assign active = true %}{% endif %}
         {% elsif page.url contains item.url %}{% assign active = true %}
-        {% elsif item.url == "/learn/" and page.layout == "article" %}{% assign active = true %}{% elsif item.url == "/learn/" and page.layout == "course" %}{% assign active = true %}{% endif %}
+        {% elsif item.url == "/learn/" and page.layout == "article" %}{% assign active = true %}{% elsif item.url == "/fun-projects/" and page.layout == "project" %}{% assign active = true %}{% elsif item.url == "/learn/" and page.layout == "course" %}{% assign active = true %}{% endif %}
         <a href="{{ item.url | relative_url }}"{% if active %} class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
       {% endfor %}
       {% if site.private_area %}<a href="{{ '/private/' | relative_url }}" class="nav-private{% if page.url contains '/private/' %} active{% endif %}" hidden>🔒 Private</a>{% endif %}
