@@ -1,65 +1,124 @@
 ---
 layout: default
 ---
+{%- comment -%}
+  Fun project page. All content comes from the project's file in _projects/.
+  Sections: 1 name · 2 description · 3 tags · 4 video + screenshots · 5 how it works ·
+  6 hardware (from the .circuit file) · 7 circuit diagram · 8 code · 9 what you can modify · 10 downloads
+{%- endcomment -%}
+{% assign yt = page.youtube | default: "" | strip %}
+{% if yt contains "v=" %}{% assign yt = yt | split: "v=" | last | split: "&" | first %}
+{% elsif yt contains "youtu.be/" %}{% assign yt = yt | split: "youtu.be/" | last | split: "?" | first %}
+{% elsif yt contains "/shorts/" %}{% assign yt = yt | split: "/shorts/" | last | split: "?" | first %}
+{% elsif yt contains "/embed/" %}{% assign yt = yt | split: "/embed/" | last | split: "?" | first %}{% endif %}
+{% assign has_shots = false %}{% if page.screenshots and page.screenshots.size > 0 %}{% assign has_shots = true %}{% endif %}
+{% assign has_circuit = false %}{% if page.circuit_file and page.circuit_file != "" %}{% assign has_circuit = true %}{% endif %}
+{% assign has_parts = false %}{% if page.parts and page.parts.size > 0 %}{% assign has_parts = true %}{% endif %}
+{% assign has_diagram = false %}{% if page.circuit_image and page.circuit_image != "" %}{% assign has_diagram = true %}{% endif %}
+{% assign has_modify = false %}{% if page.modify and page.modify.size > 0 %}{% assign has_modify = true %}{% endif %}
+{% assign body = content | strip %}
+{% assign has_dl = false %}{% if page.downloads and page.downloads.size > 0 %}{% assign has_dl = true %}{% endif %}
 <article class="wrap project-page">
   <nav class="crumbs"><a href="{{ '/fun-projects/' | relative_url }}">Fun Projects</a> <span>/</span> {{ page.title }}</nav>
+
   <header class="article-head">
     <h1>{{ page.title }}</h1>
     {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
     {% if page.tags.size > 0 %}<p class="chips">{% for t in page.tags %}<span class="chip">{{ t }}</span>{% endfor %}</p>{% endif %}
+    <nav class="jump">
+      {% if yt != "" %}<a href="#video">Video</a>{% endif %}
+      {% if has_shots %}<a href="#screenshots">Screenshots</a>{% endif %}
+      {% if body != "" %}<a href="#how-it-works">How it works</a>{% endif %}
+      {% if has_circuit or has_parts %}<a href="#hardware">Hardware</a>{% endif %}
+      {% if has_diagram %}<a href="#circuit">Circuit</a>{% endif %}
+      {% if has_circuit %}<a href="#code">Code</a>{% endif %}
+      {% if has_modify %}<a href="#modify">Modify it</a>{% endif %}
+      {% if has_dl %}<a href="#downloads">Downloads</a>{% endif %}
+    </nav>
   </header>
 
-  {% if page.sim %}
-  <section class="section" id="play">
-    <h2>Play it</h2>
-    {% if page.how_to_play %}<p class="muted">{{ page.how_to_play }}</p>{% endif %}
-    <div id="sim" class="sim-root"><noscript>The simulator needs JavaScript.</noscript></div>
-    <p class="muted small-note">This runs the real compiled Arduino program on a virtual ATmega328P (the Nano's chip). You can play, but the code and wiring can't be changed here. Saved levels stay in your browser only.</p>
+  {% if yt != "" %}
+  <section class="section" id="video">
+    <h2>Video</h2>
+    <figure class="project-video"><iframe src="https://www.youtube-nocookie.com/embed/{{ yt }}?rel=0" title="Video of {{ page.title }}" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></figure>
   </section>
   {% endif %}
 
-  <div class="prose project-body">
-    {{ content }}
-  </div>
+  {% if has_shots %}
+  <section class="section" id="screenshots">
+    <h2>Screenshots</h2>
+    {% for s in page.screenshots %}
+    <figure class="sci-fig">
+      <a href="{{ s.src | relative_url }}" class="shot"><img src="{{ s.src | relative_url }}" alt="{{ s.caption | strip_html | default: page.title }}" loading="lazy"></a>
+      <figcaption><strong>Figure {{ forloop.index }}.</strong> {{ s.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>
+    </figure>
+    {% endfor %}
+  </section>
+  {% endif %}
 
-  {% assign has_img = false %}{% if page.circuit_image and page.circuit_image != "" %}{% assign has_img = true %}{% endif %}
-  {% if has_img or page.sim.circuit %}
+  {% if body != "" %}
+  <section class="section" id="how-it-works">
+    <h2>How it works</h2>
+    <div class="prose">{{ content }}</div>
+  </section>
+  {% endif %}
+
+  {% if has_circuit or has_parts %}
+  <section class="section" id="hardware">
+    <h2>Hardware</h2>
+    <h3>Parts list</h3>
+    {% if has_circuit %}
+      <div id="cv-parts"><p class="muted">Reading the circuit file…</p></div>
+      <details class="more-box"><summary>Pin connections</summary><div id="cv-conn"></div></details>
+    {% else %}
+      <div class="tbl-wrap"><table class="data-table"><thead><tr><th>Qty</th><th>Part</th><th>Details</th></tr></thead><tbody>
+        {% for p in page.parts %}<tr><td>{{ p.qty | default: 1 }}</td><td>{{ p.name }}</td><td>{{ p.details | default: "—" }}</td></tr>{% endfor %}
+      </tbody></table></div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if has_diagram %}
   <section class="section" id="circuit">
-    <h2>Circuit</h2>
-    {% if has_img %}<figure class="toc-fig circuit-fig"><a href="{{ page.circuit_image | relative_url }}" target="_blank" rel="noopener"><img src="{{ page.circuit_image | relative_url }}" alt="Circuit design of {{ page.title }}"></a><figcaption class="muted">Circuit design (click to enlarge)</figcaption></figure>{% endif %}
-    {% if page.sim.circuit %}<div id="sim-circuit"><p class="muted">Loading the circuit…</p></div>{% endif %}
+    <h2>Circuit diagram</h2>
+    <figure class="sci-fig">
+      <a href="{{ page.circuit_image | relative_url }}" class="shot"><img src="{{ page.circuit_image | relative_url }}" alt="Circuit diagram of {{ page.title }}" loading="lazy"></a>
+      <figcaption>{% if page.circuit_caption and page.circuit_caption != "" %}{{ page.circuit_caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}{% else %}Hardware connections, drawn in Circuit Studio. Click to enlarge.{% endif %}</figcaption>
+    </figure>
   </section>
   {% endif %}
 
-  {% if page.sim.circuit %}
+  {% if has_circuit %}
   <section class="section" id="code">
     <h2>Arduino code <small class="muted">(read-only)</small></h2>
-    <div id="sim-code"></div>
+    <div id="cv-code"></div>
   </section>
   {% endif %}
 
-  {% if page.downloads.size > 0 %}
+  {% if has_modify %}
+  <section class="section" id="modify">
+    <h2>What you can modify</h2>
+    <div class="tbl-wrap"><table class="data-table"><thead><tr><th>To change…</th><th>Where</th><th>How</th></tr></thead><tbody>
+      {% for m in page.modify %}<tr><td>{{ m.what }}</td><td><code>{{ m.where }}</code></td><td>{{ m.how | markdownify | remove: "<p>" | remove: "</p>" }}</td></tr>{% endfor %}
+    </tbody></table></div>
+  </section>
+  {% endif %}
+
+  {% if has_dl %}
   <section class="section" id="downloads">
     <h2>Downloads</h2>
-    <ul class="plain">{% for d in page.downloads %}<li><a href="{{ d.file | relative_url }}" download>{{ d.label }}</a>{% if d.note %} <span class="muted">— {{ d.note }}</span>{% endif %}</li>{% endfor %}</ul>
+    <ul class="downloads">{% for d in page.downloads %}<li><a href="{{ d.file | relative_url }}" download>⬇ {{ d.label }}</a>{% if d.note %} <span class="muted">— {{ d.note }}</span>{% endif %}</li>{% endfor %}</ul>
   </section>
   {% endif %}
 </article>
-{% if page.sim %}
-<script src="{{ '/assets/js/arduino-sim.js' | relative_url }}"></script>
+<div class="lightbox" hidden><img alt=""><button aria-label="Close">×</button></div>
+{% if has_circuit %}
+<script src="{{ '/assets/js/circuit-view.js' | relative_url }}"></script>
 <script>
-  (function () {
-    var cfg = {{ page.sim | jsonify }};
-    cfg.id = {{ page.slug | default: page.title | jsonify }};
-    var base = {{ site.baseurl | jsonify }};
-    ["hex", "circuit"].forEach(function (k) { if (cfg[k]) cfg[k] = base + cfg[k]; });
-    if (cfg.dfplayer) { cfg.dfplayer.folder = base + cfg.dfplayer.folder; if (cfg.dfplayer.captions) cfg.dfplayer.captions = base + cfg.dfplayer.captions; }
-    ArduinoSim.mount(document.getElementById("sim"), cfg);
-    if (cfg.circuit) {
-      ArduinoSim.circuit(document.getElementById("sim-circuit"), cfg.circuit)
-        .then(function (d) { return ArduinoSim.code(document.getElementById("sim-code"), cfg.circuit, d); })
-        .catch(function () { document.getElementById("sim-circuit").textContent = "Could not load the circuit file."; });
-    }
-  })();
+  CircuitView.load({{ page.circuit_file | relative_url | jsonify }}).then(function (d) {
+    CircuitView.parts(document.getElementById("cv-parts"), d);
+    CircuitView.connections(document.getElementById("cv-conn"), d);
+    CircuitView.code(document.getElementById("cv-code"), d);
+  }).catch(function () { document.getElementById("cv-parts").textContent = "Could not read the circuit file."; });
 </script>
 {% endif %}

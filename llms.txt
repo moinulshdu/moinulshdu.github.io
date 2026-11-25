@@ -18,7 +18,7 @@ Contact: {{ site.author.email }} · LinkedIn: {{ site.author.linkedin }} · Goog
 - [Publications]({{ '/publications/' | absolute_url }}): papers and presentations
 - [Apps]({{ '/apps/' | absolute_url }}): scientific desktop software
 - [Learn]({{ '/learn/' | absolute_url }}): teaching courses and educational articles
-- [Fun Projects]({{ '/fun-projects/' | absolute_url }}): Arduino builds (playable in the browser) and other hobby projects
+- [Fun Projects]({{ '/fun-projects/' | absolute_url }}): Arduino builds with circuits, parts lists and code, and other hobby projects
 
 ## Education
 {% for e in p.education %}- {{ e.degree }}, {{ e.school }} ({{ e.dates }}). Thesis: {{ e.thesis }}

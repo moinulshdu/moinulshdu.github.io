@@ -160,37 +160,51 @@ The course file is visible on GitHub even while it's unpublished. Write unfinish
 - In `_data/navigation.yml`, change `title: "Learn"`, for example to "Teaching" or "Notes".
 - To change the page heading as well, edit `title:` and the `<h1>` in `learn.html`.
 
-## 5c. Fun Projects (Arduino builds you can play in the browser)
+## 5c. Fun Projects
 
-The **Fun Projects** page (`/fun-projects/`) shows one card per project. Each project is one file in `_projects/`, and its files (pictures, programs, sounds) go in `files/projects/<project-name>/`.
+The **Fun Projects** page (`/fun-projects/`) shows one card per project. Each project is **one page file** in `_projects/` plus **one folder of files** in `files/projects/<name>/`.
 
-**Musa & Isa's Math Game Kit** (`_projects/musa-math-game.md`) is playable: the page runs the real compiled Arduino program on a virtual Nano. Visitors can press keys and hear the sounds, but they can't change the code or the wiring.
+Every project page shows these sections, in this order. A section stays hidden when its field is empty.
 
-| File in `files/projects/musa-math-game/` | What it is |
-|---|---|
-| `firmware.hex` | the compiled program the simulator runs |
-| `MusaMathGameCircuit2.circuit` | your Circuit Studio file (parts list, connections and the read-only code on the page are read from it) |
-| `MathGameKit-sketch.zip` | the sketch for download |
-| `mp3/0001.mp3 … 0039.mp3` | **you add these:** the recordings from the SD card |
-| `captions.json` | the text shown while each sound plays |
-| `screen.png` | the card picture |
+| # | Section on the page | Field in the project file |
+|---|---|---|
+| 1 | Name | `title` |
+| 2 | Description and idea | `summary` |
+| 3 | Tags | `tags` |
+| 4a | YouTube video | `youtube` (paste the full link) |
+| 4b | Screenshots as Figure 1, 2, … with captions | `screenshots` |
+| 5 | How it works | the text below the second `---` |
+| 6 | Hardware: parts list and pin connections | read from `circuit_file`, or typed in `parts` |
+| 7 | Circuit diagram | `circuit_image` (+ optional `circuit_caption`) |
+| 8 | Arduino code (read-only) | read from `circuit_file` |
+| 9 | What you can modify | `modify` |
+| 10 | Downloads | `downloads` |
 
-**Add the sounds.** Upload the files from your SD card's `mp3` folder (0001.mp3, 0002.mp3, …) into `files/projects/musa-math-game/mp3/` (github.com › that folder › **Add file › Upload files**). Until a sound file is there, the simulator plays a short beep and shows the caption. The recordings will be public, so only upload ones you're happy to share.
+### Adding a new project, step by step
 
-**Add a picture of the circuit.**
-1. In Circuit Studio, open the project and take a screenshot (Mac: **Cmd+Shift+4**; Windows: **Win+Shift+S**).
-2. Upload it as `files/projects/musa-math-game/circuit.png`.
-3. In `_projects/musa-math-game.md`, set `circuit_image: /files/projects/musa-math-game/circuit.png`. Set `thumbnail:` to the same path if you want it on the card too.
+1. **Choose a short name**, for example `weather-station` (lowercase letters and hyphens).
+2. **Prepare the files** on your computer:
+   - photos: JPG, about 1600 px wide;
+   - the Circuit Studio file, saved after the code is final (the code shown on the page comes from it);
+   - a screenshot of the circuit diagram (Mac **Cmd+Shift+4**, Windows **Win+Shift+S**);
+   - the Arduino sketch folder, zipped.
+3. **Upload the video to YouTube** (Unlisted is fine) and copy its link.
+4. **Upload the files** on github.com.
+   1. Open the folder `files/projects`.
+   2. Click **Add file › Upload files**.
+   3. Drag the files in. To put them in a new folder, first upload one file, then rename its path by editing the file name to `weather-station/filename`. GitHub Desktop is easier: create `files/projects/weather-station/` in Finder, copy the files in, commit and push.
+5. **Create the page file.**
+   1. Open `_projects` on github.com.
+   2. Click **Add file › Create new file** and name it `weather-station.md`.
+   3. Paste the whole content of `templates/new-project.md`.
+6. **Fill in the fields** (table above). Paths always start with `/files/projects/weather-station/…`.
+7. **Write "How it works"** under the second `---` line.
+8. **Publish.** Change `published: false` to `published: true`, then commit. After about 2 minutes, open the Fun Projects page and check every section.
 
-**After you change the Arduino code**
-1. In the Arduino IDE, choose **Sketch › Export Compiled Binary**.
-2. In the sketch's `build` folder, find the `.hex` file *without* "with_bootloader" in its name.
-3. Upload it as `files/projects/musa-math-game/firmware.hex`.
-4. Also upload the updated `.circuit` file and sketch zip, so the code shown on the page matches.
-
-**Add another project**
-1. Copy `templates/new-project.md` into `_projects/` and fill it in.
-2. For a playable Arduino project, copy the `sim:` block from the Musa project and change the pins. The simulator currently understands an Arduino Nano/Uno-type board with an ILI9341 screen, a matrix keypad, a DFPlayer Mini and a battery reading. Ask for help to add other parts (LEDs, buttons, other displays).
+**Updating a project later:**
+- upload new photos and add them to `screenshots`;
+- upload the new `.circuit` file under the same name, so the parts, connections and code on the page update by themselves;
+- edit the text in the page file.
 
 ## 6. Private area (sign-in, documents, password reset)
 
