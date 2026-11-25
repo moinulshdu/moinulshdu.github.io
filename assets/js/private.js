@@ -47,6 +47,7 @@ async function start() {
   const auth = A.getAuth(app);
   const db = F.getFirestore(app);
   let unsub = null, items = [], activeCat = "All", editing = null, user = null;
+  let mdrive = null, mdriveDoc = null, drafts = [], draftsLoaded = false;
 
   // ---------- navigation between forms ----------
   document.addEventListener("click", e => {
@@ -103,7 +104,8 @@ async function start() {
 
   async function doSignOut() {
     if (unsub) { unsub(); unsub = null; }
-    items = []; $("#vault-list").textContent = "";
+    items = []; drafts = []; mdrive = null; mdriveDoc = null; draftsLoaded = false;
+    $("#vault-list").textContent = ""; $("#drafts").textContent = "";
     try { localStorage.removeItem(NAV_FLAG); } catch (_) {}
     await A.signOut(auth);
   }
@@ -132,8 +134,13 @@ async function start() {
     show("vault");
     if (unsub) unsub();
     unsub = F.onSnapshot(col(), snap => {
-      items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const st = all.find(i => i.type === "settings");
+      const changed = JSON.stringify(st && st.mdrive || null) !== JSON.stringify(mdrive);
+      mdriveDoc = st || null; mdrive = st && st.mdrive || null;
+      items = all.filter(i => i.type !== "settings");
       render();
+      if (changed || !draftsLoaded) loadDrafts();
     }, err => { $("#vault-list").innerHTML = ""; const p = document.createElement("p"); p.className = "pv-msg err"; p.textContent = friendly(err) + " Check that the Firestore rules from firestore.rules are published."; $("#vault-list").append(p); });
   }
 
@@ -200,7 +207,12 @@ async function start() {
     if (sub) { const n = document.createElement("p"); n.className = "vi-notes"; n.textContent = sub; main.append(n); }
     const ed = document.createElement("button"); ed.className = "btn small"; ed.type = "button"; ed.textContent = "Edit";
     ed.onclick = () => openEditor(i.type || "link", i);
-    el.append(ic, main, ed);
+    if (i.type === "article") {
+      const mv = document.createElement("button"); mv.className = "btn small"; mv.type = "button"; mv.textContent = "Move to mDrive";
+      mv.onclick = () => moveToMdrive(i);
+      const box = document.createElement("div"); box.className = "btns"; box.append(mv, ed);
+      el.append(ic, main, box);
+    } else el.append(ic, main, ed);
     return el;
   }
 
@@ -209,7 +221,9 @@ async function start() {
   // ---------- editor ----------
   const dlg = $("#dlg-edit"), fe = $("#f-edit");
   function openEditor(type, item = null) {
-    editing = { type, id: item ? item.id : null };
+    editing = { type, id: item ? item.id : null, draft: item && item.path ? item : null };
+    fe.category.closest("label").hidden = type === "article" && !(item && item.id);
+    fe.pinned.closest("label").hidden = type === "article" && !(item && item.id);
     fe.reset();
     $("#dlg-title").textContent = (item ? "Edit " : "New ") + ({ page: "private page", article: "draft article", link: "link" })[type];
     $$(".for-link, .for-page, .for-article", fe).forEach(x => (x.hidden = !x.classList.contains("for-" + type)));
@@ -222,14 +236,14 @@ async function start() {
       fe.notes.value = item.notes || ""; fe.body.value = item.body || ""; fe.pinned.checked = !!item.pinned;
       fe.date.value = item.date || ""; fe.summary.value = item.summary || ""; fe.toc_figure.value = item.toc_figure || "";
       fe.tags.value = (item.tags || []).join(", "); fe.math.checked = !!item.math;
-    } else if (type === "article") { fe.category.value = "Draft articles"; fe.date.value = new Date().toISOString().slice(0, 10); }
+    } else if (type === "article") { fe.category.value = "Draft articles"; fe.date.value = localToday(); }
     else if (activeCat !== "All") fe.category.value = activeCat;
     else if (type === "page") fe.category.value = "Unpublished pages";
     dlg.showModal();
   }
   $("#b-add-link").onclick = () => openEditor("link");
   $("#b-add-page").onclick = () => openEditor("page");
-  $("#b-add-article").onclick = () => openEditor("article");
+  $("#b-add-article").onclick = () => { if (!mdrive) return openMdrive(); openEditor("article"); };
   $("#q").addEventListener("input", render);
 
   fe.addEventListener("submit", async e => {
@@ -241,8 +255,17 @@ async function start() {
       url: editing.type === "link" ? fe.url.value.trim() : "", notes: editing.type === "link" ? fe.notes.value : "",
       body: editing.type !== "link" ? fe.body.value : "", pinned: fe.pinned.checked, updated: F.serverTimestamp()
     };
+    if (editing.type === "article" && !editing.id) {          // draft stored in mDrive
+      const art = { title: data.title, date: fe.date.value || localToday(), summary: fe.summary.value.trim(),
+        toc_figure: fe.toc_figure.value.trim(), math: fe.math.checked, tags: fe.tags.value.split(",").map(x => x.trim()).filter(Boolean), body: fe.body.value };
+      const btn = $("#b-save"); btn.disabled = true; btn.textContent = "Saving…";
+      try { await saveDraft(art, editing.draft); dlg.close(); await loadDrafts(); }
+      catch (err) { alert("Could not save to GitHub: " + (err.message || err)); }
+      finally { btn.disabled = false; btn.textContent = "Save"; }
+      return;
+    }
     if (editing.type === "article") Object.assign(data, {
-      date: fe.date.value || new Date().toISOString().slice(0, 10), summary: fe.summary.value.trim(),
+      date: fe.date.value || localToday(), summary: fe.summary.value.trim(),
       toc_figure: fe.toc_figure.value.trim(), math: fe.math.checked,
       tags: fe.tags.value.split(",").map(x => x.trim()).filter(Boolean)
     });
@@ -253,6 +276,12 @@ async function start() {
     } catch (err) { alert(friendly(err)); }
   });
   $("#b-delete").onclick = async () => {
+    if (editing.draft) {
+      if (!confirm("Delete the draft file " + editing.draft.name + " from GitHub? (GitHub keeps it in the repository's history.)")) return;
+      try { await gh("DELETE", editing.draft.path, { message: "Delete draft " + editing.draft.name, sha: editing.draft.sha, branch: mdrive.branch });
+        dlg.close(); $("#dlg-read").close(); await loadDrafts(); } catch (err) { alert("Could not delete: " + (err.message || err)); }
+      return;
+    }
     if (!editing.id || !confirm("Delete this entry? This cannot be undone.")) return;
     try { await F.deleteDoc(F.doc(col(), editing.id)); dlg.close(); $("#dlg-read").close(); } catch (err) { alert(friendly(err)); }
   };
@@ -273,30 +302,127 @@ async function start() {
   }
   $("#b-read-publish").onclick = () => downloadArticle(reading);
 
-  // ---------- import an existing .md article as a private draft ----------
-  $("#b-import").onclick = () => { more.hidden = true; $("#f-import").click(); };
-  $("#f-import").addEventListener("change", async e => {
-    const file = e.target.files[0]; e.target.value = "";
-    if (!file) return;
-    try {
-      const text = await file.text();
-      const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-      let meta = {}, body = text;
-      if (m) { await loadScript(LIBS.yaml); meta = window.jsyaml.load(m[1]) || {}; body = text.slice(m[0].length); }
-      const fromName = (file.name.match(/^(\d{4}-\d{2}-\d{2})-/) || [])[1];
-      const d = meta.date ? new Date(meta.date) : null;
-      await F.addDoc(col(), {
-        type: "article", title: String(meta.title || file.name.replace(/\.(md|markdown)$/, "")),
-        date: d && !isNaN(d) ? d.toISOString().slice(0, 10) : (fromName || new Date().toISOString().slice(0, 10)),
-        summary: String(meta.summary || "").trim(), toc_figure: String(meta.toc_figure || ""), math: !!meta.math,
-        tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [], body: body.replace(/^\s+/, ""),
-        category: "Draft articles", url: "", notes: "", pinned: false, created: F.serverTimestamp(), updated: F.serverTimestamp()
-      });
-      alert("Imported “" + (meta.title || file.name) + "” as a private draft. You can now delete the file from the website's _posts folder.");
-    } catch (err) { alert("Could not import this file: " + (err.message || err)); }
-  });
   $("#b-read-close").onclick = () => $("#dlg-read").close();
-  $("#b-read-edit").onclick = () => { $("#dlg-read").close(); openEditor("page", reading); };
+  $("#b-read-edit").onclick = () => { $("#dlg-read").close(); openEditor(reading.type === "article" ? "article" : "page", reading); };
+
+  // ---------- draft articles in the private GitHub repository (mDrive) ----------
+  const enc = p => p.split("/").map(encodeURIComponent).join("/");
+  async function gh(method, path, body) {
+    const url = "https://api.github.com/repos/" + mdrive.owner + "/" + mdrive.repo + (path === null ? "" : "/contents/" + enc(path)) +
+      (method === "GET" && path !== null ? "?ref=" + encodeURIComponent(mdrive.branch) : "");
+    const r = await fetch(url, { method, headers: { Authorization: "Bearer " + mdrive.token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" },
+      body: body ? JSON.stringify(body) : undefined, cache: "no-store" });
+    if (r.status === 404 && method === "GET") return null;
+    if (!r.ok) { let m = r.status + ""; try { m = (await r.json()).message || m; } catch (_) {} throw new Error(m === "Bad credentials" ? "the access key is wrong or expired" : m); }
+    return r.status === 204 ? null : r.json();
+  }
+  const b64dec = b => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g, "")), c => c.charCodeAt(0)));
+  function b64enc(t) { const u = new TextEncoder().encode(t); let s2 = ""; for (let k = 0; k < u.length; k += 0x8000) s2 += String.fromCharCode.apply(null, u.subarray(k, k + 0x8000)); return btoa(s2); }
+  async function parseMd(text, name) {
+    const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+    let meta = {}, body = text;
+    if (m) { await loadScript(LIBS.yaml); try { meta = window.jsyaml.load(m[1]) || {}; } catch (_) {} body = text.slice(m[0].length); }
+    const fromName = (name.match(/^(\d{4}-\d{2}-\d{2})-/) || [])[1];
+    let date = meta.date ? new Date(meta.date) : null;
+    date = date && !isNaN(date) ? date.toISOString().slice(0, 10) : (fromName || "");
+    return { meta, type: "article", title: String(meta.title || name.replace(/\.md$/, "")), date, summary: String(meta.summary || "").trim(),
+      toc_figure: String(meta.toc_figure || ""), math: !!meta.math, tags: Array.isArray(meta.tags) ? meta.tags.map(String) : [], body: body.replace(/^\s+/, "") };
+  }
+  function buildMd(art, meta = {}) {
+    const q = v => JSON.stringify(String(v || ""));
+    const known = ["title", "date", "math", "summary", "toc_figure", "tags", "draft", "published"];
+    const extra = Object.entries(meta).filter(([k]) => !known.includes(k));
+    const fm = ["---", "title: " + q(art.title), "date: " + art.date, "math: " + (art.math ? "true" : "false"), "summary: " + q(art.summary),
+      "toc_figure: " + q(art.toc_figure), "tags: " + JSON.stringify(art.tags || [])];
+    if (extra.length && window.jsyaml) fm.push(window.jsyaml.dump(Object.fromEntries(extra)).trim());
+    fm.push("---", "");
+    return fm.join("\n") + (art.body || "").replace(/\s*$/, "\n");
+  }
+  const slugOf = t => (t || "article").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "article";
+  async function saveDraft(art, existing) {
+    await loadScript(LIBS.yaml);
+    const text = buildMd(art, existing ? existing.meta : {});
+    const path = existing ? existing.path : mdrive.folder.replace(/\/+$/, "") + "/" + art.date + "-" + slugOf(art.title) + ".md";
+    if (!existing && await gh("GET", path)) throw new Error("a draft with this date and title already exists");
+    await gh("PUT", path, { message: (existing ? "Update" : "Add") + " draft: " + art.title, content: b64enc(text), branch: mdrive.branch, ...(existing ? { sha: existing.sha } : {}) });
+  }
+  async function moveToMdrive(i) {
+    if (!mdrive) return openMdrive();
+    if (!confirm("Copy “" + i.title + "” into your GitHub draft folder and remove it from this list?")) return;
+    try { await saveDraft({ title: i.title, date: i.date || localToday(), summary: i.summary, toc_figure: i.toc_figure, math: i.math, tags: i.tags, body: i.body });
+      await F.deleteDoc(F.doc(col(), i.id)); await loadDrafts(); }
+    catch (err) { alert("Could not move it: " + (err.message || err)); }
+  }
+  function draftRow(dft) {
+    const el = document.createElement("div"); el.className = "vault-item";
+    const ic = document.createElement("span"); ic.className = "vi-icon"; ic.textContent = "📰";
+    const main = document.createElement("div"); main.className = "vi-main";
+    const t = document.createElement("button"); t.type = "button"; t.className = "vi-title"; t.textContent = dft.title; t.onclick = () => openReader(dft);
+    const n = document.createElement("p"); n.className = "vi-notes"; n.textContent = (dft.date ? dft.date + " · " : "") + dft.name + (dft.summary ? " — " + dft.summary : "");
+    main.append(t, n);
+    const box = document.createElement("div"); box.className = "btns";
+    const mk = (label, fn) => { const b2 = document.createElement("button"); b2.type = "button"; b2.className = "btn small"; b2.textContent = label; b2.onclick = fn; return b2; };
+    const gl = document.createElement("a"); gl.className = "btn small"; gl.textContent = "GitHub ↗"; gl.target = "_blank"; gl.rel = "noopener";
+    gl.href = "https://github.com/" + mdrive.owner + "/" + mdrive.repo + "/blob/" + encodeURIComponent(mdrive.branch) + "/" + enc(dft.path);
+    box.append(mk("Preview", () => openReader(dft)), mk("Edit", () => openEditor("article", dft)), gl);
+    el.append(ic, main, box);
+    return el;
+  }
+  async function loadDrafts() {
+    const box = $("#drafts"); draftsLoaded = true;
+    const head = document.createElement("div"); head.className = "drafts-head";
+    const h = document.createElement("h2"); h.textContent = "Draft articles (private, in " + (mdrive ? mdrive.repo : "GitHub") + ")";
+    const btns = document.createElement("div"); btns.className = "btns";
+    if (!mdrive) {
+      box.replaceChildren(head); head.append(h);
+      const c = document.createElement("div"); c.className = "card pad";
+      c.innerHTML = "<p>Your draft articles are .md files in a folder of your private GitHub repository. Connect it once to list, preview, edit and publish them here.</p>";
+      const b2 = document.createElement("button"); b2.className = "btn primary"; b2.type = "button"; b2.textContent = "Connect the draft folder"; b2.onclick = openMdrive;
+      c.append(b2); box.append(c); return;
+    }
+    const refresh = document.createElement("button"); refresh.className = "btn small"; refresh.type = "button"; refresh.textContent = "↻ Refresh"; refresh.onclick = loadDrafts;
+    const folderLink = document.createElement("a"); folderLink.className = "btn small"; folderLink.textContent = "Folder ↗"; folderLink.target = "_blank"; folderLink.rel = "noopener";
+    folderLink.href = "https://github.com/" + mdrive.owner + "/" + mdrive.repo + "/tree/" + encodeURIComponent(mdrive.branch) + "/" + enc(mdrive.folder);
+    btns.append(refresh, folderLink); head.append(h, btns);
+    const list = document.createElement("div"); list.className = "vault-items"; list.innerHTML = '<p class="muted" style="padding:12px 16px;margin:0">Loading drafts…</p>';
+    box.replaceChildren(head, list);
+    try {
+      const files = ((await gh("GET", mdrive.folder)) || []).filter(f => f.type === "file" && /\.md$/i.test(f.name) && !/^readme\.md$/i.test(f.name));
+      drafts = await Promise.all(files.map(async f => { const j = await gh("GET", f.path); return { ...(await parseMd(b64dec(j.content), f.name)), name: f.name, path: f.path, sha: j.sha }; }));
+      drafts.sort((a2, b2) => (b2.date || "").localeCompare(a2.date || ""));
+      list.textContent = "";
+      if (!drafts.length) { list.innerHTML = '<p class="muted" style="padding:12px 16px;margin:0">No drafts yet. Click <b>+ New draft article</b>, or upload .md files to the folder on GitHub.</p>'; return; }
+      drafts.forEach(dft => list.append(draftRow(dft)));
+    } catch (err) { list.innerHTML = ""; const p = document.createElement("p"); p.className = "pv-msg err"; p.style.padding = "12px 16px"; p.textContent = "Could not read the draft folder: " + (err.message || err) + ". Check the settings in ⋯ › Draft folder on GitHub."; list.append(p); }
+  }
+  // settings dialog
+  const dm = $("#dlg-mdrive"), fm2 = $("#f-mdrive");
+  function openMdrive() {
+    more.hidden = true; $("#mdrive-msg").textContent = ""; $("#mdrive-msg").className = "pv-msg";
+    if (mdrive) for (const k of ["owner", "repo", "branch", "folder"]) fm2[k].value = mdrive[k];
+    fm2.token.value = ""; fm2.token.required = !mdrive; fm2.token.placeholder = mdrive ? "leave empty to keep the saved key" : "github_pat_…";
+    dm.showModal();
+  }
+  $("#b-mdrive").onclick = openMdrive;
+  fm2.addEventListener("submit", async e => {
+    if (e.submitter && e.submitter.value === "cancel") return;
+    e.preventDefault();
+    const cfg = { owner: fm2.owner.value.trim(), repo: fm2.repo.value.trim(), branch: fm2.branch.value.trim(),
+      folder: fm2.folder.value.trim().replace(/^\/+|\/+$/g, ""), token: fm2.token.value.trim() || (mdrive && mdrive.token) || "" };
+    const msgEl = $("#mdrive-msg"); msgEl.className = "pv-msg"; msgEl.textContent = "Testing…";
+    const old = mdrive; mdrive = cfg;
+    try {
+      const repo = await gh("GET", null);
+      if (!repo) throw new Error("repository not found (check the name, and that the key may access it)");
+      if (repo.permissions && repo.permissions.push === false) throw new Error("the key can read but not write; give it Contents: Read and write");
+      if (!repo.private) { if (!confirm(cfg.repo + " is a PUBLIC repository, so drafts there are visible to everyone. Use it anyway?")) throw new Error("cancelled"); }
+      const branchOk = await fetch("https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + "/branches/" + encodeURIComponent(cfg.branch), { headers: { Authorization: "Bearer " + cfg.token } });
+      if (!branchOk.ok) throw new Error("branch “" + cfg.branch + "” not found (it may be main or master)");
+      const data = { type: "settings", title: "settings", mdrive: cfg, updated: F.serverTimestamp() };
+      if (mdriveDoc) await F.updateDoc(F.doc(col(), mdriveDoc.id), data); else await F.addDoc(col(), data);
+      dm.close(); loadDrafts();
+    } catch (err) { mdrive = old; msgEl.className = "pv-msg err"; msgEl.textContent = "Not saved: " + (err.message || err) + "."; }
+  });
 
   // ---------- menu: export, password link ----------
   const more = $("#m-more");
@@ -304,9 +430,10 @@ async function start() {
   document.addEventListener("click", e => { if (!e.target.closest(".menu-wrap")) more.hidden = true; });
   $("#b-export").onclick = () => {
     const clean = items.map(({ updated, created, ...r }) => r);
+    if (mdrive) clean.push({ type: "settings", mdrive: { ...mdrive, token: "(not exported)" } });
     const blob = new Blob([JSON.stringify(clean, null, 2)], { type: "application/json" });
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-    a.download = "private-backup-" + new Date().toISOString().slice(0, 10) + ".json"; a.click();
+    a.download = "private-backup-" + localToday() + ".json"; a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   };
   $("#b-pwreset").onclick = async () => {
@@ -350,7 +477,7 @@ async function typeset(el) {
   if (window.MathJax.typesetPromise) await window.MathJax.typesetPromise([el]);
 }
 function downloadArticle(i) {
-  const date = i.date || new Date().toISOString().slice(0, 10);
+  const date = i.date || localToday();
   const slug = (i.title || "article").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "article";
   const q = v => JSON.stringify(String(v || ""));          // JSON strings are valid YAML
   const fm = ["---", "title: " + q(i.title), "date: " + date, "math: " + (i.math ? "true" : "false"),
@@ -360,6 +487,8 @@ function downloadArticle(i) {
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   alert("Saved " + a.download + " to your Downloads folder.\n\nTo publish: on GitHub open the _posts folder → Add file → Upload files → drop this file → Commit changes. Upload any pictures to images/articles first. The article appears on the website about 2 minutes later.");
 }
+
+function localToday() { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
 
 // Small, safe Markdown: escapes HTML first, then # headings, **bold**, *italic*, - lists, [text](https://links).
 function miniMarkdown(src) {

@@ -78,7 +78,7 @@ noindex: true
         <div class="menu-wrap">
           <button class="btn" id="b-more" aria-haspopup="true" aria-expanded="false">⋯</button>
           <div class="menu" id="m-more" hidden>
-            <button type="button" id="b-import">Import article (.md file) as a draft</button>
+            <button type="button" id="b-mdrive">Draft folder on GitHub (mDrive) settings…</button>
             <button type="button" id="b-export">Export everything (JSON)</button>
             <button type="button" id="b-pwreset">Email me a password-change link</button>
             <button type="button" class="pv-signout">Sign out</button>
@@ -86,6 +86,7 @@ noindex: true
         </div>
       </div>
     </header>
+    <section id="drafts" class="drafts-box" aria-label="Draft articles"></section>
     <div class="vault-tools">
       <input type="search" id="q" placeholder="Search titles, notes, categories…" aria-label="Search">
       <div class="cats" id="cats"></div>
@@ -130,6 +131,23 @@ noindex: true
   <div id="read-body" class="prose"></div>
 </dialog>
 
-<input type="file" id="f-import" accept=".md,.markdown,text/markdown,text/plain" hidden>
+<!-- mDrive (private GitHub repository) settings -->
+<dialog id="dlg-mdrive" class="dlg">
+  <form method="dialog" id="f-mdrive">
+    <h2>Draft folder on GitHub</h2>
+    <p class="muted">Draft articles are .md files in a folder of your private repository. The access key is stored with your private entries and works only for that repository.</p>
+    <div class="row2">
+      <label>GitHub user<input name="owner" required value="moinulshdu"></label>
+      <label>Private repository<input name="repo" required placeholder="mDrive"></label>
+    </div>
+    <div class="row2">
+      <label>Branch<input name="branch" required value="main"></label>
+      <label>Folder for drafts<input name="folder" required placeholder="moinulshdu-github-io-files-and-notes/drafts"></label>
+    </div>
+    <label>Access key (fine-grained personal access token)<input name="token" type="password" autocomplete="off" required placeholder="github_pat_…"></label>
+    <p class="pv-msg" id="mdrive-msg" role="status"></p>
+    <div class="dlg-btns"><span></span><button class="btn" value="cancel" formnovalidate>Cancel</button><button class="btn primary" value="save">Test and save</button></div>
+  </form>
+</dialog>
 <script src="{{ '/assets/js/firebase-config.js' | relative_url }}"></script>
 <script type="module" src="{{ '/assets/js/private.js' | relative_url }}"></script>

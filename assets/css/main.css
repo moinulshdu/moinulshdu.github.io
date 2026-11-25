@@ -322,6 +322,12 @@ html[data-theme="dark"] .lightbox { background: rgba(0, 0, 0, .9); }
 .dlg.article-mode { width: min(900px, 96vw); }
 .dlg.article-mode textarea[name=body] { min-height: 340px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9rem; }
 .dlg-read-head .btns { margin: 0 0 10px; }
+.drafts-box { margin: 10px 0 24px; }
+.drafts-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.drafts-head h2 { font-family: var(--sans); font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin: 0; }
+.vault-item .btns { margin: 0; gap: 6px; flex-wrap: nowrap; }
+.vault-item .btn.small { white-space: nowrap; }
+@media (max-width: 640px) { .vault-item { flex-wrap: wrap; } .vault-item .btns { width: 100%; justify-content: flex-end; } }
 .preview-note { background: var(--warn); border-radius: 8px; padding: 8px 12px; font-size: .88rem; margin-bottom: 18px; }
 #read-body .article-head h1 { font-size: 2rem; }
 
